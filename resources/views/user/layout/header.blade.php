@@ -71,7 +71,7 @@
                         <div class="col-lg-3">
                             <div class="brand_logo">
                                 <a class="brand_link" href="{{route('home')}}">
-                                    <img src="{{asset('public/user/assets/images/logo/logo_10_1x.png')}}" srcset="{{asset('public/user/assets/images/logo/logo_10_2x.png')}}" alt="logo_not_found">
+                                    <img src="{{asset('user/assets/images/logo/logo_10_1x.png')}}" srcset="{{asset('user/assets/images/logo/logo_10_2x.png')}}" alt="logo_not_found">
                                 </a>
 
                                 <ul class="mh_action_btns ul_li clearfix">
@@ -349,7 +349,7 @@
                     <ul class="cart_items_list ul_li_block mb_30 clearfix">
                         <li>
                             <div class="item_image">
-                                <img src="/public/user/assets/images/cart/img_01.jpg" alt="image_not_found">
+                                <img src="/user/assets/images/cart/img_01.jpg" alt="image_not_found">
                             </div>
                             <div class="item_content">
                                 <h4 class="item_title">Yellow Blouse</h4>
@@ -359,7 +359,7 @@
                         </li>
                         <li>
                             <div class="item_image">
-                                <img src="/public/user/assets/images/cart/img_01.jpg" alt="image_not_found">
+                                <img src="/user/assets/images/cart/img_01.jpg" alt="image_not_found">
                             </div>
                             <div class="item_content">
                                 <h4 class="item_title">Yellow Blouse</h4>
@@ -369,7 +369,7 @@
                         </li>
                         <li>
                             <div class="item_image">
-                                <img src="/public/user/assets/images/cart/img_01.jpg" alt="image_not_found">
+                                <img src="/user/assets/images/cart/img_01.jpg" alt="image_not_found">
                             </div>
                             <div class="item_content">
                                 <h4 class="item_title">Yellow Blouse</h4>
@@ -409,7 +409,7 @@
 
                     <div class="msb_widget brand_logo text-center">
                         <a href="index.html">
-                        <img src="{{asset('public/user/assets/images/logo/logo_10_1x.png')}}" srcset="{{asset('public/user/assets/images/logo/logo_10_2x.png')}}" alt="logo_not_found">
+                        <img src="{{asset('user/assets/images/logo/logo_10_1x.png')}}" srcset="{{asset('user/assets/images/logo/logo_10_2x.png')}}" alt="logo_not_found">
                         </a>
                     </div>
 
@@ -665,7 +665,7 @@
                             <div class="footer_widget footer_about">
                                 <div class="brand_logo mb_30">
                                     <a href="index.html">
-                                    <img src="{{asset('public/user/assets/images/logo/logo_10_1x.png')}}" srcset="{{asset('public/user/assets/images/logo/logo_10_2x.png')}}" alt="logo_not_found">
+                                    <img src="{{asset('user/assets/images/logo/logo_10_1x.png')}}" srcset="{{asset('user/assets/images/logo/logo_10_2x.png')}}" alt="logo_not_found">
                                     </a>
                                 </div>
 
@@ -689,7 +689,7 @@
                                     <li>
                                         <div class="small_product">
                                             <div class="item_image">
-                                                <img src="/public/user/assets/images/shop/minimal/img_10.jpg" alt="image_not_found">
+                                                <img src="/user/assets/images/shop/minimal/img_10.jpg" alt="image_not_found">
                                             </div>
                                             <div class="item_content">
                                                 <h3 class="item_title">
@@ -705,7 +705,7 @@
                                     <li>
                                         <div class="small_product">
                                             <div class="item_image">
-                                                <img src="/public/user/assets/images/shop/minimal/img_11.jpg" alt="image_not_found">
+                                                <img src="/user/assets/images/shop/minimal/img_11.jpg" alt="image_not_found">
                                             </div>
                                             <div class="item_content">
                                                 <h3 class="item_title">
@@ -728,7 +728,7 @@
                                     <li>
                                         <div class="small_product">
                                             <div class="item_image">
-                                                <img src="/public/user/assets/images/shop/minimal/img_12.jpg" alt="image_not_found">
+                                                <img src="/user/assets/images/shop/minimal/img_12.jpg" alt="image_not_found">
                                             </div>
                                             <div class="item_content">
                                                 <h3 class="item_title">
@@ -744,7 +744,7 @@
                                     <li>
                                         <div class="small_product">
                                             <div class="item_image">
-                                                <img src="/public/user/assets/images/shop/minimal/img_13.jpg" alt="image_not_found">
+                                                <img src="/user/assets/images/shop/minimal/img_13.jpg" alt="image_not_found">
                                             </div>
                                             <div class="item_content">
                                                 <h3 class="item_title">
@@ -804,43 +804,43 @@
 
 
         <!-- fraimwork - jquery include -->
-        <script src="{{ asset('public/user/assets/js/jquery-3.5.1.min.js')}}"></script>
-        <script src="{{ asset('public/user/assets/js/popper.min.js')}}"></script>
-        <script src="{{ asset('public/user/assets/js/bootstrap.min.js')}}"></script>
+        <script src="{{ asset('user/assets/js/jquery-3.5.1.min.js')}}"></script>
+        <script src="{{ asset('user/assets/js/popper.min.js')}}"></script>
+        <script src="{{ asset('user/assets/js/bootstrap.min.js')}}"></script>
 
         <!-- mobile menu - jquery include -->
-        <script src="{{ asset('public/user/assets/js/mCustomScrollbar.js')}}"></script>
+        <script src="{{ asset('user/assets/js/mCustomScrollbar.js')}}"></script>
 
         <!-- google map - jquery include -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk2HrmqE4sWSei0XdKGbOMOHN3Mm2Bf-M&amp;ver=2.1.6"></script>
-        <script src="{{ asset('public/user/assets/js/gmaps.min.js')}}"></script>
+        <script src="{{ asset('user/assets/js/gmaps.min.js')}}"></script>
 
         <!-- animation - jquery include -->
-        <script src="{{ asset('public/user/assets/js/parallaxie.js')}}"></script>
-        <script src="{{ asset('public/user/assets/js/wow.min.js')}}"></script>
+        <script src="{{ asset('user/assets/js/parallaxie.js')}}"></script>
+        <script src="{{ asset('user/assets/js/wow.min.js')}}"></script>
 
         <!-- nice select - jquery include -->
-        <script src="{{ asset('public/user/assets/js/nice-select.min.js')}}"></script>
+        <script src="{{ asset('user/assets/js/nice-select.min.js')}}"></script>
 
         <!-- carousel - jquery include -->
-        <script src="{{ asset('public/user/assets/js/slick.min.js')}}"></script>
+        <script src="{{ asset('user/assets/js/slick.min.js')}}"></script>
 
         <!-- countdown timer - jquery include -->
-        <script src="{{ asset('public/user/assets/js/countdown.js')}}"></script>
+        <script src="{{ asset('user/assets/js/countdown.js')}}"></script>
 
         <!-- popup images & videos - jquery include -->
-        <script src="{{ asset('public/user/assets/js/magnific-popup.min.js')}}"></script>
+        <script src="{{ asset('user/assets/js/magnific-popup.min.js')}}"></script>
 
         <!-- filtering & masonry layout - jquery include -->
-        <script src="{{ asset('public/user/assets/js/isotope.pkgd.min.js')}}"></script>
-        <script src="{{ asset('public/user/assets/js/masonry.pkgd.min.js')}}"></script>
-        <script src="{{ asset('public/user/assets/js/imagesloaded.pkgd.min.js')}}"></script>
+        <script src="{{ asset('user/assets/js/isotope.pkgd.min.js')}}"></script>
+        <script src="{{ asset('user/assets/js/masonry.pkgd.min.js')}}"></script>
+        <script src="{{ asset('user/assets/js/imagesloaded.pkgd.min.js')}}"></script>
 
         <!-- jquery ui - jquery include -->
-        <script src="{{ asset('public/user/assets/js/jquery-ui.js')}}"></script>
+        <script src="{{ asset('user/assets/js/jquery-ui.js')}}"></script>
         @yield('scripts')
         <!-- custom - jquery include -->
-        <script src="{{ asset('public/user/assets/js/custom.js')}}"></script>
+        <script src="{{ asset('user/assets/js/custom.js')}}"></script>
 
 
         <!-- product quick view - start -->
@@ -851,7 +851,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="item_image">
-                        <img src="public/user/assets/images/shop/fashion_minimal/img_07.jpg" alt="image_not_found">
+                        <img src="user/assets/images/shop/fashion_minimal/img_07.jpg" alt="image_not_found">
                     </div>
                     <div class="item_content">
                         <h2 class="item_title mb_15">Digital Infrared Thermometer</h2>
