@@ -11,24 +11,24 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{{ asset('public/admin/img/favicon/favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('admin/img/favicon/favicon.ico') }}" />
 
         <!-- Google Fonts -->
         <link href="https://fonts.gstatic.com" rel="preconnect" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
         <!-- Vendor CSS Files -->
-        <link rel="stylesheet" href="{{ URL::asset('public/admin/assets/vendor/bootstrap/css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" href="{{ URL::asset('public/admin/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" />
-        <link rel="stylesheet" href="{{ URL::asset('public/admin/assets/vendor/boxicons/css/boxicons.min.css') }}" />
-        <link rel="stylesheet" href="{{ URL::asset('public/admin/assets/vendor/remixicon/remixicon.css') }}" />
-        <link rel="stylesheet" href="{{ URL::asset('public/admin/assets/vendor/simple-datatables/style.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('admin/assets/vendor/bootstrap/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ URL::asset('admin/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" />
+        <link rel="stylesheet" href="{{ URL::asset('admin/assets/vendor/boxicons/css/boxicons.min.css') }}" />
+        <link rel="stylesheet" href="{{ URL::asset('admin/assets/vendor/remixicon/remixicon.css') }}" />
+        <link rel="stylesheet" href="{{ URL::asset('admin/assets/vendor/simple-datatables/style.css') }}">
 
         <!-- Template Main CSS File -->
-        <link rel="stylesheet" href="{{ URL::asset('public/admin/assets/css/style.css') }}" />
-        <link rel="stylesheet" href="{{ URL::asset('public/admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-        <link rel="stylesheet" href="{{ URL::asset('public/admin/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
-        <link rel="stylesheet" href="{{ URL::asset('public/admin/assets/css/admin_style.css') }}" />
+        <link rel="stylesheet" href="{{ URL::asset('admin/assets/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ URL::asset('admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+        <link rel="stylesheet" href="{{ URL::asset('admin/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+        <link rel="stylesheet" href="{{ URL::asset('admin/assets/css/admin_style.css') }}" />
     <body>
         <?php
         $role_id = null;
@@ -166,19 +166,19 @@
                         <i class="bi bi-journal-text"></i><span>Category</span>
                     </a>
                 </li><!-- End Forms Nav -->
-                
+
                 <li class="nav-item">
                     <a class="nav-link  <?php echo $menu_active_tab == "inventories" ? '' : 'collapsed'; ?>" href="{{ route('inventories.index') }}">
                         <i class="bx bxs-contact"></i><span>Inventories</span>
                     </a>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link  <?php echo $menu_active_tab == "contact-list" ? '' : 'collapsed'; ?>" href="{{ URL::route('contact-list') }}">
                         <i class="bx bxs-contact"></i><span>Contact Form List</span>
                     </a>
                 </li><!-- End Forms Nav -->
-                
+
                  <li class="nav-item">
                     <a class="nav-link <?php echo $menu_active_tab == "role-list" || $menu_active_tab == "add-role" ? '' : 'collapsed'; ?>" href="{{ URL::route('role-list') }}">
                         <i class="bi bi-journal-text"></i><span>Role</span>
@@ -239,19 +239,19 @@
             var admin_path = "{{ url('/admin') }}";
         </script>
         <!-- Vendor JS Files -->
-        <script src="{{ asset('public/admin/assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
-        <script src="{{ asset('public/admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{ asset('public/admin/assets/vendor/chart.js/chart.min.js')}}"></script>
-        <script src="{{ asset('public/admin/assets/vendor/echarts/echarts.min.js')}}"></script>
-        <script src="{{ asset('public/admin/assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
-        <script src="{{ asset('public/admin/assets/vendor/tinymce/tinymce.min.js')}}"></script>
-        <script src="{{ asset('public/admin/assets/vendor/php-email-form/validate.js')}}"></script>
+        <script src="{{ asset('admin/assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/vendor/chart.js/chart.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/vendor/echarts/echarts.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/vendor/simple-datatables/simple-datatables.js')}}"></script>
+        <script src="{{ asset('admin/assets/vendor/tinymce/tinymce.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/vendor/php-email-form/validate.js')}}"></script>
 
         <!-- Template Main JS File -->
-        <script src="{{ asset('public/admin/assets/js/main.js')}}"></script>
+        <script src="{{ asset('admin/assets/js/main.js')}}"></script>
 
-        <script src="{{ asset('public/admin/assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
-        <script src="{{ asset('public/admin/assets/vendor/libs/sweetalert2/sweetalert2.all.js')}}"></script>
+        <script src="{{ asset('admin/assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+        <script src="{{ asset('admin/assets/vendor/libs/sweetalert2/sweetalert2.all.js')}}"></script>
          @yield('customjs')
     </body>
 
