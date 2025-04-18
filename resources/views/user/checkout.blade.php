@@ -11,7 +11,7 @@
 
         <!-- breadcrumb_section - start
         ================================================== -->
-        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" data-background="public/user/assets/images/breadcrumb/bg_01.jpg">
+        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" data-background="user/assets/images/breadcrumb/bg_01.jpg">
             <div class="overlay" data-bg-color="#1d1d1d"></div>
             <div class="container">
                 <h1 class="page_title text-white">Checkout</h1>
@@ -251,7 +251,7 @@
                                     </li>
                                     <li>
                                         <div class="checkbox_item mb-0 pl-0">
-                                            <label for="razorpay_checkbox"><input id="razorpay_checkbox" type="radio" name="payment_method" value="razorpay"> Razorpay <a href="#!"><img class="paypal_image" src="public/user/assets/images/payment_methods_03.png" alt="image_not_found"></a></label>
+                                            <label for="razorpay_checkbox"><input id="razorpay_checkbox" type="radio" name="payment_method" value="razorpay"> Razorpay <a href="#!"><img class="paypal_image" src="user/assets/images/payment_methods_03.png" alt="image_not_found"></a></label>
                                         </div>
                                     </li>
                                 </ul>

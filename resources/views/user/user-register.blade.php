@@ -9,7 +9,7 @@
 
         <!-- breadcrumb_section - start
         ================================================== -->
-        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" data-background="public/user/assets/images/breadcrumb/bg_01.jpg">
+        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" data-background="user/assets/images/breadcrumb/bg_01.jpg">
             <div class="overlay" data-bg-color="#1d1d1d"></div>
             <div class="container">
                 <h1 class="page_title text-white">Register Page</h1>
@@ -26,7 +26,7 @@
 
         <!-- register_section - start
         ================================================== -->
-        <section class="register_section sec_ptb_140 parallaxie clearfix" data-background="public/user/assets/images/backgrounds/bg_23.jpg">
+        <section class="register_section sec_ptb_140 parallaxie clearfix" data-background="user/assets/images/backgrounds/bg_23.jpg">
             <div class="container">
                 <div class="reg_form_wrap signup_form" data-background="">
                     <form action="{{ route('register') }}" method="POST">
@@ -112,7 +112,7 @@
     position: relative;
     padding: 100px 0px;
     padding-bottom: 40px;
-} 
+}
 .sec_ptb_140 {
     padding: 80px 0px;
 }

@@ -7,7 +7,7 @@
     <main>
         <!-- breadcrumb_section - start
         ================================================== -->
-        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" data-background="{{asset('public/user/assets/images/breadcrumb/bg_01.jpg')}}">
+        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" data-background="{{asset('user/assets/images/breadcrumb/bg_01.jpg')}}">
             <div class="overlay" data-bg-color="#1d1d1d"></div>
             <div class="container">
                 <h1 class="page_title text-white">About Us</h1>
@@ -33,17 +33,17 @@ With years of experience in the printing industry, we take pride in delivering h
 
 Whether you need business cards, banners, flyers, brochures, posters, or customized prints, we’re here to bring your vision to life. Our team uses the latest printing technology and premium materials to ensure crisp results every time.
                             </p>
-                            
+
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <img src="public/user/assets/images/offer/minimal/epson-et-2862-ink-included-med.jpg" alt="image_not_found">
+                        <img src="user/assets/images/offer/minimal/epson-et-2862-ink-included-med.jpg" alt="image_not_found">
                     </div>
                 </div>
             </div>
         </section>
-      
-    <section class="main_contact_section sec_ptb_100 clearfix">  
+
+    <section class="main_contact_section sec_ptb_100 clearfix">
       <div class="container">
     <div class="row">
         <div class="four col-md-3">
@@ -186,7 +186,7 @@ Whether you need business cards, banners, flyers, brochures, posters, or customi
                         <div class="main_contact_form">
                             <h3 class="title_text mb_30"></h3>
                             <form action="" method="post">
-                               
+
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                                         <div class="form_item">
@@ -210,7 +210,7 @@ Whether you need business cards, banners, flyers, brochures, posters, or customi
                                 <button type="submit" class="custom_btn bg_default_red text-uppercase">Send FeedBack</button>
                             </form>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -223,7 +223,7 @@ Whether you need business cards, banners, flyers, brochures, posters, or customi
     </main>
     <!-- main body - end
     ================================================== -->
-    
+
         <style>
       .breadcrumb_section {
     z-index: 1;
@@ -231,7 +231,7 @@ Whether you need business cards, banners, flyers, brochures, posters, or customi
     position: relative;
     padding: 100px 0px;
     padding-bottom: 40px;
-} 
+}
 
 .counter-box {
     display: block;
@@ -347,7 +347,7 @@ Whether you need business cards, banners, flyers, brochures, posters, or customi
   color: #fff;
   background: rgba(230, 78, 62, 0.9);
   /* Primary color, can be changed via colors.css */
-  
+
   height: 100%;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -385,7 +385,7 @@ Whether you need business cards, banners, flyers, brochures, posters, or customi
 
 
     </style>
-    
+
 <script>
     $(document).ready(function() {
 

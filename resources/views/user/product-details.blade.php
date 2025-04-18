@@ -8,7 +8,7 @@
 		<main>
 			<!-- breadcrumb_section - start
 			================================================== -->
-			<section class="breadcrumb_section minimal_breadcrumb d-flex align-items-end clearfix" data-background="public/user/assets/images/breadcrumb/bg_11.jpg">
+			<section class="breadcrumb_section minimal_breadcrumb d-flex align-items-end clearfix" data-background="user/assets/images/breadcrumb/bg_11.jpg">
 				<div class="container maxw_1430">
 					<h1 class="minimal_page_title mb_15">Shop Page</h1>
 					<div class="f2_breadcrumb_nav_wrap mt-0">
@@ -195,7 +195,7 @@
 								<div class="row mb_50">
 									<div class="col-lg-3 col-md-5">
 										<div class="image_wrap">
-											<img src="public/user/assets/images/details/shop/img_06.jpg" alt="image_not_found">
+											<img src="user/assets/images/details/shop/img_06.jpg" alt="image_not_found">
 										</div>
 									</div>
 
@@ -226,7 +226,7 @@
 								<div class="row mb_50">
 									<div class="col-lg-3 col-md-5 order-last">
 										<div class="image_wrap">
-											<img src="public/user/assets/images/details/shop/img_07.jpg" alt="image_not_found">
+											<img src="user/assets/images/details/shop/img_07.jpg" alt="image_not_found">
 										</div>
 									</div>
 
@@ -249,7 +249,7 @@
 								</div>
 
 								<span class="aware_info_icons">
-									<img src="public/user/assets/images/icons/aware_icons.png" alt="image_not_found">
+									<img src="user/assets/images/icons/aware_icons.png" alt="image_not_found">
 								</span>
 							</div>
 						</div>

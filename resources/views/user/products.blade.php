@@ -17,7 +17,7 @@
 
                 <div class="msb_widget brand_logo text-center">
                     <a href="index.html">
-                        <img src="{{asset('public/user/assets/images/logo/logo_25_1x.png')}}" srcset="user/assets/images/logo/logo_25_2x.png 2x" alt="logo_not_found">
+                        <img src="{{asset('user/assets/images/logo/logo_25_1x.png')}}" srcset="user/assets/images/logo/logo_25_2x.png 2x" alt="logo_not_found">
                     </a>
                 </div>
 
@@ -229,7 +229,7 @@
                     <h3 class="title_text mb_30 text-uppercase"><i class="fas fa-user mr-2"></i> User Info</h3>
                     <div class="profile_info clearfix">
                         <div class="user_thumbnail">
-                            <img src="{{asset('public/user/assets/images/meta/img_01.png')}}" alt="thumbnail_not_found">
+                            <img src="{{asset('user/assets/images/meta/img_01.png')}}" alt="thumbnail_not_found">
                         </div>
                         <div class="user_content">
                             <h4 class="user_name">Jone Doe</h4>
@@ -252,7 +252,7 @@
 
         <!-- breadcrumb_section - start
         ================================================== -->
-        <section class="breadcrumb_section minimal_breadcrumb d-flex align-items-end clearfix" data-background="{{asset('public/user/assets/images/breadcrumb/bg_11.jpg')}}">
+        <section class="breadcrumb_section minimal_breadcrumb d-flex align-items-end clearfix" data-background="{{asset('user/assets/images/breadcrumb/bg_11.jpg')}}">
             <div class="container maxw_1430">
                 <h1 class="minimal_page_title mb_15">Shop Page</h1>
                 <div class="f2_breadcrumb_nav_wrap mt-0">

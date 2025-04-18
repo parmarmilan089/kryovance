@@ -8,7 +8,7 @@
     <main>
         <!-- breadcrumb_section - start
         ================================================== -->
-        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" data-background="{{asset('public/user/assets/images/breadcrumb/bg_01.jpg')}}">
+        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" data-background="{{asset('user/assets/images/breadcrumb/bg_01.jpg')}}">
             <div class="overlay" data-bg-color="#1d1d1d"></div>
             <div class="container">
                 <h1 class="page_title text-white">Login Page</h1>
@@ -25,7 +25,7 @@
 
         <!-- register_section - start
         ================================================== -->
-        <section class="register_section sec_ptb_140 has_overlay parallaxie clearfix" data-background="{{asset('public/user/assets/images/backgrounds/bg_22.jpg')}}">
+        <section class="register_section sec_ptb_140 has_overlay parallaxie clearfix" data-background="{{asset('user/assets/images/backgrounds/bg_22.jpg')}}">
             <div class="overlay" data-bg-color="rgba(55, 55, 55, 0.75)"></div>
             <div class="container">
                 <div class="reg_form_wrap login_form" >
@@ -78,7 +78,7 @@
     position: relative;
     padding: 100px 0px;
     padding-bottom: 40px;
-} 
+}
 .sec_ptb_140 {
     padding: 80px 0px;
 }
