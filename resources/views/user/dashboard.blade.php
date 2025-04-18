@@ -8,7 +8,7 @@
 ================================================== -->
 <section class="slider_section minimal_slider position-relative arrow_ycenter clearfix">
     <div class="main_slider clearfix" data-slick='{"dots": false}'>
-        <div class="item d-flex align-items-center clearfix" data-background="public/user/assets/images/slider/modern_minimal/bg_01.jpg">
+        <div class="item d-flex align-items-center clearfix" data-background="user/assets/images/slider/modern_minimal/bg_01.jpg">
             <div class="container">
                 <div class="slider_content">
                     <h4 class="text-uppercase" data-animation="fadeInUp" data-delay=".4s">Best Home Printers 2025</h4>
@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="item d-flex align-items-center clearfix" data-background="{{asset('public/user/assets/images/slider/modern_minimal/bg_02.jpg')}}">
+        <div class="item d-flex align-items-center clearfix" data-background="{{asset('user/assets/images/slider/modern_minimal/bg_02.jpg')}}">
             <div class="container">
                 <div class="slider_content">
                     <h4 class="text-uppercase" data-animation="fadeInUp" data-delay=".4s">Printers 2025</h4>
@@ -76,7 +76,7 @@
                                 <div class="minimal_product_item">
                                     <div class="tab-content">
                                         <div class="tab-pane active">
-                                            <img src="{{ $product->image_path ? getStoragePath() . $product->image_path : asset('public/user/assets/images/product-placeholder.png') }}" alt="image_not_found">
+                                            <img src="{{ $product->image_path ? getStoragePath() . $product->image_path : asset('user/assets/images/product-placeholder.png') }}" alt="image_not_found">
                                         </div>
                                     </div>
                                     <div class="item_content">
@@ -110,14 +110,14 @@
 
 <!-- advertisement_section - start
 ================================================== -->
-<section class="advertisement_section sec_ptb_100 clearfix" data-background="public/user/assets/images/backgrounds/bg_06.jpg">
+<section class="advertisement_section sec_ptb_100 clearfix" data-background="user/assets/images/backgrounds/bg_06.jpg">
     <div class="minimal_advertisement">
         <div class="container">
             <div class="row align-items-center justify-content-center">
 
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="item_image">
-                        <img src="public/user/assets/images/offer/minimal/img_01.png" alt="image_not_found">
+                        <img src="user/assets/images/offer/minimal/img_01.png" alt="image_not_found">
                     </div>
                 </div>
 
@@ -148,73 +148,73 @@
         <div class="barnd_carousel clearfix">
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_13.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_13.png" alt="image_not_found">
                 </a>
             </div>
 
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_14.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_14.png" alt="image_not_found">
                 </a>
             </div>
 
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_15.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_15.png" alt="image_not_found">
                 </a>
             </div>
 
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_16.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_16.png" alt="image_not_found">
                 </a>
             </div>
 
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_17.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_17.png" alt="image_not_found">
                 </a>
             </div>
 
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_18.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_18.png" alt="image_not_found">
                 </a>
             </div>
 
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_01.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_01.png" alt="image_not_found">
                 </a>
             </div>
 
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_02.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_02.png" alt="image_not_found">
                 </a>
             </div>
 
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_03.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_03.png" alt="image_not_found">
                 </a>
             </div>
 
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_04.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_04.png" alt="image_not_found">
                 </a>
             </div>
 
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_05.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_05.png" alt="image_not_found">
                 </a>
             </div>
 
             <div class="item">
                 <a class="brand_item" href="#!">
-                    <img src="public/user/assets/images/brands/img_06.png" alt="image_not_found">
+                    <img src="user/assets/images/brands/img_06.png" alt="image_not_found">
                 </a>
             </div>
         </div>

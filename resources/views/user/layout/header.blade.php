@@ -349,7 +349,7 @@
                     <ul class="cart_items_list ul_li_block mb_30 clearfix">
                         <li>
                             <div class="item_image">
-                                <img src="/user/assets/images/cart/img_01.jpg" alt="image_not_found">
+                                <img src="user/assets/images/cart/img_01.jpg" alt="image_not_found">
                             </div>
                             <div class="item_content">
                                 <h4 class="item_title">Yellow Blouse</h4>
@@ -359,7 +359,7 @@
                         </li>
                         <li>
                             <div class="item_image">
-                                <img src="/user/assets/images/cart/img_01.jpg" alt="image_not_found">
+                                <img src="user/assets/images/cart/img_01.jpg" alt="image_not_found">
                             </div>
                             <div class="item_content">
                                 <h4 class="item_title">Yellow Blouse</h4>
@@ -369,7 +369,7 @@
                         </li>
                         <li>
                             <div class="item_image">
-                                <img src="/user/assets/images/cart/img_01.jpg" alt="image_not_found">
+                                <img src="user/assets/images/cart/img_01.jpg" alt="image_not_found">
                             </div>
                             <div class="item_content">
                                 <h4 class="item_title">Yellow Blouse</h4>
@@ -689,7 +689,7 @@
                                     <li>
                                         <div class="small_product">
                                             <div class="item_image">
-                                                <img src="/user/assets/images/shop/minimal/img_10.jpg" alt="image_not_found">
+                                                <img src="user/assets/images/shop/minimal/img_10.jpg" alt="image_not_found">
                                             </div>
                                             <div class="item_content">
                                                 <h3 class="item_title">
@@ -705,7 +705,7 @@
                                     <li>
                                         <div class="small_product">
                                             <div class="item_image">
-                                                <img src="/user/assets/images/shop/minimal/img_11.jpg" alt="image_not_found">
+                                                <img src="user/assets/images/shop/minimal/img_11.jpg" alt="image_not_found">
                                             </div>
                                             <div class="item_content">
                                                 <h3 class="item_title">
@@ -728,7 +728,7 @@
                                     <li>
                                         <div class="small_product">
                                             <div class="item_image">
-                                                <img src="/user/assets/images/shop/minimal/img_12.jpg" alt="image_not_found">
+                                                <img src="user/assets/images/shop/minimal/img_12.jpg" alt="image_not_found">
                                             </div>
                                             <div class="item_content">
                                                 <h3 class="item_title">
@@ -744,7 +744,7 @@
                                     <li>
                                         <div class="small_product">
                                             <div class="item_image">
-                                                <img src="/user/assets/images/shop/minimal/img_13.jpg" alt="image_not_found">
+                                                <img src="user/assets/images/shop/minimal/img_13.jpg" alt="image_not_found">
                                             </div>
                                             <div class="item_content">
                                                 <h3 class="item_title">
