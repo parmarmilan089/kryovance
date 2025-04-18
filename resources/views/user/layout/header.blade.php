@@ -2,7 +2,7 @@
 <html lang="en">
 
 
-    
+
     <head>
 
         <meta charset="utf-8">
@@ -13,29 +13,29 @@
         <link rel="shortcut icon" href="{{ asset('public/user/assets/images/logo/favourite_icon_01.png')}}">
 
         <!-- fraimwork - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/bootstrap.min.css') }}">
 
         <!-- icon - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/fontawesome.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/fontawesome.css')}}">
 
         <!-- animation - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/animate.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/animate.css')}}">
 
         <!-- nice select - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/nice-select.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/nice-select.css')}}">
 
         <!-- carousel - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/slick.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/slick-theme.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/slick.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/slick-theme.css')}}">
 
         <!-- popup images & videos - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/magnific-popup.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/magnific-popup.css')}}">
 
         <!-- jquery ui - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/jquery-ui.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/jquery-ui.css')}}">
 
         <!-- custom - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/style.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/style.css')}}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
     </head>
@@ -96,7 +96,7 @@
                                 <ul class="ul_li_center clearfix">
                                     <li class="">
                                         <a href="{{route('home')}}">Home</a>
-                                        
+
                                     </li>
                                     <li><a href="{{route('products')}}">Shop</a></li>
                                     <!--<li class="menu_item_has_child">-->
@@ -248,7 +248,7 @@
                                         <!--    </div>-->
                                         <!--</div>-->
                                     <!--</li>-->
-                                    
+
                                     <li><a href="{{route('about')}}">About us</a></li>
                                     <li><a href="{{route('contact')}}">Contact us</a></li>
                                 </ul>
@@ -632,14 +632,14 @@
                                 <h4 class="user_name">{{ auth('customer')->user()->fname }} {{ auth('customer')->user()->lname }}</h4>
                                 <span class="user_title">Customer</span>
                             </div>
-                                
+
                             </div>
                             <ul class="settings_options ul_li_block clearfix">
                                 <li><a href="#!"><i class="fal fa-user-circle"></i> Profile</a></li>
                                 <li><a href="{{route('order')}}"><i class="fal fa-list"></i> Orders</a></li>
                                 <li><a href="{{route('customer.logout')}}"><i class="fal fa-sign-out-alt"></i> Logout</a></li>
                             </ul>
-                            
+
                         @endguest
                     </div>
                 </div>
