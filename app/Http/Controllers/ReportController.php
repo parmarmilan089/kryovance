@@ -16,7 +16,7 @@ class ReportController extends Controller
     public function index() {
         $data = [];
         $data['title'] = 'Report List';
-        $data['menu_active_tab'] = 'report-list';
+        $data['menu_active_tab'] = 'report-listt';
 
         return view('admin.report.list')->with($data);
     }
