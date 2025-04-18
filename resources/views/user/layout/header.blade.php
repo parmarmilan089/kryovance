@@ -10,32 +10,32 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
 
         <title>Kryovance</title>
-        <link rel="shortcut icon" href="{{ asset('public/user/assets/images/logo/favourite_icon_01.png')}}">
+        <link rel="shortcut icon" href="{{ asset('user/assets/images/logo/favourite_icon_01.png')}}">
 
         <!-- fraimwork - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/bootstrap.min.css')}}">
 
         <!-- icon - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/fontawesome.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/fontawesome.css')}}">
 
         <!-- animation - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/animate.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/animate.css')}}">
 
         <!-- nice select - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/nice-select.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/nice-select.css')}}">
 
         <!-- carousel - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/slick.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/slick-theme.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/slick.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/slick-theme.css')}}">
 
         <!-- popup images & videos - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/magnific-popup.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/magnific-popup.css')}}">
 
         <!-- jquery ui - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/jquery-ui.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/jquery-ui.css')}}">
 
         <!-- custom - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('public/user/assets/css/style.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/style.css')}}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
     </head>
