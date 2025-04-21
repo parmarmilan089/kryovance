@@ -15,13 +15,14 @@ class CartController extends Controller
         $cart = session()->get('cart', []);
         $product = DB::table('products')
             ->leftJoin('category', 'products.category_id', '=', 'category.id')
-            ->select('products.id', 'products.name', 'products.price', 'products.image_path', 'category.name as category_name')
+            ->select('products.id', 'products.name', 'products.price', 'category.name as category_name')
             ->where('products.id', $id)
             ->first();
-        $storagePath = getStoragePath();
         if (!$product) {
             return response()->json(['status' => 'error', 'message' => 'Product not found'], 404);
         }
+        $images = getProductImages($id);
+
 
         // If product exists in cart, update quantity
         if (isset($cart[$id])) {
@@ -33,7 +34,7 @@ class CartController extends Controller
                 "name" => $product->name,
                 "price" => $product->price,
                 "category_name" => $product->category_name,
-                'image' => $product->image_path ? $storagePath . $product->image_path : asset('user/assets/images/product-placeholder.png'),
+                'image' => !empty($images[0]) ? asset('storage/'.$images[0]->file_path) : asset('user/assets/images/15980049.png'),
                 "quantity" => $request->quantity
             ];
         }

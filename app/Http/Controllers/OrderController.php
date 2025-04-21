@@ -109,12 +109,14 @@ class OrderController extends Controller
                 'quantity' => $item['quantity'],
                 'total_price' => $item['price'] * $item['quantity']
             ]);
-            
-            
+
+
             $product = Product::find($item['id']);
-            $inventory = Inventory::find($product->inventory_id);
-            $inventory->qty = $inventory->qty - $item['quantity'];
-            $inventory->save();
+            if($product['inventory_id'] != null && $product['inventory_id'] != ''){
+                $inventory = Inventory::find($product->inventory_id);
+                $inventory->qty = $inventory->qty - $item['quantity'];
+                $inventory->save();
+            }
         }
 
         // Clear Cart

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
+use App\Models\ProductImage;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Hash;
@@ -144,15 +145,15 @@ class FrontendController extends Controller {
 
         return view('user.user-register')->with($data);
     }
-    
+
     public function contactUs() {
         $data = [];
         $data['title'] = 'Contact Us';
         $data['menu_active_tab'] = 'contact-us';
-    
+
         return view('user.contact-us')->with($data);
     }
-    
+
     public function about() {
         $data = [];
         $data['title'] = 'About';

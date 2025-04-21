@@ -2,8 +2,11 @@
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
         <div class="minimal_product_item">
             <div class="tab-content">
+                @php
+                    $images = getProductImages($product->id);
+                @endphp
                 <div id="ptab1_1" class="tab-pane active">
-                    <img src="{{ $product->image_path ? getStoragePath() . $product->image_path : asset('user/assets/images/product-placeholder.png') }}" alt="image_not_found">
+                    <img src="{{ isset($images[0]) ? asset('storage/'.$images[0]->file_path) : asset('user/assets/images/15980049.png') }}" alt="image_not_found">
                 </div>
             </div>
             <div class="item_content">

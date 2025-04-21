@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\DB;
 function getStoragePath() {
     return url('/') . '/public' . \Storage::url('');
     // return url('/') . \Storage::url('');
@@ -33,5 +34,13 @@ function show_decrypted($value)
         return decrypt($value);
     } catch (DecryptException $e) {
         return '123'; // return empty string or fallback if decryption fails
+    }
+}
+if (!function_exists('getProductImages')) {
+    function getProductImages($productId)
+    {
+        return DB::table('product_images')
+            ->where('product_id', $productId)
+            ->get();
     }
 }

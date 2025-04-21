@@ -31,13 +31,31 @@
 				<div class="container">
 					<div class="row mb_100 justify-content-lg-between">
 						<div class="col-lg-5 col-md-7">
-							<div class="shop_details_image">
-								<div class="tab-content">
-									<div id="tab_1" class="tab-pane active">
-										<img src="{{ $product['image_path'] ? getStoragePath() . $product['image_path'] : asset('user/assets/images/product-placeholder.png') }}"" alt="image_not_found">
-									</div>
-								</div>
-							</div>
+							<div class="col-lg-5 col-md-7">
+                                <div class="shop_details_image">
+                                    @php
+                                        $images = getProductImages($product['id']);
+                                    @endphp
+
+                                    <div class="tab-content">
+                                        @foreach($images as $key => $img)
+                                            <div id="tab_{{$key}}" class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}">
+                                                <img  src="{{ $img ? asset('storage/'.$img->file_path) : asset('user/assets/images/15980049.png') }}" alt="image_not_found">
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                                    <ul class="nav nav-tabs ul_li clearfix mt-3" role="tablist">
+                                        @foreach($images as $key => $img)
+                                            <li class="nav-item">
+                                                <a class="nav-link {{ $key == 0 ? 'active' : '' }}" data-toggle="tab" href="#tab_{{$key}}">
+                                                    <img  src="{{ $img ? asset('storage/'.$img->file_path) : asset('user/assets/images/15980049.png') }}" alt="image_not_found">
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
 						</div>
 
 						<div class="col-lg-7 col-md-8">
@@ -265,6 +283,7 @@
 		================================================== -->
 @endsection
 @section('scripts')
+
 <script>
     $(document).ready(function() {
         $('#addToCartForm').submit(function(e) {
