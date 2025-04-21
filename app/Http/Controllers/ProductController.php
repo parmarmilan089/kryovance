@@ -86,11 +86,11 @@ class ProductController extends Controller {
     }
 
     public function storeProduct(Request $request) {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'country' => 'nullable|string',
-        //     'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ]);
+        $request->validate([
+            'name' => 'required',
+            'country' => 'nullable|string',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
         try {
             $product = new Product;
             $product->name = $request->input('name') ? $request->input('name') : null;
@@ -216,6 +216,8 @@ class ProductController extends Controller {
         if ($id) {
             $request->validate([
                 'name' => 'required',
+                'country' => 'nullable|string',
+                'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             $product = Product::find($id);
             if ($product) {
