@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="{{ URL::asset('admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
         <link rel="stylesheet" href="{{ URL::asset('admin/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
         <link rel="stylesheet" href="{{ URL::asset('admin/assets/css/admin_style.css') }}" />
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <body>
         <?php
         $role_id = null;
@@ -75,7 +76,7 @@
 
                         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                             @if(Session::has('profile_image_path'))
-                            <img src="{{ getStoragePath() . Session::get('profile_image_path') }}" alt="Profile" class="rounded-circle">
+                            <img src="{{ getStoragePath() . Session::get('profile_image_path') }}" alt="Profile" class="rounded-circle" onerror="this.onerror=null; this.src='/user/assets/images/15980049.png';">
                             @endif
                             @if(Session::has('first_name'))
                             <span class="d-none d-md-block dropdown-toggle ps-2">{{Session::get('first_name')}} {{Session::get('last_name')}}</span>
@@ -85,7 +86,7 @@
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                             <li class="dropdown-header">
                                 @if(Session::has('profile_image_path'))
-                                <img src="{{ getStoragePath() . Session::get('profile_image_path') }}" alt="Profile" class="rounded-circle profile-img ">
+                                <img onerror="this.onerror=null; this.src='/user/assets/images/15980049.png';" src="{{ getStoragePath() . Session::get('profile_image_path') }}" alt="Profile" class="rounded-circle profile-img ">
                                 @endif
                                 @if(Session::has('first_name'))
                                 <h6>{{Session::get('first_name')}} {{Session::get('last_name')}}</h6>
@@ -253,6 +254,9 @@
         <script src="{{ asset('admin/assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
         <script src="{{ asset('admin/assets/vendor/libs/sweetalert2/sweetalert2.all.js')}}"></script>
          @yield('customjs')
+         $(document).ready(function () {
+
+    });
     </body>
 
 </html>

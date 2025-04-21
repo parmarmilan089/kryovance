@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Inventory;
 use Illuminate\Support\Str;
 use Mail;
@@ -34,10 +37,17 @@ class ProductController extends Controller {
                         'products.product_added_date',
                         'products.created_by_id',
                         'products.updated_by_id',
+                        'products.manufacture_date',
                         'products.is_deleted',
+                        'products.country',
                         'products.created_at',
-                        'products.updated_at'
+                        'products.updated_at',
+                        'product_images.file_path'
                 )
+                ->leftJoin(DB::raw('(SELECT MIN(id) as id, product_id FROM product_images GROUP BY product_id) as file_path'), function($join) {
+                    $join->on('products.id', '=', 'file_path.product_id');
+                })
+                ->leftJoin('product_images', 'product_images.id', '=', 'file_path.id')
                 ->where('products.is_deleted', '0')
                 ->orderBy('products.id', 'ASC')
                 ->get();
@@ -46,6 +56,14 @@ class ProductController extends Controller {
                             $title_str = (strlen($product->title) > 60) ? getMbSubstr($product->title, 0, 57) : $product->title;
                             return $title_str;
                         })
+                        ->addColumn('image', function ($product) {
+                            if ($product->file_path) {
+                                $imageUrl = asset('storage/'. $product->file_path); // Adjust path as per your setup
+                                return '<img src="' . $imageUrl . '" alt="Product Image" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">';
+                            } else {
+                                return '<span class="text-muted">No Image</span>';
+                            }
+                        })
                         ->addColumn('action', function ($product) {
                             $div_start = '<div class="">';
                             $editBtn = '<a href="' . route('edit-product', $product->id) . '" data-id="' . $product->id . '" class="mx-1 btnEdit"><i class="bx bxs-edit"></i></a>';
@@ -53,7 +71,7 @@ class ProductController extends Controller {
                             $div_end = '</div>';
                             return $div_start . $editBtn . $deleteBtn . $div_end;
                         })
-                        ->rawColumns(['action'])->addIndexColumn()
+                        ->rawColumns(['image','action'])->addIndexColumn()
                         ->make(true);
     }
 
@@ -68,9 +86,11 @@ class ProductController extends Controller {
     }
 
     public function storeProduct(Request $request) {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'country' => 'nullable|string',
+        //     'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
         try {
             $product = new Product;
             $product->name = $request->input('name') ? $request->input('name') : null;
@@ -86,16 +106,24 @@ class ProductController extends Controller {
             $product->expiry_date = $request->input('expiry_date') ? $request->input('expiry_date') : null;
             $file_name = null;
             $file_path = null;
-            if ($request->file('image')) {
-                $file_name = 'image_' . time() . '.' . $request->image->extension();
-                $file_path = $request->file('image')->storeAs('product_image', $file_name, 'public');
-            }
-            $product->image = $file_name;
-            $product->image_path = $file_path;
-            $product->product_added_date = date('Y-m-d H:i:s');
 
+            $product->product_added_date = date('Y-m-d H:i:s');
+            $product->country = $request->input('country') ? $request->input('country') : null;
             $product->created_by_id = \Auth::user()->id ? \Auth::user()->id : null;
             $product->save();
+            if ($request->hasFile('image')) {
+                foreach ($request->file('image') as $file) {
+                if ($file->isValid()) {
+                        $fileName = 'image_' . time() . '_' . uniqid() . '.' . strtolower($file->getClientOriginalExtension());
+                        $filePath = $file->storeAs('product_image', $fileName, 'public');
+                        ProductImage::create([
+                            'product_id' => $product->id,
+                            'file_name' => $fileName,
+                            'file_path' => $filePath,
+                        ]);
+                    }
+                }
+            }
 
             return redirect()->route('product-list')->with('success', 'Record added successfully.');
         } catch (\Exception $e) {
@@ -152,7 +180,6 @@ class ProductController extends Controller {
                     ->orderBy('products.id', 'ASC')
                     ->first();
             if ($product) {
-
                 $data['product'] = $product;
                 return view('admin.product.view')->with($data);
             } else {
@@ -174,6 +201,7 @@ class ProductController extends Controller {
                 $category_list = \App\Models\Category::where('is_deleted', '0')->orderBy('id', 'DESC')->get();
                 $data['category_list'] = $category_list;
                 $data['inventories'] = Inventory::where('category_id',$product->category_id)->get();
+                $data['product_images'] = ProductImage::where('product_id',$product->id)->get();
                 return view('admin.product.edit')->with($data);
             } else {
                 echo json_encode(array("status" => false, 'message' => 'Record not found.'));
@@ -202,12 +230,38 @@ class ProductController extends Controller {
                 $product->mrp = $request->input('mrp') ? $request->input('mrp') : null;
                 $product->manufacture_date = $request->input('manufacture_date') ? $request->input('manufacture_date') : null;
                 $product->expiry_date = $request->input('expiry_date') ? $request->input('expiry_date') : null;
-                if ($request->file('image')) {
-                    $file_name = 'image_' . time() . '.' . $request->image->extension();
-                    $file_path = $request->file('image')->storeAs('product_image', $file_name, 'public');
-                    $product->image = $file_name;
-                    $product->image_path = $file_path;
+                $product->country = $request->input('country') ? $request->input('country') : null;
+
+                // Handle image deletions
+                if ($request->filled('deleted_images')) {
+                    $deletedImages = json_decode($request->deleted_images, true);
+
+                    // Delete from storage and database
+                    foreach ($deletedImages as $imageId) {
+                        $image = ProductImage::find($imageId);
+                        if ($image) {
+                            Storage::disk('public')->delete($image->file_path);
+                            $image->delete();
+                        }
+                    }
                 }
+
+                // Handle new image uploads (multiple)
+                if ($request->hasFile('image')) {
+                    foreach ($request->file('image') as $file) {
+                        if ($file->isValid()) {
+                            $fileName = 'image_' . time() . '_' . uniqid() . '.' . strtolower($file->getClientOriginalExtension());
+                            $filePath = $file->storeAs('product_image', $fileName, 'public');
+
+                            ProductImage::create([
+                                'product_id' => $product->id,
+                                'file_name' => $fileName,
+                                'file_path' => $filePath,
+                            ]);
+                        }
+                    }
+                }
+
                 $product->updated_by_id = \Auth::user()->id ? \Auth::user()->id : null;
                 $product->save();
             }

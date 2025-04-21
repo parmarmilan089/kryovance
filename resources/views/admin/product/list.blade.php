@@ -7,7 +7,7 @@
 <!--<link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css">-->
 <link rel="stylesheet" href="view-source:https://bootstrapmade.com/content/vendors/simple-datatables/style.css">
 <style>
-   
+
     /*
         .dataTables_paginate paging_simple_numbers {text-align: right;}
         .paginate_button current {
@@ -38,9 +38,12 @@
                 <thead>
                     <tr>
                         <th >Sr. No</th>
+                        <th >Image</th>
                         <th >Name</th>
                         <th >Model No</th>
                         <th >Price</th>
+                        <th >Country from Imported</th>
+                        <th >Man    ufacture Date</th>
                         <th >Brand</th>
                         <th  >Product Added Date</th>
                         <th >Actions</th>
@@ -61,16 +64,18 @@
 <!--<script src="{{ asset('public/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>-->
 <script>
 $(document).ready(function () {
-    console.log("sdf")
     var table = $('#product_table').DataTable({
         processing: true,
         serverSide: true,
         ajax: "{{route('json-product')}}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: "image", name: 'images'},
             {data: "name", name: 'name'},
             {data: "model_no", name: 'model_no'},
             {data: "price", name: 'price'},
+            {data: "country", name: 'country'},
+            {data: "manufacture_date", name: 'manufacture_date'},
             {data: "brand", name: 'brand'},
             {data: "product_added_date", name: 'product_added_date'},
             {data: 'action', name: 'action', orderable: false, searchable: false},

@@ -54,7 +54,7 @@
                         @endif
                     </div>
                 </div>
-                
+
                 <div class="row mb-3">
                     <label for="inventory_id" class="col-sm-2 col-form-label">Inventory</label>
                     <div class="col-sm-10">
@@ -73,7 +73,7 @@
                         @endif
                     </div>
                 </div>
-                
+
   <div class="row mb-3">
                     <label for="price" class="col-sm-2 col-form-label">Price</label>
                     <div class="col-sm-4">
@@ -83,7 +83,7 @@
                         @endif
                     </div>
                 </div>
-                
+
                 <div class="row mb-3">
                     <label for="sku" class="col-sm-2 col-form-label">SKU</label>
                     <div class="col-sm-10">
@@ -93,7 +93,7 @@
                         @endif
                     </div>
                 </div>
-                
+
                 <div class="row mb-3">
                     <label for="brand" class="col-sm-2 col-form-label">Brand</label>
                     <div class="col-sm-10">
@@ -112,19 +112,31 @@
                         @endif
                     </div>
                 </div>
-                               <div class="row mb-3">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Image</label>
+                <div class="row mb-3">
+                    <label for="image" class="col-sm-2 col-form-label">Images</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" id="image" name="image" />
-                        @if($product->image_path !=null)
-                        <img src="{{ getStoragePath() . $product->image_path }}" alt="user-avatar" class="d-block rounded mt-2" height="100"  id="uploadedAvatar">
-                        <!--<label class="col-sm-2 col-form-label text-light small fw-semibold mb-2" for="basic-default-title">-->
-                        <!--    <a target="_blank" href="{{ getStoragePath() . $product->profile_image_path }}" title="Profile Image">Image</a>-->
-                        <!--</label>-->
-                        @endif
+                        <input type="file" class="form-control" id="image" name="image[]" accept="image/*" multiple />
+                        <div id="image-list" class="mt-3 d-flex flex-wrap">
+                            <!-- Existing Images -->
+                            @foreach($product_images as $image)
+                                <div class="image-preview me-2 mb-2" style="position: relative; width: 100px; height: 100px;">
+                                    <img src="{{ asset('storage/'.$image->file_path) }}"
+                                         class="img-thumbnail"
+                                         style="height: 100px; object-fit: cover;">
+                                    <button type="button"
+                                            class="btn btn-danger btn-sm remove-existing-image"
+                                            style="position: absolute; top: 0px; right: 0px;"
+                                            data-image-id="{{ $image->id }}">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                    <input type="hidden" name="existing_images[]" value="{{ $image->id }}">
+                                </div>
+                            @endforeach
+                        </div>
+                        <input type="hidden" name="deleted_images" id="deleted-images" value="">
                     </div>
                 </div>
-                             
+
                 <div class="row mb-3">
                     <label for="manufacture_date" class="col-sm-2 col-form-label">Manufacture Date</label>
                     <div class="col-sm-3">
@@ -132,6 +144,35 @@
                         @if($errors->has('manufacture_date'))
                         <div class="error">{{ $errors->first('manufacture_date') }}</div>
                         @endif
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="country" class="col-sm-2 col-form-label">Country from Imported</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="country" name="country">
+                            <option value="" selected>Select Country</option>
+                            <option value="China">China</option>
+                            <option value="United States">United States</option>
+                            <option value="United Arab Emirates">United Arab Emirates</option>
+                            <option value="Saudi Arabia">Saudi Arabia</option>
+                            <option value="Switzerland">Switzerland</option>
+                            <option value="Germany">Germany</option>
+                            <option value="South Korea">South Korea</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Singapore">Singapore</option>
+                            <option value="Iraq">Iraq</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Indonesia">Indonesia</option>
+                            <option value="Malaysia">Malaysia</option>
+                            <option value="Hong Kong">Hong Kong</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="Thailand">Thailand</option>
+                            <option value="Russia">Russia</option>
+                            <option value="Italy">Italy</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="Vietnam">Vietnam</option>
+                        </select>
                     </div>
                 </div>
 
@@ -157,9 +198,126 @@
 @endsection
 @section('customjs')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
-    
-    $('#category_id').on('change', function () {
+    $('#country').select2();
+    $(document).ready(function() {
+        $('#country').val("{{ $product->country }}").trigger('change');
+    });
+    $(document).ready(function() {
+    const MAX_IMAGES = 10;
+    let filesArray = [];
+    let deletedImages = [];
+
+    // Handle new file selection
+    $('#image').on('change', function() {
+        const existingCount = $('#image-list .image-preview').length - filesArray.length; // Only count existing DB images
+
+        if (this.files.length + filesArray.length + existingCount > MAX_IMAGES) {
+            Swal.fire('Error', `Maximum ${MAX_IMAGES} images allowed`, 'error');
+            $(this).val('');
+            return;
+        }
+
+        Array.from(this.files).forEach(file => {
+            if (!filesArray.some(f => f.name === file.name && f.size === file.size)) {
+                filesArray.push(file);
+                previewImage(file);
+            }
+        });
+
+        updateFileInput(); // Update the actual file input
+        $(this).val('');
+    });
+
+    // Update the actual file input with files from our array
+    function updateFileInput() {
+        const dataTransfer = new DataTransfer();
+        filesArray.forEach(file => dataTransfer.items.add(file));
+        $('#image')[0].files = dataTransfer.files;
+    }
+
+    // Form submission handler - ensure files are updated
+    $('#form_add_product').on('submit', function(e) {
+        updateFileInput(); // Critical: Update files before submission
+
+        // Optional: Validate if needed
+        if (filesArray.length === 0 && $('.remove-existing-image').length === 0) {
+            e.preventDefault();
+            Swal.fire('Error', 'Please upload at least one image', 'error');
+        }
+    });
+
+    // Rest of your code (previewImage, remove handlers) remains the same...
+    // Remove existing image
+    $(document).on('click', '.remove-existing-image', function() {
+        const imageId = $(this).data('image-id');
+        const $previewDiv = $(this).closest('.image-preview');
+
+        Swal.fire({
+            title: 'Delete Image?',
+            text: "This image will be permanently deleted!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Delete'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deletedImages.push(imageId);
+                $('#deleted-images').val(JSON.stringify(deletedImages));
+                $previewDiv.remove();
+            }
+        });
+    });
+
+    // Preview new image
+    function previewImage(file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const index = filesArray.length - 1;
+            const previewDiv = $(`
+                <div class="image-preview me-2 mb-2" style="position: relative; width: 100px; height: 100px;">
+                    <img src="${e.target.result}"
+                         class="img-thumbnail"
+                         style="height: 100px; object-fit: cover;">
+                    <button type="button"
+                            class="btn btn-danger btn-sm remove-new-image"
+                            style="position: absolute; top: 0px; right: 0px;"
+                            data-index="${index}">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            `);
+            $('#image-list').append(previewDiv);
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // Remove new image (before upload)
+    $(document).on('click', '.remove-new-image', function() {
+        const index = $(this).data('index');
+        const $previewDiv = $(this).closest('.image-preview');
+
+        Swal.fire({
+            title: 'Remove Image?',
+            text: "This image won't be uploaded",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Remove'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                filesArray.splice(index, 1);
+                $previewDiv.remove();
+                updateFileInput(); // Update the actual file input
+            }
+        });
+    });
+
+    // Your category AJAX code remains the same...
+    $('#category_id').on('change', function() {
         var categoryId = $(this).val();
         let url = "{{ route('get-inventory-by-category', ':id') }}";
         url = url.replace(':id', categoryId);
@@ -168,10 +326,10 @@
             $.ajax({
                 url: url,
                 type: 'GET',
-                success: function (data) {
+                success: function(data) {
                     $('#inventory_id').empty();
                     $('#inventory_id').append('<option value="">Select Inventory</option>');
-                    $.each(data, function (key, value) {
+                    $.each(data, function(key, value) {
                         $('#inventory_id').append('<option value="' + value.id + '">' + value.model_name + ' - Qty: ' + value.qty + '</option>');
                     });
                 }
@@ -180,5 +338,6 @@
             $('#inventory_id').empty().append('<option value="">Select Inventory</option>');
         }
     });
+});
 </script>
 @endsection

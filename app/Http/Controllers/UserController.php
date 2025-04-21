@@ -235,8 +235,8 @@ class UserController extends Controller {
                     ->leftJoin('user_roles', 'users.role_id', '=', 'user_roles.id')->where('users.id', $id)
                     ->where('users.id', '!=', '1')
                     ->first();
-                    
-                    
+
+
             $data['role'] = \App\Models\UserRole::where('is_deleted', '0')
                             ->where('status', '1')
                             ->where('id', '!=', '1')

@@ -40,6 +40,11 @@ h6 {
 /*--------------------------------------------------------------
 # Main
 --------------------------------------------------------------*/
+.image-preview img {
+    width: 100px; /* Set the desired width */
+    height: 100px; /* Set the desired height */
+    object-fit: cover; /* This ensures the image fills the box while maintaining the aspect ratio */
+}
 #main {
     margin-top: 60px;
     padding: 20px 30px;
