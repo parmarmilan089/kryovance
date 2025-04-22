@@ -27,16 +27,29 @@ class OrderManagmentController extends Controller
                         'orders.payment_method',
                         'orders.total',
                         'orders.created_at',
-                        'orders.updated_at'
+                        'orders.updated_at',
+                        DB::raw("CONCAT(customers.fname, ' ', customers.lname) as customer_name")
                 )
+                ->leftJoin('customers', 'orders.customer_id', '=', 'customers.id')
                 ->orderBy('orders.id', 'ASC')
                 ->get();
         return DataTables::of($list)
+                        ->editColumn('status', function ($order) {
+                            return ucfirst($order->status); // Capitalize first letter
+                        })
+                        ->editColumn('payment_method', function ($order) {
+                            return ucfirst($order->payment_method); // Capitalize first letter
+                        })
                         ->addColumn('action', function ($order) {
-                            $div_start = '<div class="">';
-                            $edit_btn = '<a href="' . route('view-order', $order->id) . '" data-id="' . $order->id . '" class="mx-1"><i class="bx bx-file-find"></i></i></a>';
+                            $div_start = '<div class="d-flex">';
+                            $edit_btn = '<a href="' . route('view-order', $order->id) . '" data-id="' . $order->id . '" class="mx-1"><i class="bx bx-file-find"></i></a>';
+                            if($order->status == 'pending'){
+                                $order_btn = '<a href="' . route('status-update', $order->id) . '" data-id="' . $order->id . '" class="mx-1 btn btn-primary p-0 m-0" style="font-size:8px">Accept Order</a>';
+                            } else {
+                                $order_btn = '';
+                            }
                             $div_end = '</div>';
-                            return $div_start . $edit_btn . $div_end;
+                            return $div_start . $edit_btn. $order_btn . $div_end;
                         })
                         ->rawColumns(['action'])->addIndexColumn()
                         ->make(true);
@@ -60,4 +73,12 @@ class OrderManagmentController extends Controller
             echo json_encode(array("status" => false, 'message' => 'Record not found.'));
         }
     }
+
+    public function statusUpdate($id) {
+        $order = Order::find($id);
+        $order->status = 'Completed';
+        $order->save();
+        return redirect()->route('orders')->withSuccess('Order Accepted');
+    }
+
 }

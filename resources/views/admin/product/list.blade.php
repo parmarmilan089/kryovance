@@ -43,7 +43,8 @@
                         <th >Model No</th>
                         <th >Price</th>
                         <th >Country from Imported</th>
-                        <th >Man    ufacture Date</th>
+                        <th >Manufacture Date</th>
+                        <th >Imported Date</th>
                         <th >Brand</th>
                         <th  >Product Added Date</th>
                         <th >Actions</th>
@@ -76,6 +77,7 @@ $(document).ready(function () {
             {data: "price", name: 'price'},
             {data: "country", name: 'country'},
             {data: "manufacture_date", name: 'manufacture_date'},
+            {data: "imported_date", name: 'imported_date'},
             {data: "brand", name: 'brand'},
             {data: "product_added_date", name: 'product_added_date'},
             {data: 'action', name: 'action', orderable: false, searchable: false},

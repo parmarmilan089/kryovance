@@ -97,23 +97,24 @@ Route::group(['middleware' => ['auth']], function () {
          Route::get('/edit-user/{id}', [UserController::class, 'editUser'])->name('edit-user');
         Route::post('/update-user', [UserController::class, 'updateUser'])->name('update-user');
         Route::post('/delete-user', [UserController::class, 'deleteUser'])->name('delete-user');
-        
-        
+
+
         //order managment
         Route::get('/orders', [OrderManagmentController::class, 'index'])->name('orders');
         Route::get('/json-order', [OrderManagmentController::class, 'jsonOrder'])->name('json-order');
         Route::get('/view-order/{id}', [OrderManagmentController::class, 'viewOrder'])->name('view-order');
-        
+        Route::get('/status-update/{id}', [OrderManagmentController::class, 'statusUpdate'])->name('status-update');
+
         //Inventroy
         Route::resource('inventories', InventoryController::class);
         Route::get('/get-inventory-by-category/{id}', [InventoryController::class, 'getByCategory'])->name('get-inventory-by-category');
-        
+
         //report
         Route::get('/report', [ReportController::class, 'index'])->name('report');
         Route::get('/report/export', function () {
             $month = request('month');
             $year = request('year');
-        
+
             return Excel::download(new OrdersExport($month, $year), 'orders_' . $month . '_' . $year . '.xlsx');
         })->name('export');
 

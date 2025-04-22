@@ -46,8 +46,11 @@
                                             <tr>
                                                 <td>
                                                     <div class="cart_product">
+                                                        @php
+                                                            $images = getProductImages($item['product']['id']);
+                                                        @endphp
                                                         <div class="item_image">
-                                                            <img src="{{ $item['product']['image_path'] ? getStoragePath() . $item['product']['image_path'] : asset('user/assets/images/product-placeholder.png') }}" alt="image_not_found">
+                                                            <img src="{{ !empty($images[0]) ? asset('storage/'.$images[0]->file_path) : asset('user/assets/images/15980049.png') }}" width="100px" alt="image_not_found">
                                                         </div>
                                                         <div class="item_content">
                                                             <h4 class="item_title mb-0">{{$item['product']['name']}}</h4>

@@ -37,6 +37,7 @@
                             <th>Total Amount</th>
                             <th>Payment Method</th>
                             <th>Payment Status</th>
+                            <th>Order Status</th>
                             <th>Order Date</th>
                             <th>Action</th>
                         </tr>
@@ -51,6 +52,9 @@
                                     <span class="badge {{ $order->payment_status == 'paid' ? 'badge-success' : 'badge-warning' }}">
                                         {{ ucfirst($order->payment_status) }}
                                     </span>
+                                </td>
+                                <td>
+                                        {{ ucfirst($order->status) }}
                                 </td>
                                 <td>{{ $order->created_at->format('d M Y') }}</td>
                                 <td>

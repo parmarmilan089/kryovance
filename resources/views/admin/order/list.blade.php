@@ -15,6 +15,7 @@
                     <tr>
                         <th width="10%">Sr. No</th>
                         <th width="20%">Order Number</th>
+                        <th width="20%">Customer Name</th>
                         <th width="20%">Total</th>
                         <th width="20%">Status</th>
                         <th width="20%">Payment Method</th>
@@ -42,6 +43,7 @@ $(document).ready(function () {
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: "order_number", name: 'order_number'},
+            {data: "customer_name", name: 'customer_name'},
             {data: "total", name: 'total'},
             {data: "status", name: 'status'},
             {data: "payment_method", name: 'payment_method'},

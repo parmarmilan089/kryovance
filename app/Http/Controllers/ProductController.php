@@ -38,6 +38,7 @@ class ProductController extends Controller {
                         'products.created_by_id',
                         'products.updated_by_id',
                         'products.manufacture_date',
+                        'products.imported_date',
                         'products.is_deleted',
                         'products.country',
                         'products.created_at',
@@ -104,6 +105,7 @@ class ProductController extends Controller {
             $product->mrp = $request->input('mrp') ? $request->input('mrp') : null;
             $product->manufacture_date = $request->input('manufacture_date') ? $request->input('manufacture_date') : null;
             $product->expiry_date = $request->input('expiry_date') ? $request->input('expiry_date') : null;
+            $product->imported_date = $request->input('imported_date') ? $request->input('imported_date') : null;
             $file_name = null;
             $file_path = null;
 
@@ -232,6 +234,7 @@ class ProductController extends Controller {
                 $product->mrp = $request->input('mrp') ? $request->input('mrp') : null;
                 $product->manufacture_date = $request->input('manufacture_date') ? $request->input('manufacture_date') : null;
                 $product->expiry_date = $request->input('expiry_date') ? $request->input('expiry_date') : null;
+                $product->imported_date = $request->input('imported_date') ? $request->input('imported_date') : null;
                 $product->country = $request->input('country') ? $request->input('country') : null;
 
                 // Handle image deletions

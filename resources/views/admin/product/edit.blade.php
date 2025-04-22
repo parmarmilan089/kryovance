@@ -185,6 +185,15 @@
                         @endif
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <label for="imported_date" class="col-sm-2 col-form-label">Imported Date</label>
+                    <div class="col-sm-3">
+                        <input type="date" class="form-control" id="imported_date" name="imported_date" value="{{$product->imported_date}}" />
+                        @if($errors->has('imported_date'))
+                        <div class="error">{{ $errors->first('imported_date') }}</div>
+                        @endif
+                    </div>
+                </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
