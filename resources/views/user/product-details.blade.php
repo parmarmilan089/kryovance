@@ -31,37 +31,35 @@
 				<div class="container">
 					<div class="row mb_100 justify-content-lg-between">
 						<div class="col-lg-5 col-md-7">
-							<div class="col-lg-5 col-md-7">
-                                <div class="shop_details_image">
-                                    @php
-                                        $images = getProductImages($product['id']);
-                                    @endphp
+                            <div class="shop_details_image">
+                                @php
+                                    $images = getProductImages($product['id']);
+                                @endphp
 
-                                    <div class="tab-content">
-                                        @foreach($images as $key => $img)
-                                            <div id="tab_{{$key}}" class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}">
-                                                <img  src="{{ $img ? asset('storage/'.$img->file_path) : asset('user/assets/images/15980049.png') }}" alt="image_not_found">
-                                            </div>
-                                        @endforeach
-                                    </div>
-
-                                    <ul class="nav nav-tabs ul_li clearfix mt-3" role="tablist">
-                                        @foreach($images as $key => $img)
-                                            <li class="nav-item">
-                                                <a class="nav-link {{ $key == 0 ? 'active' : '' }}" data-toggle="tab" href="#tab_{{$key}}">
-                                                    <img  src="{{ $img ? asset('storage/'.$img->file_path) : asset('user/assets/images/15980049.png') }}" alt="image_not_found">
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                                <div class="tab-content">
+                                    @foreach($images as $key => $img)
+                                        <div id="tab_{{$key}}" class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}">
+                                            <img  src="{{ $img ? asset('storage/'.$img->file_path) : asset('user/assets/images/15980049.png') }}" alt="image_not_found">
+                                        </div>
+                                    @endforeach
                                 </div>
+
+                                <ul class="nav nav-tabs ul_li clearfix mt-3" role="tablist">
+                                    @foreach($images as $key => $img)
+                                        <li class="nav-item">
+                                            <a class="nav-link {{ $key == 0 ? 'active' : '' }}" data-toggle="tab" href="#tab_{{$key}}">
+                                                <img  src="{{ $img ? asset('storage/'.$img->file_path) : asset('user/assets/images/15980049.png') }}" alt="image_not_found">
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
 						</div>
 
 						<div class="col-lg-7 col-md-8">
 							<div class="shop_details_content">
 								<h2 class="item_title">{{$product['name']}}</h2>
-								<span class="item_price">$ {{$product['price']}}</span>
+								<span class="item_price">₹ {{$product['price']}}</span>
 								<hr>
 								<div class="row mb_30 align-items-center justify-content-lg-between">
 									<div class="col-lg-5">
@@ -73,7 +71,7 @@
 										</div>
 									</div>
 
-									<div class="col-lg-7">
+									{{--  <div class="col-lg-7">
 										<div class="rating_review_wrap d-flex align-items-center clearfix">
 											<ul class="rating_star ul_li">
 												<li><i class="fas fa-star"></i></li>
@@ -85,7 +83,7 @@
 											<span>4 Review(s)</span>
 											<button type="button" class="add_review_btn">Add Your Review</button>
 										</div>
-									</div>
+									</div>  --}}
 								</div>
 								<p class="mb-0">
 									{{$product['description']}}
@@ -138,10 +136,10 @@
                                 </form>
                                 <div id="cart-message" class="alert alert-success" style="display: none;"></div>
 
-								<ul class="btns_group_2 ul_li clearfix">
+								{{--  <ul class="btns_group_2 ul_li clearfix">
 									<li><a href="#!"><span><i class="far fa-heart"></i></span> Add to Wishlist</a></li>
 									<li><a href="#!"><span><i class="fal fa-repeat"></i></span> Compare</a></li>
-								</ul>
+								</ul>  --}}
 
 								<hr>
 

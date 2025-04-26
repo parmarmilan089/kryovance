@@ -684,78 +684,52 @@
 
                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                             <div class="footer_widget product_list clearfix">
+                                <?php $latestProducts = getLatestProductsWithImages(); ?>
                                 <h3 class="footer_widget_title text-white text-uppercase">Hot Products</h3>
                                 <ul class="ul_li_block">
-                                    <li>
-                                        <div class="small_product">
-                                            <div class="item_image">
-                                                <img src="user/assets/images/shop/minimal/img_10.jpg" alt="image_not_found">
+                                    @foreach ($latestProducts as $item)
+                                        <li>
+                                            <div class="small_product">
+                                                <div class="item_image">
+                                                    <img src="{{ $item->image_url ? $item->image_url : asset('user/assets/images/15980049.png') }}" alt="image_not_found" width="80px">
+                                                </div>
+                                                <div class="item_content">
+                                                    <h3 class="item_title">
+                                                        <a class="text-white" href="{{route('product_details',$item->product_id)}}">
+                                                            {{$item->product_name}}
+                                                        </a>
+                                                    </h3>
+                                                    <span class="item_price">₹{{$item->product_price}}</span>
+                                                </div>
                                             </div>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a class="text-white" href="#!">
-                                                        Lobortis Laculis ut Condimentum
-                                                    </a>
-                                                </h3>
-                                                <span class="item_price">$110.00</span>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="small_product">
-                                            <div class="item_image">
-                                                <img src="user/assets/images/shop/minimal/img_11.jpg" alt="image_not_found">
-                                            </div>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a class="text-white" href="#!">
-                                                        Lobortis Laculis ut Condimentum
-                                                    </a>
-                                                </h3>
-                                                <span class="item_price">$110.00</span>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                             <div class="footer_widget product_list clearfix">
+                                <?php $saleProducts = getSaleProductsWithImages(); ?>
                                 <h3 class="footer_widget_title text-white text-uppercase">Sale Products</h3>
                                 <ul class="ul_li_block">
-                                    <li>
-                                        <div class="small_product">
-                                            <div class="item_image">
-                                                <img src="user/assets/images/shop/minimal/img_12.jpg" alt="image_not_found">
+                                    @foreach ($saleProducts as $item)
+                                        <li>
+                                            <div class="small_product">
+                                                <div class="item_image">
+                                                    <img src="{{ $item->image_url ? $item->image_url : asset('user/assets/images/15980049.png') }}" alt="image_not_found" width="80px">
+                                                </div>
+                                                <div class="item_content">
+                                                    <h3 class="item_title">
+                                                        <a class="text-white" href="{{route('product_details',$item->product_id)}}">
+                                                            {{$item->product_name}}
+                                                        </a>
+                                                    </h3>
+                                                    <span class="item_price">₹{{$item->product_price}}</span>
+                                                </div>
                                             </div>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a class="text-white" href="#!">
-                                                        Lobortis Laculis ut Condimentum
-                                                    </a>
-                                                </h3>
-                                                <span class="item_price">$110.00</span>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="small_product">
-                                            <div class="item_image">
-                                                <img src="user/assets/images/shop/minimal/img_13.jpg" alt="image_not_found">
-                                            </div>
-                                            <div class="item_content">
-                                                <h3 class="item_title">
-                                                    <a class="text-white" href="#!">
-                                                        Lobortis Laculis ut Condimentum
-                                                    </a>
-                                                </h3>
-                                                <span class="item_price">$110.00</span>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

@@ -14,21 +14,16 @@
                     <a href="{{route('product_details',$product->id)}}">{{$product->name}}</a>
                 </h3>
                 <span class="item_category">{{$product->category_name}}</span>
-                <span class="item_price">£ {{$product->price}}</span>
-            </div>
-            <ul class="product_color ul_li_block nav clearfix">
-                <li class="active"><a class="pbg_lightgreen" data-toggle="tab" href="#ptab1_1"></a></li>
-                <li><a class="pbg_olivegreen" data-toggle="tab" href="#ptab1_2"></a></li>
-                <li><a class="pbg_brown" data-toggle="tab" href="#ptab1_3"></a></li>
-            </ul>
+                <span class="item_price">₹ {{$product->price}}</span>
+        </div>
             <ul class="product_label ul_li clearfix">
                 <li class="bg_black">New</li>
             </ul>
-            <ul class="product_action_btns ul_li_block clearfix">
+            {{--  <ul class="product_action_btns ul_li_block clearfix">
                 <li><a class="tooltips" data-placement="right" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
                 <li><a class="tooltips" data-placement="right" title="Add To Cart" href="#!"><i class="fal fa-shopping-basket"></i></a></li>
                 <li><a class="tooltips" data-placement="right" title="Quick View" href="#!" data-toggle="modal" data-target="#quickview_modal"><i class="fal fa-search"></i></a></li>
-            </ul>
+            </ul>  --}}
         </div>
     </div>
 @endforeach

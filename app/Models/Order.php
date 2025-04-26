@@ -23,14 +23,14 @@ class Order extends Model
 
     public function billingDetails()
     {
-        return $this->belongsTo(BillingDetails::class, 'billing_id');
+        return $this->hasOne(BillingDetails::class, 'order_id', 'id');
     }
 
     public function items()
     {
         return $this->hasMany(OrderItem::class);
     }
-    
+
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id');

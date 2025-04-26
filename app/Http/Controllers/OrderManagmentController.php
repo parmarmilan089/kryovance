@@ -60,7 +60,7 @@ class OrderManagmentController extends Controller
         $data['title'] = 'Order Details';
         $data['menu_active_tab'] = 'order-details';
         if ($id) {
-            $order = Order::with('billingDetails', 'items.product')->findOrFail($id);
+            $order = Order::with('billingDetails', 'items.product','customer')->findOrFail($id);
             if (!$order) {
                 return redirect()->route('order')->with('error', 'Order not found.');
             }

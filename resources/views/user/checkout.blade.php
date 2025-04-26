@@ -220,12 +220,12 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <span class="price_text">${{$item['price']}}</span>
+                                                    <span class="price_text">₹{{$item['price']}}</span>
                                                 </td>
                                                 <td>
                                                     <span class="quantity_text">{{$item['quantity']}}</span>
                                                 </td>
-                                                <td><span class="total_price">${{$item['price'] * $item['quantity']}}</span></td>
+                                                <td><span class="total_price">₹{{$item['price'] * $item['quantity']}}</span></td>
                                             </tr>
                                         @endforeach
                                         <tr>
@@ -235,7 +235,7 @@
                                             <td></td>
                                             <td></td>
                                             <td>
-                                                <span class="total_price">${{$subtotal}}</span>
+                                                <span class="total_price">₹{{$subtotal}}</span>
                                             </td>
                                         </tr>
                                     </tbody>

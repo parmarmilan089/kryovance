@@ -65,7 +65,7 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <span class="price_text">${{$item['price']}}</span>
+                                        <span class="price_text">₹{{$item['price']}}</span>
                                     </td>
                                     <td>
                                         <div class="quantity_input">
@@ -74,7 +74,7 @@
                                             <span class="input_increment" data-id="{{$item['id']}}">+</span>
                                         </div>
                                     </td>
-                                    <td><span class="total_price">${{$item['price'] * $item['quantity']}}</span></td>
+                                    <td><span class="total_price">₹{{$item['price'] * $item['quantity']}}</span></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -105,8 +105,8 @@
                         <div class="cart_pricing_table pt-0 text-uppercase" data-bg-color="#f2f3f5">
                             <h3 class="table_title text-center" data-bg-color="#ededed">Cart Total</h3>
                             <ul class="ul_li_block clearfix">
-                                <li><span>Subtotal</span> <span class="sub-total">${{number_format($subtotal,2)}}</span></li>
-                                <li><span>Total</span> <span class="total">${{number_format($subtotal,2)}}</span></li>
+                                <li><span>Subtotal</span> <span class="sub-total">₹{{number_format($subtotal,2)}}</span></li>
+                                <li><span>Total</span> <span class="total">₹{{number_format($subtotal,2)}}</span></li>
                             </ul>
                             <a href="{{route('checkout')}}" class="custom_btn bg_success">Proceed to Checkout</a>
                         </div>

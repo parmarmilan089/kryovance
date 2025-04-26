@@ -84,7 +84,7 @@
                                             <a href="{{route('product_details',$product->id)}}">{{ $product->name }}</a>
                                         </h3>
                                         <span class="item_category">{{ $product->category_name }}</span>
-                                        <span class="item_price">£ {{ $product->price }}</span>
+                                        <span class="item_price">₹ {{ $product->price }}</span>
                                     </div>
                                     <ul class="product_action_btns ul_li_block clearfix">
                                         <li><a class="tooltips" data-placement="right" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>

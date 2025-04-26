@@ -46,7 +46,7 @@
                         @foreach($orders as $order)
                             <tr>
                                 <td>{{ $order->order_number }}</td>
-                                <td>${{ number_format($order->total, 2) }}</td>
+                                <td>₹{{ number_format($order->total, 2) }}</td>
                                 <td>{{ ucfirst($order->payment_method) }}</td>
                                 <td>
                                     <span class="badge {{ $order->payment_status == 'paid' ? 'badge-success' : 'badge-warning' }}">
