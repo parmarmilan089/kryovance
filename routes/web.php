@@ -134,6 +134,10 @@ Route::get('/about-us', [FrontendController::class, 'about'])->name('about');
 
 //customer routes
 Route::get('/user-login', [CustomerAuthController::class, 'user_login'])->name('user-login');
+Route::get('/user-forget-passoword', [CustomerAuthController::class, 'userForgetpassword'])->name('forget-password');
+Route::post('customer/forgot-password', [CustomerAuthController::class, 'submitForgotPassword'])->name('customer.forgot.password.submit');
+Route::get('customer/reset-password', [CustomerAuthController::class, 'showResetPasswordForm'])->name('customer.reset.password');
+Route::post('customer/reset-password-form', [CustomerAuthController::class, 'submitResetPassword'])->name('customer.reset.password.submit');
 Route::get('/user-register', [CustomerAuthController::class, 'user_register'])->name('user-register');
 Route::post('/customer/register', [CustomerAuthController::class, 'register'])->name('register');
 Route::get('/customer/login', [CustomerAuthController::class, 'showLoginForm'])->name('customer.login.form');
@@ -158,7 +162,9 @@ Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout
 Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('order.place');
 Route::get('/order-success/{order_id}', [OrderController::class, 'orderSuccess'])->name('order.success');
 Route::middleware('auth:customer')->group(function () {
-    Route::get('/orders', [OrderController::class, 'index'])->name('order');
+    Route::get('/dashboard', [CustomerAuthController::class, 'userDashbaord'])->name('user-dashboard');
+    // Route::get('/orders', [OrderController::class, 'index'])->name('order');
+    Route::post('/customer/profile/update', [CustomerAuthController::class, 'profileUpdate'])->name('customer.profile.update');
     Route::get('/order-details/{id}', [OrderController::class, 'orderDetails'])->name('order.details');
 });
 Route::get('/order-complete', [OrderController::class, 'order_complete'])->name('order-complete');

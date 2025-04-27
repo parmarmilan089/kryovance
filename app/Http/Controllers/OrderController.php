@@ -29,6 +29,7 @@ class OrderController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
         $data['orders'] = $orders;
+        $data['customer'] = $customer;
         return view('user.order')->with($data);
     }
 

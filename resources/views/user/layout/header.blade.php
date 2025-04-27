@@ -293,8 +293,7 @@
                                                     </div>
                                                 </div>
                                                 <ul class="settings_options ul_li_block clearfix">
-                                                    <li><a href="#!"><i class="fal fa-user-circle"></i> Profile</a></li>
-                                                    <li><a href="{{route('order')}}"><i class="fal fa-list"></i> Orders</a></li>
+                                                    <li><a href="{{route('user-dashboard')}}"><i class="fal fa-user-circle"></i> Profile</a></li>
                                                     <li><a href="{{route('customer.logout')}}"><i class="fal fa-sign-out-alt"></i> Logout</a></li>
                                                 </ul>
                                             </div>
@@ -636,7 +635,6 @@
                             </div>
                             <ul class="settings_options ul_li_block clearfix">
                                 <li><a href="#!"><i class="fal fa-user-circle"></i> Profile</a></li>
-                                <li><a href="{{route('order')}}"><i class="fal fa-list"></i> Orders</a></li>
                                 <li><a href="{{route('customer.logout')}}"><i class="fal fa-sign-out-alt"></i> Logout</a></li>
                             </ul>
 
