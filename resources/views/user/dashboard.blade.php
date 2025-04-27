@@ -32,7 +32,7 @@
                         High-speed, efficient printers designed to keep up with busy office workflows.
                     </p>
                     <div class="abtn_wrap clearfix" data-animation="fadeInUp" data-delay="1s">
-                        <a href="/products!" class="custom_btn bg_modern_red text-uppercase">Shop Now</a>
+                        <a href="/products" class="custom_btn bg_modern_red text-uppercase">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -89,11 +89,6 @@
                                         <span class="item_category">{{ $product->category_name }}</span>
                                         <span class="item_price">₹ {{ $product->price }}</span>
                                     </div>
-                                    <ul class="product_action_btns ul_li_block clearfix">
-                                        <li><a class="tooltips" data-placement="right" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
-                                        <li><a class="tooltips" data-placement="right" title="Add To Cart" href="#!"><i class="fal fa-shopping-basket"></i></a></li>
-                                        <li><a class="tooltips" data-placement="right" title="Quick View" href="#!" data-toggle="modal" data-target="#quickview_modal"><i class="fal fa-search"></i></a></li>
-                                    </ul>
                                 </div>
                             </div>
                         @endforeach
