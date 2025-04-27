@@ -8,7 +8,7 @@
     <main>
 
 
-        
+
 
 
         <!-- breadcrumb_section - start
@@ -40,7 +40,7 @@
                 </ul>
 
                 <div class="order_complete_alart text-center">
-                    <h2>Congratulation! You’ve <strong>Completed</strong> Payment.</h2>
+                    <h2>Congratulation! Your <strong>Order Placed</strong> successfully.</h2>
                 </div>
 
             </div>

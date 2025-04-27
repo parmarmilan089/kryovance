@@ -24,6 +24,7 @@ class FrontendController extends Controller {
         $data['menu_active_tab'] = 'dashboard';
         $productsByCategory = Product::join('category', 'products.category_id', '=', 'category.id')
         ->select('products.*', 'category.name as category_name')
+        ->where('products.is_deleted', '0')
         ->get()
         ->groupBy('category_name');
         $data['productsByCategory'] = $productsByCategory;
@@ -36,6 +37,7 @@ class FrontendController extends Controller {
         $products = Product::select('products.*', 'category.name as category_name')
         ->join('category', 'category.id', '=', 'products.category_id')
         ->where('products.id', $id)
+        ->where('products.is_deleted', '0')
         ->first();
         $data['product'] = $products;
         $data['menu_active_tab'] = 'product-details';
@@ -60,7 +62,7 @@ class FrontendController extends Controller {
             });
         }
         // Fetch the products with search filter, ordered by name, and limit the results
-        $products = $productsQuery->orderBy('products.name')
+        $products = $productsQuery->where('products.is_deleted', '0')->orderBy('products.name')
         ->limit(6)
         ->get();
         $data['title'] = 'Products';
@@ -91,7 +93,7 @@ class FrontendController extends Controller {
             $query->where('products.name', 'like', '%' . $search . '%')->orWhere('products.description', 'like', '%' . $search . '%');
         }
 
-        $products = $query->orderBy('products.name')->skip($offset)->take($limit)->get();
+        $products = $query->where('products.is_deleted', '0')->orderBy('products.name')->skip($offset)->take($limit)->get();
         $moreProducts = $products->count() > 0;
 
         return response()->json([
@@ -122,7 +124,7 @@ class FrontendController extends Controller {
         }
 
         // Fetch the products with offset and limit
-        $products = $query->orderBy('products.name')
+        $products = $query->where('products.is_deleted', '0')->orderBy('products.name')
             ->skip($offset)
             ->take($limit)
             ->get();

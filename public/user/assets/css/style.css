@@ -300,7 +300,7 @@ hr {
 /* bootstrap settings - start
 ================================================== */
 .container {
-  max-width: 1200px;
+  max-width: 1600px;
 }
 
 .maxw_1430 {
@@ -4924,8 +4924,7 @@ button {
   z-index: 1;
   min-height: 350px;
   position: relative;
-  padding: 100px 0px;
-  padding-bottom: 180px;
+  padding: 65px 0px;
 }
 .breadcrumb_section .overlay {
   top: 0px;
