@@ -8,7 +8,7 @@
 		<main>
 			<!-- breadcrumb_section - start
 			================================================== -->
-			<section class="breadcrumb_section minimal_breadcrumb d-flex align-items-end clearfix" data-background="user/assets/images/breadcrumb/bg_11.jpg">
+			<section class="breadcrumb_section minimal_breadcrumb d-flex align-items-end clearfix" data-background="{{('user/assets/images/breadcrumb/bg_11.jpg')}}">
 				<div class="container maxw_1430">
 					<h1 class="minimal_page_title mb_15">Shop Page</h1>
 					<div class="f2_breadcrumb_nav_wrap mt-0">

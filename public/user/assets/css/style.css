@@ -4922,7 +4922,7 @@ button {
 /* default breadcrumb - start */
 .breadcrumb_section {
   z-index: 1;
-  min-height: 575px;
+  min-height: 350px;
   position: relative;
   padding: 100px 0px;
   padding-bottom: 180px;
@@ -5046,7 +5046,7 @@ button {
 /* classic ecommerce breadcrumb - end */
 /* fashion breadcrumb - start */
 .fashion_breadcrumb {
-  min-height: 620px;
+  min-height: 350px;
 }
 
 .f_breadcrumb_content {
@@ -5227,8 +5227,8 @@ button {
 /* medical breadcrumb - end */
 /* medical breadcrumb - start */
 .minimal_breadcrumb {
-  min-height: 620px;
-  padding-bottom: 150px;
+  min-height: 350px;
+  padding-bottom: 50px;
 }
 
 .minimal_page_title {
@@ -11694,21 +11694,23 @@ button {
   right: 30px;
 }
 .minimal_slider .item {
-  min-height: 100vh;
+  min-height: 50vh;
 }
 .minimal_slider .slider_content {
+  padding-top: 150px;
+  padding-bottom: 30px;
   max-width: 680px;
 }
 .minimal_slider h4 {
   line-height: 1;
-  font-size: 36px;
+  font-size: 25px;
   font-weight: 600;
   color: #da0a2c;
   margin-bottom: 15px;
 }
 .minimal_slider h3 {
   line-height: 1;
-  font-size: 80px;
+  font-size: 40px;
   font-weight: 800;
   margin-bottom: 25px;
 }
@@ -21925,8 +21927,8 @@ blockquote .blockquote_title {
   /* medical shop - end */
   /* modern minimal shop - start */
   .minimal_breadcrumb {
-    min-height: 530px;
-    padding-bottom: 120px;
+    min-height: 350px;
+    padding-bottom: 50px;
   }
 
   .minimal_page_title {
@@ -22094,8 +22096,8 @@ blockquote .blockquote_title {
   /* footer - end */
   /* breadcrumb - start */
   .breadcrumb_section {
-    min-height: 480px;
-    padding-bottom: 130px;
+    min-height: 350px;
+    padding-bottom: 50px;
   }
 
   .page_title {
@@ -22391,8 +22393,8 @@ blockquote .blockquote_title {
   }
 
   .breadcrumb_section {
-    min-height: 400px;
-    padding-bottom: 100px;
+    min-height: 350px;
+    padding-bottom: 50px;
   }
 
   .carparts_filetr_bar .option_title,
@@ -24510,7 +24512,7 @@ blockquote .blockquote_title {
   /* footer - end */
   /* breadcrumb - start */
   .breadcrumb_section {
-    min-height: 400px;
+    min-height: 350px;
     padding: 100px 0px;
   }
 
