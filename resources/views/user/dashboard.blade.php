@@ -74,9 +74,12 @@
                         @foreach($products->take(6) as $product)  <!-- Initially display 6 products -->
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="minimal_product_item">
+                                    @php
+                                        $images = getProductImages($product->id);
+                                    @endphp
                                     <div class="tab-content">
                                         <div class="tab-pane active">
-                                            <img src="{{ $product->image_path ? getStoragePath() . $product->image_path : asset('user/assets/images/product-placeholder.png') }}" alt="image_not_found">
+                                            <img src="{{ isset($images[0]) ? asset('storage/'.$images[0]->file_path) : asset('user/assets/images/product-placeholder.png') }}" alt="image_not_found">
                                         </div>
                                     </div>
                                     <div class="item_content">
