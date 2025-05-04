@@ -23,9 +23,15 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Short Description</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-10">
+                        <textarea name="feature_description" id="description" class="form-control">{{ old('feature_description') }}</textarea>
                     </div>
                 </div>
 
@@ -188,6 +194,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
+
     $(document).ready(function() {
     const MAX_IMAGES = 5;
     let filesArray = [];

@@ -160,7 +160,7 @@
 								<a data-toggle="tab" href="#reviews_tab">Reviews</a>
 							</li>
 							<li>
-								<a data-toggle="tab" href="#information_tab">Additional Information</a>
+								<a data-toggle="tab" href="#information_tab">Feature Description</a>
 							</li>
 						</ul>
 
@@ -208,65 +208,7 @@
 							</div>
 
 							<div id="information_tab" class="tab-pane fade">
-								<div class="row mb_50">
-									<div class="col-lg-3 col-md-5">
-										<div class="image_wrap">
-											<img src="user/assets/images/details/shop/img_06.jpg" alt="image_not_found">
-										</div>
-									</div>
-
-									<div class="col-lg-9 col-md-7">
-										<div class="content_wrap">
-											<p class="mb_30">
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-											</p>
-
-											<h4 class="list_title">Pretium turpis et arcu</h4>
-											<p class="mb_30">
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-											</p>
-
-											<h4 class="list_title">Unordered list</h4>
-											<p class="mb_30">
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-											</p>
-
-											<ul class="product_info ul_li_block clearfix">
-												<li><strong>Color:</strong> Brown, Grey, Nude, Red</li>
-												<li><strong>Size:</strong> L, M, S, XL, XS</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<div class="row mb_50">
-									<div class="col-lg-3 col-md-5 order-last">
-										<div class="image_wrap">
-											<img src="user/assets/images/details/shop/img_07.jpg" alt="image_not_found">
-										</div>
-									</div>
-
-									<div class="col-lg-9 col-md-7">
-										<div class="content_wrap">
-											<h4 class="list_title">Paragraph text</h4>
-											<p class="mb_15">
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-											</p>
-											<p class="mb_30">
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-											</p>
-
-											<h4 class="list_title">Pretium turpis et arcu</h4>
-											<p class="mb-0">
-												Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<span class="aware_info_icons">
-									<img src="user/assets/images/icons/aware_icons.png" alt="image_not_found">
-								</span>
+								{!! $product->feature_description !!}
 							</div>
 						</div>
 					</div>

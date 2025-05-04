@@ -96,6 +96,7 @@ class ProductController extends Controller {
             $product = new Product;
             $product->name = $request->input('name') ? $request->input('name') : null;
             $product->description = $request->input('description') ? $request->input('description') : null;
+            $product->feature_description = $request->input('feature_description') ? $request->input('feature_description') : null;
             $product->model_no = $request->input('model_no') ? $request->input('model_no') : null;
             $product->category_id = $request->input('category_id') ? $request->input('category_id') : null;
             $product->inventory_id = $request->input('inventory_id') ? $request->input('inventory_id') : null;
@@ -165,6 +166,7 @@ class ProductController extends Controller {
                             'products.image',
                             'products.image_path',
                             'products.description',
+                            'products.feature_description',
                             'products.country_id',
                             'products.status',
                             'products.created_by_id',
@@ -225,6 +227,7 @@ class ProductController extends Controller {
             if ($product) {
                 $product->name = $request->input('name') ? $request->input('name') : null;
                 $product->description = $request->input('description') ? $request->input('description') : null;
+                $product->feature_description = $request->input('feature_description') ? $request->input('feature_description') : null;
                 $product->model_no = $request->input('model_no') ? $request->input('model_no') : null;
                 $product->category_id = $request->input('category_id') ? $request->input('category_id') : null;
                 $product->inventory_id = $request->input('inventory_id') ? $request->input('inventory_id') : null;

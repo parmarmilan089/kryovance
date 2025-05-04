@@ -40,6 +40,10 @@ h6 {
 /*--------------------------------------------------------------
 # Main
 --------------------------------------------------------------*/
+
+.cke_notifications_area{
+    display: none;
+}
 .image-preview img {
     width: 100px; /* Set the desired width */
     height: 100px; /* Set the desired height */

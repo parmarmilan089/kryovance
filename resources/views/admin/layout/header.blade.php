@@ -253,6 +253,16 @@
 
         <script src="{{ asset('admin/assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
         <script src="{{ asset('admin/assets/vendor/libs/sweetalert2/sweetalert2.all.js')}}"></script>
+        <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+        <script>
+            // Disable version check warning (optional)
+            CKEDITOR.editorConfig = function(config) {
+                config.versionCheck = false;
+            };
+        </script>
+        <script>
+            CKEDITOR.replace('feature_description');
+        </script>
          @yield('customjs')
          $(document).ready(function () {
 

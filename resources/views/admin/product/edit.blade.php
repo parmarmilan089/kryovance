@@ -28,6 +28,12 @@
                         <textarea class="form-control" id="description" name="description" rows="5">{{$product->description}}</textarea>
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-10">
+                        <textarea name="feature_description" id="feature_description" class="form-control">{!!$product->feature_description!!}</textarea>
+                    </div>
+                </div>
 
                 <div class="row mb-3">
                     <label for="model_no" class="col-sm-2 col-form-label">Model No </label>
