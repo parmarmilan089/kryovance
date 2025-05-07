@@ -21,7 +21,20 @@
                         @endif
                     </div>
                 </div>
-
+                <div class="row mb-3">
+                    <label for="image" class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" id="image" name="image">
+                        @if($category->image)
+                            <div class="mt-2">
+                                <img src="{{ asset('storage/' . $category->image) }}" width="100">
+                            </div>
+                        @endif
+                        @if($errors->has('image'))
+                            <div class="error">{{ $errors->first('image') }}</div>
+                        @endif
+                    </div>
+                </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

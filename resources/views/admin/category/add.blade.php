@@ -20,6 +20,15 @@
                         @endif
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <label for="image" class="col-sm-2 col-form-label">Category Image</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                        @if($errors->has('image'))
+                        <div class="error text-danger">{{ $errors->first('image') }}</div>
+                        @endif
+                    </div>
+                </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

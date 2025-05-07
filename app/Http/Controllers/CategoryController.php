@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Category;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -58,10 +59,21 @@ class CategoryController extends Controller {
     public function storeCategory(Request $request) {
         $request->validate([
             'name' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         try {
             $category = new \App\Models\Category;
             $category->name = $request->input('name') ? $request->input('name') : null;
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+
+                if ($file->isValid()) {
+                    $fileName = 'category_' . time() . '_' . uniqid() . '.' . strtolower($file->getClientOriginalExtension());
+                    $filePath = $file->storeAs('category_images', $fileName, 'public');
+
+                    $category->image = $filePath; // store path like 'category_images/filename.jpg'
+                }
+            }
             $category->created_by_id = \Auth::user()->id ? \Auth::user()->id : null;
             $category->save();
 
@@ -112,12 +124,28 @@ class CategoryController extends Controller {
         if ($id) {
             $request->validate([
                 'name' => 'required',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             $category = Category::find($id);
             if ($category) {
                 $category->name = $request->input('name') ? $request->input('name') : null;
 
                 $category->updated_by_id = \Auth::user()->id ? \Auth::user()->id : null;
+                if ($request->hasFile('image')) {
+                    $file = $request->file('image');
+
+                    if ($file->isValid()) {
+                        // Delete old image if it exists
+                        if ($category->image && Storage::disk('public')->exists($category->image)) {
+                            Storage::disk('public')->delete($category->image);
+                        }
+
+                        $fileName = 'category_' . time() . '_' . uniqid() . '.' . strtolower($file->getClientOriginalExtension());
+                        $filePath = $file->storeAs('category_images', $fileName, 'public');
+
+                        $category->image = $filePath;
+                    }
+                }
                 $category->save();
             }
 
