@@ -237,7 +237,6 @@ return DataTables::of($customers)
                 'phone' => 'required|numeric|unique:customers,phone,' . $id,
                 'email' => 'required|email|unique:customers,email,' . $id
             ]);
-
             try {
                 $customer = Customer::find($id);
                 if ($customer) {
@@ -246,7 +245,7 @@ return DataTables::of($customers)
                     $customer->lname = $request->input('lastname');
                     $customer->email = $request->input('email');
                     $customer->phone = $request->input('phone');
-                    $customer->company_name = $request->input('company');
+                    $customer->company_name = $request->input('company_name');
                     $customer->save();
 
                     return redirect()->route('user-list')->with('success', 'Customer updated successfully.');

@@ -14,11 +14,11 @@
                 <input type="hidden" name="customer_id" id="customer_id" value="{{ $user->id }}" />
 
                 <div class="row mb-3">
-                    <label for="fname" class="col-sm-2 col-form-label">First Name</label>
+                    <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="fname" name="fname" value="{{ old('fname', $user->first_name) }}" />
-                        @if($errors->has('fname'))
-                            <div class="error">{{ $errors->first('fname') }}</div>
+                        <input type="text" class="form-control" id="firstname" name="firstname" value="{{ old('firstname', $user->first_name) }}" />
+                        @if($errors->has('firstname'))
+                            <div class="error">{{ $errors->first('firstname') }}</div>
                         @endif
                     </div>
                 </div>
@@ -26,9 +26,9 @@
                 <div class="row mb-3">
                     <label for="lname" class="col-sm-2 col-form-label">Last Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="lname" name="lname" value="{{ old('lname', $user->last_name) }}" />
-                        @if($errors->has('lname'))
-                            <div class="error">{{ $errors->first('lname') }}</div>
+                        <input type="text" class="form-control" id="lastname" name="lastname" value="{{ old('lastname', $user->last_name) }}" />
+                        @if($errors->has('lastname'))
+                            <div class="error">{{ $errors->first('lastname') }}</div>
                         @endif
                     </div>
                 </div>
@@ -86,6 +86,16 @@
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </form>
+            @if (session('success'))
+                    <div class="alert alert-success">
+                        <p class="text-center">{{ session('success') }}</p>
+                    </div>
+                @endif
+            @if (session('error'))
+                    <div class="alert alert-success">
+                        <p class="text-center">{{ session('error') }}</p>
+                    </div>
+                @endif
 
         </div>
     </div>
