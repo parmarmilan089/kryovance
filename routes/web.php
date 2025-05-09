@@ -94,7 +94,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/user-list', [UserController::class, 'userList'])->name('user-list');
         Route::get('/json-user', [UserController::class, 'jsonUser'])->name('json-user');
         Route::post('/store-user', [UserController::class, 'storeUser'])->name('store-user');
-         Route::get('/edit-user/{id}', [UserController::class, 'editUser'])->name('edit-user');
+        Route::get('/edit-user/{id}', [UserController::class, 'editUser'])->name('edit-user');
+        Route::get('/view-user/{id}', [UserController::class, 'viewUserProfile'])->name('view-user');
+        Route::post('/verify-user/{id}', [UserController::class, 'verifyUserProfile'])->name('admin.customers.verify');
         Route::post('/update-user', [UserController::class, 'updateUser'])->name('update-user');
         Route::post('/delete-user', [UserController::class, 'deleteUser'])->name('delete-user');
 

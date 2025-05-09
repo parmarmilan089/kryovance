@@ -74,11 +74,26 @@ class OrderController extends Controller
             return redirect()->back()->with('error', 'Your cart is empty!');
         }
 
+        $subtotal = 0;
+        $total = 0;
+        $totalDiscount = 0;
+
+        foreach ($cart as $item) {
+            $originalPrice = $item['original_price'];
+            $discountedPrice = getDiscountedPrice($item['id'], $originalPrice);
+            $discountAmount = $originalPrice - $discountedPrice;
+            $subtotal += $originalPrice * $item['quantity'];
+            $total += $discountedPrice * $item['quantity'];
+            $totalDiscount += $discountAmount * $item['quantity'];
+        }
+
         $orderData = [
             'order_number' => 'ORD-' . strtoupper(uniqid()),
             'customer_id' => auth('customer')->id() ?? null,
-            'subtotal' => collect($cart)->sum(fn($item) => $item['price'] * $item['quantity']),
-            'total' => collect($cart)->sum(fn($item) => $item['price'] * $item['quantity']),
+            'subtotal' => $subtotal,
+            'total_discount_amount' => $totalDiscount,
+            'total' => $total,
+            'final_total' => $total,
             'payment_method' => $request->payment_method,
             'payment_status' => ($request->payment_method == 'cod') ? 'pending' : 'processing'
         ];
@@ -102,20 +117,27 @@ class OrderController extends Controller
 
         // Save Order Items
         foreach ($cart as $item) {
+            $originalPrice = $item['original_price'];
+            $discountedPrice = getDiscountedPrice($item['id'], $originalPrice);
+            $discountAmount = $originalPrice - $discountedPrice;
+            $discountPercentage = $discountAmount > 0 ? round(($discountAmount / $originalPrice) * 100, 2) : 0;
+
             OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $item['id'],
                 'product_name' => $item['name'],
-                'price' => $item['price'],
+                'original_price' => $originalPrice,
+                'price' => $discountedPrice,
+                'discount_percent' => $discountPercentage,
+                'discount_amount' => $discountAmount,
                 'quantity' => $item['quantity'],
-                'total_price' => $item['price'] * $item['quantity']
+                'total_price' => $discountedPrice * $item['quantity'],
             ]);
 
-
             $product = Product::find($item['id']);
-            if($product['inventory_id'] != null && $product['inventory_id'] != ''){
+            if ($product['inventory_id']) {
                 $inventory = Inventory::find($product->inventory_id);
-                $inventory->qty = $inventory->qty - $item['quantity'];
+                $inventory->qty -= $item['quantity'];
                 $inventory->save();
             }
         }
@@ -129,7 +151,6 @@ class OrderController extends Controller
         }
 
         return redirect()->route('order-complete');
-        // return redirect()->route('order-complete', ['order_id' => $order->id]);
     }
 
     public function order_complete() {

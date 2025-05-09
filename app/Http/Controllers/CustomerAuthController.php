@@ -27,8 +27,36 @@ class CustomerAuthController extends Controller
             'lastname' => 'required',
             'company' => 'required',
             'phone' => 'required|numeric|digits:10',
+            'phone_2' => 'required||numeric|digits:10',
+            'phone_3' => 'required||numeric|digits:10',
             'email' => 'required|email',
-        ]);
+            'email_2' => 'required||email',
+            'email_3' => 'required||email',
+
+            'gst_number' => 'required|string',
+            'pan_number' => 'required|string',
+
+            'bank_holder_name' => '|string',
+            'bank_account_number' => '|string',
+            'ifsc_code' => '|string',
+            'bank_name' => '|string',
+
+
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'country' => 'required|string',
+
+            'partner_name_1' => 'required|string',
+            'partner_name_2' => 'required|string',
+            'partner_role_1' => 'required|string',
+            'partner_role_2' => 'required|string',
+
+            'employee_name_1' => 'required|string',
+            'employee_name_2' => 'required|string',
+            'employee_position_1' => 'required|string',
+            'employee_position_2' => 'required|string',
+    ]);
 
         $user = auth('customer')->user();
 
@@ -38,6 +66,38 @@ class CustomerAuthController extends Controller
         $customer->company_name = $request->company;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
+
+        // New fields
+        $customer->phone_2 = $request->phone_2;
+        $customer->phone_3 = $request->phone_3;
+        $customer->email_2 = $request->email_2;
+        $customer->email_3 = $request->email_3;
+
+        $customer->gst_number = $request->gst_number;
+        $customer->pan_number = $request->pan_number;
+
+        $customer->bank_holder_name = $request->bank_holder_name;
+        $customer->bank_account_number = $request->bank_account_number;
+        $customer->ifsc_code = $request->ifsc_code;
+        $customer->bank_name = $request->bank_name;
+
+        $customer->import_code = $request->import_code;
+        $customer->export_code = $request->export_code;
+
+        $customer->address = $request->address;
+        $customer->city = $request->city;
+        $customer->state = $request->state;
+        $customer->country = $request->country;
+
+        $customer->partner_name_1 = $request->partner_name_1;
+        $customer->partner_name_2 = $request->partner_name_2;
+        $customer->partner_role_1 = $request->partner_role_1;
+        $customer->partner_role_2 = $request->partner_role_2;
+
+        $customer->employee_name_1 = $request->employee_name_1;
+        $customer->employee_name_2 = $request->employee_name_2;
+        $customer->employee_position_1 = $request->employee_position_1;
+        $customer->employee_position_2 = $request->employee_position_2;
         $customer->save();
 
         return back()->with('success', 'Your Profile Updated');

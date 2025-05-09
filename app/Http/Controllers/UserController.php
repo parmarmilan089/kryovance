@@ -137,12 +137,13 @@ return DataTables::of($customers)
         })
         ->addColumn('action', function ($customer) {
             $delete_btn = '';
-            $edit_btn = '';
+            $edit_btn = $view_btn = '';
             $div_start = '<div class="">';
             $delete_btn = '<a href="#" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-edit btnDelete" title="Delete"><i class="bx bxs-trash-alt"></i></a>';
             $edit_btn = '<a href="' . route('edit-user', $customer->id) . '" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-edit btnEdit" title="Edit"><i class="bx bxs-edit"></i></a>';
+            $view_btn = '<a href="' . route('view-user', $customer->id) . '" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-view btnView" title="View"><i class="bx bxs-show"></i></a>';
             $div_end = '</div>';
-            $return_div = $div_start . $edit_btn . $delete_btn . $div_end;
+            $return_div = $div_start . $edit_btn. $view_btn . $delete_btn . $div_end;
             return $return_div;
         })
         ->rawColumns(['action'])
@@ -330,6 +331,27 @@ return DataTables::of($customers)
                 $data['user'] = $user;
 
                 return view('admin.edit-user-profile')->with($data);
+            } else {
+                return redirect()->route('dashboard')->with('failed', "Record not found");
+            }
+        } else {
+            return redirect()->route('dashboard')->with('failed', "Record not found");
+        }
+    }
+    public function viewUserProfile($id) {
+        $data = [];
+        $data['title'] = 'View User Profile';
+        $data['menu_active_tab'] = 'dashboard';
+        if (\Auth::id()) {
+            $user = Customer::find($id);
+            $list = CustomerRole::select('customer_roles.id', 'customer_roles.title', 'customer_roles.is_deleted')
+                ->where('customer_roles.is_deleted', '0')
+                ->orderBy('customer_roles.id', 'ASC')
+                ->get();
+            if ($user) {
+                $data['customer'] = $user;
+                $data['roles'] = $list;
+                return view('admin.user.view-user-profile')->with($data);
             } else {
                 return redirect()->route('dashboard')->with('failed', "Record not found");
             }
@@ -626,4 +648,10 @@ return DataTables::of($customers)
         return view('user.contact_us')->with($data);
     }
 
+    public function verifyUserProfile(Request $request,$id){
+        $customer = Customer::find($id);
+        $customer->customer_verification_status = 1;
+        $customer->save();
+        return back()->with("success", "User Verified Successfully!");
+    }
 }

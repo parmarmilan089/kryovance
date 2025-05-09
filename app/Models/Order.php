@@ -16,6 +16,8 @@ class Order extends Model
         'total_amount',
         'payment_method',
         'payment_status',
+        'total_discount_amount',
+        'final_total',
         'subtotal',
         'total',
         'status'
