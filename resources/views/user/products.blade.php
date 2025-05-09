@@ -5,9 +5,15 @@
 @section('content')
 <!-- main body - start
     ================================================== -->
+<<<<<<< HEAD
 
 <style>
 
+=======
+    
+<style>
+    
+>>>>>>> 7433a7b (adding files)
     .breadcrumb_section {
     background-position: top;
 }

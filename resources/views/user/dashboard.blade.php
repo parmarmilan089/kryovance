@@ -34,7 +34,11 @@ ul#category-tab li a img {
     border: 1px solid #484646;
     height: 50px;
 }
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 7433a7b (adding files)
 </style>
     <!-- slider_section - start
     ================================================== -->

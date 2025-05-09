@@ -306,6 +306,7 @@
                                    <div class="search_body">
                                         <div class="container-fluid prl_90">
                                             <form action="{{route('products')}}" method="get">
+<<<<<<< HEAD
 
                                                 <div class="form_item mb-0">
 
@@ -315,6 +316,17 @@
 
                                                 </div>
 
+=======
+                    
+                                                <div class="form_item mb-0">
+                    
+                                                    <input type="search" name="search" placeholder="Type here..."  value="{{ $search ?? '' }}">
+                    
+                                                    <button type="submit"><i class="fal fa-search"></i></button>
+                    
+                                                </div>
+                    
+>>>>>>> 7433a7b (adding files)
                                             </form>
                                         </div>
                                     </div>
