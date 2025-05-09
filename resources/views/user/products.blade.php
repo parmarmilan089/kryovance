@@ -5,19 +5,28 @@
 @section('content')
 <!-- main body - start
     ================================================== -->
+
+<style>
+
+    .breadcrumb_section {
+    background-position: top;
+}
+.minimal_breadcrumb {
+    min-height: 450px;
+    padding-bottom: 50px;
+}
+</style>
     <main>
 
         <!-- breadcrumb_section - start
         ================================================== -->
-        <section class="breadcrumb_section minimal_breadcrumb d-flex align-items-end clearfix" data-background="{{asset('user/assets/images/breadcrumb/bg_11.jpg')}}">
+        <section class="breadcrumb_section minimal_breadcrumb d-flex align-items-end clearfix" data-background="{{asset('user/assets/images/slider/modern_minimal/bg_02.jpg')}}">
             <div class="container maxw_1430">
                 <h1 class="minimal_page_title mb_15">Shop Page</h1>
                 <div class="f2_breadcrumb_nav_wrap mt-0">
                     <ul class="ce_breadcrumb_nav ul_li clearfix">
                         <li><a href="#!">Home</a></li>
                         <li>Shop</li>
-                        <li>Minimal Shop</li>
-                        <li>Shop Page</li>
                     </ul>
                 </div>
             </div>

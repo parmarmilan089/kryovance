@@ -43,6 +43,51 @@
     .minimal_product_item .tab-content {
     height: 600px;
 }
+.form_item.mb-0 {display: flex;}
+
+.search_body {}
+
+.search_body .container-fluid.prl_90 {
+    padding: 0;
+}
+
+.ul_li_right {
+    max-width: 100%;
+    width: 100%;
+}
+
+.ul_li_right li:nth-child(1) {
+    max-width: 70%;
+    width: 100% !important;
+}
+
+.search_body form {
+    background: #f1f1f1;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    height: 50px;
+}
+
+.search_body form input[type="search"] {
+    background: transparent;
+    border: 0;
+    height: 50px;
+}
+
+.minimal_header .action_btns_group button {}
+
+.search_body form button {
+    background: transparent;
+    box-shadow: none !important;
+}
+.search_body form {
+    background: #f5f5f5;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1px solid #6e6e6e;
+    height: 50px;
+}
 </style>
 
     <body class="home_minimal">
@@ -91,7 +136,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <nav class="main_menu clearfix">
                                 <ul class="ul_li_center clearfix">
                                     <li class="">
@@ -255,12 +300,24 @@
                             </nav>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-5">
                             <ul class="action_btns_group ul_li_right clearfix">
                                 <li>
-                                    <button type="button" class="search_btn" data-toggle="collapse" data-target="#search_body_collapse" aria-expanded="false" aria-controls="search_body_collapse">
-                                        <i class="fal fa-search"></i>
-                                    </button>
+                                   <div class="search_body">
+                                        <div class="container-fluid prl_90">
+                                            <form action="{{route('products')}}" method="get">
+
+                                                <div class="form_item mb-0">
+
+                                                    <input type="search" name="search" placeholder="Type here..."  value="{{ $search ?? '' }}">
+
+                                                    <button type="submit"><i class="fal fa-search"></i></button>
+
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
                                 </li>
                                 @guest('customer')
                                 <li>
@@ -884,5 +941,3 @@
     </body>
 
 </html>
-
-
