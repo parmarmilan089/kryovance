@@ -686,6 +686,9 @@
                                 <h3 class="footer_widget_title text-white text-uppercase">Hot Products</h3>
                                 <ul class="ul_li_block">
                                     @foreach ($latestProducts as $item)
+                                    @php
+                                        $price = getDiscountedPrice($item->product_id, $item->product_price);
+                                    @endphp
                                         <li>
                                             <div class="small_product">
                                                 <div class="item_image">
@@ -697,7 +700,7 @@
                                                             {{$item->product_name}}
                                                         </a>
                                                     </h3>
-                                                    <span class="item_price">₹{{$item->product_price}}</span>
+                                                    <span class="item_price">₹{{$price}}</span>
                                                 </div>
                                             </div>
                                         </li>
@@ -712,6 +715,9 @@
                                 <h3 class="footer_widget_title text-white text-uppercase">Sale Products</h3>
                                 <ul class="ul_li_block">
                                     @foreach ($saleProducts as $item)
+                                    @php
+                                        $pricee = getDiscountedPrice($item->product_id, $item->product_price);
+                                    @endphp
                                         <li>
                                             <div class="small_product">
                                                 <div class="item_image">
@@ -723,7 +729,7 @@
                                                             {{$item->product_name}}
                                                         </a>
                                                     </h3>
-                                                    <span class="item_price">₹{{$item->product_price}}</span>
+                                                    <span class="item_price">₹{{$pricee}}</span>
                                                 </div>
                                             </div>
                                         </li>

@@ -13,16 +13,37 @@ class CartController extends Controller
     public function addToCart(Request $request,$id)
     {
         $cart = session()->get('cart', []);
+
         $product = DB::table('products')
             ->leftJoin('category', 'products.category_id', '=', 'category.id')
             ->select('products.id', 'products.name', 'products.price', 'category.name as category_name')
             ->where('products.id', $id)
             ->first();
+
         if (!$product) {
             return response()->json(['status' => 'error', 'message' => 'Product not found'], 404);
         }
+
         $images = getProductImages($id);
 
+        // Default to original price
+        $finalPrice = $product->price;
+
+        // Check if customer is logged in and has a role
+        $role_id = auth('customer')->check() ? auth('customer')->user()->customer_role_id : null;
+
+        if ($role_id !== null) {
+            // Fetch discount for this customer role
+            $discount = DB::table('product_customer_role_discounts')
+                ->where('product_id', $id)
+                ->where('customer_role_id', $role_id)
+                ->first();
+
+            if ($discount) {
+                // Apply discount
+                $finalPrice = $product->price - ($product->price * $discount->discount_percentage) / 100;
+            }
+        }
 
         // If product exists in cart, update quantity
         if (isset($cart[$id])) {
@@ -32,16 +53,16 @@ class CartController extends Controller
             $cart[$id] = [
                 "id" => $id,
                 "name" => $product->name,
-                "price" => $product->price,
+                "price" => round($finalPrice, 2),
+                "original_price" => $product->price, // Optional: for showing strikethrough
                 "category_name" => $product->category_name,
-                'image' => !empty($images[0]) ? asset('storage/'.$images[0]->file_path) : asset('user/assets/images/15980049.png'),
+                'image' => !empty($images[0]) ? asset('storage/' . $images[0]->file_path) : asset('user/assets/images/15980049.png'),
                 "quantity" => $request->quantity
             ];
         }
 
         session()->put('cart', $cart);
 
-        // Count total items in cart
         $totalCartItems = collect($cart)->count();
 
         return response()->json([

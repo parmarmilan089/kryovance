@@ -12,4 +12,8 @@ class Customer extends Authenticatable
     protected $fillable = ['fname', 'lname', 'phone', 'company_name', 'email', 'password'];
 
     protected $hidden = ['password'];
+    public function role()
+    {
+        return $this->belongsTo(CustomerRole::class, 'customer_role_id');
+    }
 }

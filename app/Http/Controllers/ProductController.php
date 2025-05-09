@@ -87,12 +87,20 @@ class ProductController extends Controller {
     }
 
     public function storeProduct(Request $request) {
+
         $request->validate([
             'name' => 'required',
             'country' => 'nullable|string',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'percentage_seller' => 'nullable|numeric',
+            'percentage_distributor' => 'nullable|numeric',
+            'percentage_government' => 'nullable|numeric',
+            'percentage_retailer' => 'nullable|numeric',
+            'percentage_wholesaler' => 'nullable|numeric',
         ]);
+
         try {
+            // Save product
             $product = new Product;
             $product->name = $request->input('name') ? $request->input('name') : null;
             $product->description = $request->input('description') ? $request->input('description') : null;
@@ -107,16 +115,15 @@ class ProductController extends Controller {
             $product->manufacture_date = $request->input('manufacture_date') ? $request->input('manufacture_date') : null;
             $product->expiry_date = $request->input('expiry_date') ? $request->input('expiry_date') : null;
             $product->imported_date = $request->input('imported_date') ? $request->input('imported_date') : null;
-            $file_name = null;
-            $file_path = null;
-
             $product->product_added_date = date('Y-m-d H:i:s');
             $product->country = $request->input('country') ? $request->input('country') : null;
             $product->created_by_id = \Auth::user()->id ? \Auth::user()->id : null;
             $product->save();
+
+            // Save product images
             if ($request->hasFile('image')) {
                 foreach ($request->file('image') as $file) {
-                if ($file->isValid()) {
+                    if ($file->isValid()) {
                         $fileName = 'image_' . time() . '_' . uniqid() . '.' . strtolower($file->getClientOriginalExtension());
                         $filePath = $file->storeAs('product_image', $fileName, 'public');
                         ProductImage::create([
@@ -127,6 +134,29 @@ class ProductController extends Controller {
                     }
                 }
             }
+
+            // Store discount percentages for different roles in pivot table
+           // Discount percentages based on user_type
+        $discounts = [
+            1 => $request->input('percentage_seller'),        // Seller
+            2 => $request->input('percentage_distributor'),  // Distributor
+            3 => $request->input('percentage_government'),   // Government Employee
+            4 => $request->input('percentage_retailer'),     // Retailer
+            5 => $request->input('percentage_wholesaler'),   // Wholesaler
+        ];
+
+        // Insert into product_customer_role_discounts pivot table
+        foreach ($discounts as $userType => $discount) {
+            if ($discount !== null) {
+                DB::table('product_customer_role_discounts')->insert([
+                    'product_id' => $product->id,
+                    'customer_role_id' => $userType,  // Use the user_type directly as the role_id
+                    'discount_percentage' => $discount,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
 
             return redirect()->route('product-list')->with('success', 'Record added successfully.');
         } catch (\Exception $e) {
@@ -200,10 +230,15 @@ class ProductController extends Controller {
         $data['menu_active_tab'] = 'product-list';
         if ($id) {
             $product = Product::find($id);
+            $productDiscounts = DB::table('product_customer_role_discounts')
+                ->where('product_id', $product->id)
+                ->pluck('discount_percentage', 'customer_role_id')
+                ->toArray();
             if ($product) {
                 $data['product'] = $product;
                 $category_list = \App\Models\Category::where('is_deleted', '0')->orderBy('id', 'DESC')->get();
                 $data['category_list'] = $category_list;
+                $data['productDiscounts'] = $productDiscounts;
                 $data['inventories'] = Inventory::where('category_id',$product->category_id)->get();
                 $data['product_images'] = ProductImage::where('product_id',$product->id)->get();
                 return view('admin.product.edit')->with($data);
@@ -216,15 +251,21 @@ class ProductController extends Controller {
     }
 
     public function updateProduct(Request $request) {
-        $id = $request->input('product_id') ? $request->input('product_id') : null;
+         $id = $request->input('product_id') ? $request->input('product_id') : null;
+
         if ($id) {
+            // Validate the request
             $request->validate([
                 'name' => 'required',
                 'country' => 'nullable|string',
                 'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
+
+            // Find the product
             $product = Product::find($id);
+
             if ($product) {
+                // Update product details
                 $product->name = $request->input('name') ? $request->input('name') : null;
                 $product->description = $request->input('description') ? $request->input('description') : null;
                 $product->feature_description = $request->input('feature_description') ? $request->input('feature_description') : null;
@@ -270,11 +311,33 @@ class ProductController extends Controller {
                     }
                 }
 
+                // Update discount percentages in the pivot table
+                $discounts = [
+                    1 => $request->input('percentage_seller'),        // Seller
+                    2 => $request->input('percentage_distributor'),  // Distributor
+                    3 => $request->input('percentage_government'),   // Government Employee
+                    4 => $request->input('percentage_retailer'),     // Retailer
+                    5 => $request->input('percentage_wholesaler'),   // Wholesaler
+                ];
+
+                // Insert or update the discounts in the pivot table
+                foreach ($discounts as $userType => $discount) {
+                    if ($discount !== null) {
+                        DB::table('product_customer_role_discounts')
+                            ->updateOrInsert(
+                                ['product_id' => $product->id, 'customer_role_id' => $userType],
+                                ['discount_percentage' => $discount, 'updated_at' => now()]
+                            );
+                    }
+                }
+
+                // Update the updated_by_id field
                 $product->updated_by_id = \Auth::user()->id ? \Auth::user()->id : null;
                 $product->save();
-            }
 
-            return redirect()->route('product-list')->with('success', 'Record Updated.');
+                // Redirect with success message
+                return redirect()->route('product-list')->with('success', 'Record Updated.');
+            }
         } else {
             return json_encode(['status' => false, 'message' => 'Record not found']);
         }

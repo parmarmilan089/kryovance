@@ -188,7 +188,7 @@
 
             // Function to update total price
             function updatePrice(productId, quantity) {
-                let price = parseFloat($(`#cart-item-${productId} .price_text`).text().replace("$", ""));
+                let price = parseFloat($(`#cart-item-${productId} .price_text`).text().replace("₹", ""));
                 let totalPrice = price * quantity;
                 $(`#cart-item-${productId} .total_price`).text(`$${totalPrice.toFixed(2)}`);
 
@@ -199,7 +199,7 @@
             function updateSubtotal() {
                 let subtotal = 0;
                 $(".total_price").each(function () {
-                    subtotal += parseFloat($(this).text().replace("$", ""));
+                    subtotal += parseFloat($(this).text().replace("₹", ""));
                 });
                 $(".subtotal_price").text(`$${subtotal.toFixed(2)}`);
             }

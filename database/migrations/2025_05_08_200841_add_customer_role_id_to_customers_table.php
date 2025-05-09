@@ -9,10 +9,10 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void  
+    public function up(): void
     {
-        Schema::table('category', function (Blueprint $table) {
-            $table->text('image')->nullable()->after('name');
+        Schema::table('customers', function (Blueprint $table) {
+            $table->unsignedBigInteger('customer_role_id')->nullable();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('category', function (Blueprint $table) {
-            $table->dropColumn('image');
+        Schema::table('customers', function (Blueprint $table) {
+            $table->dropColumn('customer_role_id');
         });
     }
 };

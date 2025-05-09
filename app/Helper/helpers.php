@@ -92,3 +92,34 @@ if (!function_exists('getSaleProductsWithImages')) {
         return $products;
     }
 }
+if (!function_exists('getDiscountedPrice')) {
+    /**
+     * Get the discounted price based on the user's role.
+     *
+     * @param  int $productId
+     * @param  float $productPrice
+     * @return float
+     */
+    function getDiscountedPrice($productId, $productPrice)
+    {
+        // Check if the user is authenticated and has a customer role ID
+        $role_id = auth('customer')->check() ? auth('customer')->user()->customer_role_id : null;
+
+        // If customer has a role, get the discount
+        if ($role_id !== null) {
+            // Fetch the discount percentage for the current user role
+            $discount = DB::table('product_customer_role_discounts')
+                ->where('product_id', $productId)
+                ->where('customer_role_id', $role_id)
+                ->first();
+
+            // Calculate discounted price if discount exists
+            if ($discount) {
+                return $productPrice - (($productPrice * $discount->discount_percentage) / 100);
+            }
+        }
+
+        // Return the original price if no discount exists or no role is assigned
+        return $productPrice;
+    }
+}

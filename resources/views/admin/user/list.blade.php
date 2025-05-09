@@ -17,7 +17,7 @@
                 <thead>
                     <tr>
                         <th width="10%">Sr. No</th>
-                        <th width="20%">Name</th>
+                        <th width="30%">Name</th>
                         <th width="10%">Actions</th>
                     </tr>
                 </thead>
@@ -28,9 +28,9 @@
 @endsection
  @section('customjs')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- 
+
 <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
- 
+
 <script src="{{ asset('public/admin/assets/vendor/libs/datatables/jquery.dataTables.js')}}"></script>
 <script src="{{ asset('public/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
 <script>
@@ -38,19 +38,15 @@ $(document).ready(function () {
     var table = $('#user_table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{route('json-user')}}",
+        ajax: "{{ route('json-user') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: "name", name: 'name'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: "name", name: 'name'}, // Display last name
+            {data: 'action', name: 'action', orderable: false, searchable: false}, // Display actions (edit/delete)
         ],
         searching: true,
-        paging: true,
-        info: true,
-        pageLength: 10,
-        order: [[0, 'desc']]
     });
-    
+
     $(document).on('click', '.btnDelete', function (e) {
         e.preventDefault();
         let id = $(this).attr('data-id');

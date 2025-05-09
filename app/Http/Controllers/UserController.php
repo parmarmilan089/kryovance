@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\CustomerRole;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Mail;
@@ -115,70 +117,48 @@ class UserController extends Controller {
 
     public function jsonUser() {
 
-        $users = User::select('users.id',
-                        'users.role_id',
-                        'users.first_name',
-                        'users.middle_name',
-                        'users.last_name',
-                        'users.email',
-                        'users.mobile_no',
-                        'users.profile_image',
-                        'users.profile_image_path',
-                        'users.status',
-                        'users.created_by_id',
-                        'users.modified_by_id',
-                        'users.is_deleted',
-                        'users.created_at',
-                        'users.updated_at',
-                        'user_roles.name as role_name'
-                )
-                ->where('users.is_deleted', '0')
-                ->whereNotIn('users.role_id', [1])
-                ->leftJoin('user_roles', 'users.role_id', '=', 'user_roles.id')
-                ->orderBy('users.id', 'ASC')
-                ->get();
+        $customers = Customer::select(
+            'customers.id',
+            'customers.customer_role_id',
+            'customers.fname as first_name',
+            'customers.lname as last_name',
+            'customers.email',
+            'customers.phone',
+            'customers.created_at',
+            'customers.updated_at',
+        )
+        ->leftJoin('customer_roles', 'customers.customer_role_id', '=', 'customer_roles.id') // Join with customer_roles table
+        ->orderBy('customers.id', 'ASC')
+        ->get();
 
-        return DataTables::of($users)
-                        ->editColumn('name', function ($user) {
-                            $name_str = $user->first_name . ' ' . $user->last_name;
-                            $name_str = (strlen($name_str) > 40) ? getMbSubstr($name_str, 0, 47) : $name_str;
-                            return $name_str;
-                        })
-                        ->addColumn('status_btn', function ($user) {
-                            $div_start = '<div class="">';
-                            if ($user->status == '1') {
-                                $deactiveBtn = '<div class="form-check form-switch mb-2" title="Change Status"><input class="form-check-input user_status_change" type="checkbox" id="flexSwitchCheckChecked" data-id="' . $user->id . '" data-status="2" checked="" ><label class="form-check-label" for="flexSwitchCheckDefault"></label></div>';
-                            } else {
-                                $deactiveBtn = '<div class="form-check form-switch mb-2" title="Change Status"><input class="form-check-input user_status_change" type="checkbox" id="flexSwitchCheckChecked" data-id="' . $user->id . '" data-status="1"><label class="form-check-label" for="flexSwitchCheckDefault"></label></div>';
-                            }
-                            $div_end = '</div>';
-                            return $div_start . $deactiveBtn . $div_end;
-                        })
-                        ->addColumn('action', function ($user) {
-                            $delete_btn = '';
-                            $edit_btn = '';
-                            $div_start = '<div class="">';
-                            $delete_btn = '<a href="#" data-id="' . $user->id . '" class="btn btn-sm btn-icon item-edit btnDelete" title="Delete"><i class="bx bxs-trash-alt"></i></a>';
-                            $edit_btn = '<a href="' . route('edit-user', $user->id) . '" data-id="' . $user->id . '" class="btn btn-sm btn-icon item-edit btnEdit" title="Edit"><i class="bx bxs-edit"></i></a>';
-                            $div_end = '</div>';
-                            $return_div = $div_start . $edit_btn . $delete_btn . $div_end;
-                            return $return_div;
-                        })
-                        ->rawColumns(['name', 'status_btn', 'action'])->addIndexColumn()
-                        ->make(true);
-    }
+return DataTables::of($customers)
+        ->addColumn('name', function ($customer) {
+            return $customer->first_name . ' ' . $customer->last_name;
+        })
+        ->addColumn('action', function ($customer) {
+            $delete_btn = '';
+            $edit_btn = '';
+            $div_start = '<div class="">';
+            $delete_btn = '<a href="#" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-edit btnDelete" title="Delete"><i class="bx bxs-trash-alt"></i></a>';
+            $edit_btn = '<a href="' . route('edit-user', $customer->id) . '" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-edit btnEdit" title="Edit"><i class="bx bxs-edit"></i></a>';
+            $div_end = '</div>';
+            $return_div = $div_start . $edit_btn . $delete_btn . $div_end;
+            return $return_div;
+        })
+        ->rawColumns(['action'])
+        ->addIndexColumn()
+        ->make(true);
+}
 
     public function addUser(Request $request) {
         $data = [];
         $data['title'] = 'Add User';
         $data['menu_active_tab'] = 'add-user';
-        $list = \App\Models\UserRole::select('user_roles.id',
-                        'user_roles.name',
-                        'user_roles.is_deleted'
-                )
-                ->where('user_roles.is_deleted', '0')
-                ->orderBy('user_roles.id', 'ASC')
-                ->get();
+        $list = CustomerRole::select('customer_roles.id', 'customer_roles.title', 'customer_roles.is_deleted')
+            ->where('customer_roles.is_deleted', '0')
+            ->orderBy('customer_roles.id', 'ASC')
+            ->get();
+        $data['customer_roles'] = $list;
         $data['user_role'] = $list;
 
         return view('admin.user.add')->with($data);
@@ -187,39 +167,25 @@ class UserController extends Controller {
     public function storeUser(Request $request) {
         $request->validate([
             'role_id' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'mobile_no' => 'required|unique:users',
-            'email' => 'required|email|unique:users'
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'phone' => 'required|unique:customers,phone', // Changed table from 'users' to 'customers'
+            'email' => 'required|email|unique:customers,email' // Changed table from 'users' to 'customers'
         ]);
 
         try {
-            //profile_image
-            $file_name = null;
-            $file_path = null;
-            if ($request->file()) {
-                $file_name = 'profile_image' . time() . '.' . $request->profile_image->extension();
-                $file_path = $request->file('profile_image')->storeAs('profile_image', $file_name, 'public');
-            }
+            // Create Customer Record
+            $customer = new Customer; // Use Customer model instead of User
+            $customer->customer_role_id = $request->input('role_id'); // Store the role of the customer
+            $customer->password = bcrypt('12345678'); // Default password
+            $customer->fname = $request->input('firstname'); // Store first name
+            $customer->lname = $request->input('lastname'); // Store last name
+            $customer->email = $request->input('email'); // Store email
+            $customer->phone = $request->input('phone'); // Store phone number
+            $customer->company_name = $request->input('company'); // Store company name
+                $customer->save();
 
-            $user = new User;
-            $user->role_id = $request->input('role_id');
-            $user->password = bcrypt('123456');
-            $user->first_name = $request->input('first_name') ? $request->input('first_name') : null;
-            $user->middle_name = $request->input('middle_name') ? $request->input('middle_name') : null;
-            $user->last_name = $request->input('last_name') ? $request->input('last_name') : null;
-
-            $user->email = $request->input('email') ? $request->input('email') : null;
-            $user->mobile_no = $request->input('mobile_no') ? $request->input('mobile_no') : null;
-
-            $user->address = $request->input('address') ? $request->input('address') : null;
-
-            $user->profile_image = $file_name;
-            $user->profile_image_path = $file_path;
-            $user->created_by_id = \Auth::user()->id ? \Auth::user()->id : null;
-            $user->save();
-
-            return redirect()->route('user-list')->with('success', 'User added successfully.');
+            return redirect()->route('user-list')->with('success', 'Customer added successfully.');
         } catch (\Exception $e) {
             return json_encode(array('status' => false, 'msg' => $e->getMessage()));
         }
@@ -230,17 +196,24 @@ class UserController extends Controller {
         $data['title'] = 'Edit User';
         $data['menu_active_tab'] = 'user-list';
         if ($id) {
-            // $user = User::find($id);
-               $user = \App\Models\User::select('users.id', 'users.first_name', 'users.last_name', 'users.email', 'users.mobile_no','users.password', 'users.address', 'user_roles.name as user_roles_name')->where('users.is_deleted', '0')
-                    ->leftJoin('user_roles', 'users.role_id', '=', 'user_roles.id')->where('users.id', $id)
-                    ->where('users.id', '!=', '1')
-                    ->first();
+            $user = Customer::select(
+                'customers.id',
+                'customers.fname as first_name',
+                'customers.lname as last_name',
+                'customers.company_name as company_name',
+                'customers.email',
+                'customers.phone as mobile_no',
+                'customers.password',
+                'customer_roles.title as customer_role_name',
+                'customer_roles.id as role_id'
+            )
+            ->leftJoin('customer_roles', 'customers.customer_role_id', '=', 'customer_roles.id')
+            ->where('customers.id', $id)
+            ->first();
 
-
-            $data['role'] = \App\Models\UserRole::where('is_deleted', '0')
-                            ->where('status', '1')
-                            ->where('id', '!=', '1')
-                            ->orderBy('id', 'ASC')->get();
+        $data['roles'] = CustomerRole::where('is_deleted', '0')
+            ->orderBy('id', 'ASC')
+            ->get();
 
             if ($user) {
                 $data['user'] = $user;
@@ -253,46 +226,37 @@ class UserController extends Controller {
         }
     }
 
-    public function updateUser(Request $request, $id) {
+    public function updateUser(Request $request) {
+        $id = $request->customer_id;
         if ($id) {
             $request->validate([
-                'first_name' => 'required',
-                'last_name' => 'required',
-                // 'email' => 'required',
-                // 'mobile_no' => 'required',
-                'email' => 'required|email|unique:users,email,' . $id,
-                'mobile_no' => 'required|numeric|unique:users,mobile_no,' . $id
+                'role_id' => 'required',
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'phone' => 'required|numeric|unique:customers,phone,' . $id,
+                'email' => 'required|email|unique:customers,email,' . $id
             ]);
-            $user = User::find($id);
-            if ($user) {
-                //profile_image
-                $file_name = null;
-                $file_path = null;
-                if ($request->file()) {
-                    $file_name = 'profile_image' . time() . '.' . $request->profile_image->extension();
-                    $file_path = $request->file('profile_image')->storeAs('profile_image', $file_name, 'public');
-                }
-                $user->role_id = $request->input('role_id');
-                $user->first_name = $request->input('first_name') ? $request->input('first_name') : null;
-                $user->middle_name = $request->input('middle_name') ? $request->input('middle_name') : null;
-                $user->last_name = $request->input('last_name') ? $request->input('last_name') : null;
-                $user->email = $request->input('email') ? $request->input('email') : null;
-                $user->mobile_no = $request->input('mobile_no') ? $request->input('mobile_no') : null;
-                $user->address = $request->input('address') ? $request->input('address') : null;
 
-                if ($file_name != null) {
-                    $user->profile_image = $file_name;
+            try {
+                $customer = Customer::find($id);
+                if ($customer) {
+                    $customer->customer_role_id = $request->input('role_id');
+                    $customer->fname = $request->input('firstname');
+                    $customer->lname = $request->input('lastname');
+                    $customer->email = $request->input('email');
+                    $customer->phone = $request->input('phone');
+                    $customer->company_name = $request->input('company');
+                    $customer->save();
+
+                    return redirect()->route('user-list')->with('success', 'Customer updated successfully.');
+                } else {
+                    return redirect()->route('user-list')->with('failed', 'Customer not found.');
                 }
-                if ($file_path != null) {
-                    $user->profile_image_path = $file_path;
-                }
-                $user->modified_by_id = \Auth::user()->id ? \Auth::user()->id : null;
-                $user->save();
+            } catch (\Exception $e) {
+                return json_encode(['status' => false, 'msg' => $e->getMessage()]);
             }
-
-            return redirect()->route('user-list')->with('success', 'Record Updated.');
         } else {
-            return redirect()->route('user-list')->with('failed', 'Record not found.');
+            return redirect()->route('user-list')->with('failed', 'Invalid ID.');
         }
     }
 
