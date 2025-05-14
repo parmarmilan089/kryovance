@@ -535,6 +535,7 @@ hr {
 
 .arrow_ycenter {
   position: relative;
+  background:#efefef;
 }
 .arrow_ycenter .slick-arrow {
   top: 50%;
@@ -11694,11 +11695,13 @@ button {
 }
 .minimal_slider .item {
   min-height: 50vh;
+  background-size: contain;
 }
 .minimal_slider .slider_content {
   padding-top: 150px;
   padding-bottom: 30px;
   max-width: 680px;
+  padding-left: 120px;
 }
 .minimal_slider h4 {
   line-height: 1;
@@ -15550,13 +15553,29 @@ button {
   margin-bottom: 3px;
 }
 .minimal_product_item .item_content {
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
   z-index: 1;
-  padding: 30px 40px;
-  position: absolute;
+  padding-top:30px;
+  margin-bottom: 50px;
+  /*left: 0px;*/
+  /*right: 0px;*/
+  /*bottom: 0px;*/
+  /*padding: 30px 40px;*/
+  /*position: absolute;*/
 }
+
+
+.product-img {
+    border: 1px solid #f1f1f1;
+    text-align: center;
+}
+
+.product-img img{
+   width: 100%;
+    height: 100%;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+}
+
 .minimal_product_item .item_title {
   margin-bottom: 6px;
 }
@@ -17107,6 +17126,8 @@ blockquote .blockquote_title {
 .shop_details_image img {
   width: 100%;
   display: block;
+  object-fit: contain;
+  aspect-ratio: 1 / 1;
 }
 .shop_details_image .nav {
   margin: -10px;

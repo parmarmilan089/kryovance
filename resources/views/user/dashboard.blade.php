@@ -34,18 +34,14 @@ ul#category-tab li a img {
     border: 1px solid #484646;
     height: 50px;
 }
-<<<<<<< HEAD
 
-=======
-   
->>>>>>> 7433a7b (adding files)
 </style>
     <!-- slider_section - start
     ================================================== -->
     <section class="slider_section minimal_slider position-relative arrow_ycenter clearfix">
         <div class="main_slider clearfix" data-slick='{"dots": false}'>
             <div class="item d-flex align-items-center clearfix"
-                data-background="user/assets/images/slider/modern_minimal/bg_01.jpg">
+                data-background="user/assets/images/slider/modern_minimal/homepage_1.png">
                 <div class="container">
                     <div class="slider_content">
                         <h4 class="text-uppercase" data-animation="fadeInUp" data-delay=".4s">Best Home Printers 2025</h4>
@@ -61,7 +57,7 @@ ul#category-tab li a img {
             </div>
 
             <div class="item d-flex align-items-center clearfix"
-                data-background="{{ asset('user/assets/images/slider/modern_minimal/bg_02.jpg') }}">
+                data-background="{{ asset('user/assets/images/slider/modern_minimal/homepage_2.png') }}">
                 <div class="container">
                     <div class="slider_content">
                         <h4 class="text-uppercase" data-animation="fadeInUp" data-delay=".4s">Printers 2025</h4>
@@ -133,14 +129,14 @@ ul#category-tab li a img {
                             $price = getDiscountedPrice($product->id, $product->price);
                             @endphp
                             <div class="tab-content">
-                                <div class="tab-pane active">
+                                <div class="tab-pane product-img active">
                                     <img src="{{ isset($images[0]) ? asset('storage/' . $images[0]->file_path) : asset('user/assets/images/product-placeholder.png') }}"
                                         alt="image_not_found">
                                 </div>
                             </div>
                             <div class="item_content">
                                 <h3 class="item_title">
-                                    <a href="{{ route('product_details', $product->id) }}">{{ $product->name }}</a>
+                                    <a href="{{ route('product_details', $product->id) }}">{{ \Illuminate\Support\Str::limit($product->name, 40, '..') }}</a>
                                 </h3>
                                 <span class="item_category">{{ $product->category_name }}</span>
                                 <span class="item_price">₹ {{ number_format($price, 2) }}</span>

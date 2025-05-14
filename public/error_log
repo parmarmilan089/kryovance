@@ -1,0 +1,2 @@
+[09-May-2025 20:58:33 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.32. in /home/nalandag/kryovance.nalandagroup.org/vendor/composer/platform_check.php on line 28
+[09-May-2025 20:58:35 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.32. in /home/nalandag/kryovance.nalandagroup.org/vendor/composer/platform_check.php on line 28

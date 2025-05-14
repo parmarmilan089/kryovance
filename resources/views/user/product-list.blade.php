@@ -5,7 +5,7 @@
                 @php
                     $images = getProductImages($product->id);
                 @endphp
-                <div id="ptab1_1" class="tab-pane active">
+                <div id="ptab1_1" class="tab-pane product-img active">
                     <img src="{{ isset($images[0]) ? asset('storage/'.$images[0]->file_path) : asset('user/assets/images/15980049.png') }}" alt="image_not_found">
                 </div>
             </div>

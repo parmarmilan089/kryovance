@@ -40,9 +40,9 @@
 
     </head>
 <style>
-    .minimal_product_item .tab-content {
-    height: 600px;
-}
+/*    .minimal_product_item .tab-content {*/
+/*    height: 600px;*/
+/*}*/
 .form_item.mb-0 {display: flex;}
 
 .search_body {}

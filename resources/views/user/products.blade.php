@@ -3,17 +3,9 @@
 
 <!-- Specify content -->
 @section('content')
-<!-- main body - start
-    ================================================== -->
-<<<<<<< HEAD
-
+<!-- main body - start ================================================== -->
 <style>
 
-=======
-    
-<style>
-    
->>>>>>> 7433a7b (adding files)
     .breadcrumb_section {
     background-position: top;
 }
