@@ -11,7 +11,7 @@
             </div>
             <div class="item_content">
                 <h3 class="item_title">
-                    <a href="{{route('product_details',$product->id)}}">{{$product->name}}</a>
+                    <a href="{{route('product_details',$product->id)}}">{{ \Illuminate\Support\Str::limit($product->name, 40, '..') }}</a>
                 </h3>
                 <span class="item_category">{{$product->category_name}}</span>
                 <span class="item_price">₹ {{$product->price}}</span>

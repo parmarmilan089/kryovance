@@ -754,7 +754,7 @@
                                                 <div class="item_content">
                                                     <h3 class="item_title">
                                                         <a class="text-white" href="{{route('product_details',$item->product_id)}}">
-                                                            {{$item->product_name}}
+                                                            {{ \Illuminate\Support\Str::limit($item->product_name, 20, '..') }}
                                                         </a>
                                                     </h3>
                                                     <span class="item_price">₹{{$price}}</span>
@@ -783,8 +783,9 @@
                                                 <div class="item_content">
                                                     <h3 class="item_title">
                                                         <a class="text-white" href="{{route('product_details',$item->product_id)}}">
-                                                            {{$item->product_name}}
+                                                            {{ \Illuminate\Support\Str::limit($item->product_name, 20, '..') }}
                                                         </a>
+                                                        
                                                     </h3>
                                                     <span class="item_price">₹{{$pricee}}</span>
                                                 </div>
