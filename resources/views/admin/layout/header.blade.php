@@ -180,11 +180,11 @@
                     </a>
                 </li><!-- End Forms Nav -->
 
-                 <li class="nav-item">
+                 {{--  <li class="nav-item">
                     <a class="nav-link <?php echo $menu_active_tab == "role-list" || $menu_active_tab == "add-role" ? '' : 'collapsed'; ?>" href="{{ URL::route('role-list') }}">
                         <i class="bi bi-journal-text"></i><span>Role</span>
                     </a>
-                </li>
+                </li>  --}}
                 <li class="nav-item">
                     <a class="nav-link <?php echo $menu_active_tab == "user-list" || $menu_active_tab == "add-user" ? '' : 'collapsed'; ?>" href="{{ URL::route('user-list') }}">
                         <i class="bi bi-journal-text"></i><span>User</span>

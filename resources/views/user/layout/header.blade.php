@@ -346,7 +346,7 @@
                                                 <div class="profile_info clearfix">
                                                     <div class="user_content">
                                                         <h4 class="user_name">{{ auth('customer')->user()->fname }} {{ auth('customer')->user()->lname }}</h4>
-                                                        <span class="user_title">Customer</span>
+                                                         <span class="user_title">{{ auth('customer')->user()->role->title ?? 'Customer' }}</span>
                                                     </div>
                                                 </div>
                                                 <ul class="settings_options ul_li_block clearfix">
@@ -785,7 +785,7 @@
                                                         <a class="text-white" href="{{route('product_details',$item->product_id)}}">
                                                             {{ \Illuminate\Support\Str::limit($item->product_name, 20, '..') }}
                                                         </a>
-                                                        
+
                                                     </h3>
                                                     <span class="item_price">₹{{$pricee}}</span>
                                                 </div>

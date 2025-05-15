@@ -27,25 +27,24 @@
     </style>
     <main>
         <!-- breadcrumb_section - start
-                                ================================================== -->
+                                    ================================================== -->
         <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix"
             data-background="user/assets/images/breadcrumb/bg_01.jpg">
             <div class="overlay" data-bg-color="#1d1d1d"></div>
             <div class="container">
-                <h1 class="page_title text-white">Cart Page</h1>
+                <h1 class="page_title text-white">Profile Page</h1>
                 <ul class="breadcrumb_nav ul_li_center clearfix">
-                    <li><a href="#!">Home</a></li>
-                    <li>Shop</li>
-                    <li>Shopping Cart</li>
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li>Profile</li>
                 </ul>
             </div>
         </section>
         <!-- breadcrumb_section - end
-                                ================================================== -->
+                                    ================================================== -->
 
 
         <!-- Order - start
-                                ================================================== -->
+                                    ================================================== -->
         <section class="cart_section sec_ptb_140 clearfix">
             <div class="container-fluid">
                 <div class="d-flex">
@@ -62,6 +61,9 @@
                             <li class="mt-2">
                                 <a class="nav-link" onclick="showSection('orders')">Orders</a>
                             </li>
+                            <li class="mt-2">
+                                <a class="nav-link" onclick="showSection('password')">Change Password</a>
+                            </li>
                         </ul>
                     </div>
 
@@ -77,7 +79,8 @@
                                     @if ($customer['customer_verification_status'] == 1)
                                         <span class="badge bg-success text-white" style="font-size: 14px;">Verified</span>
                                     @else
-                                        <span class="badge bg-warning text-dark" style="font-size: 14px;">Not Verified</span>
+                                        <span class="badge bg-warning text-dark" style="font-size: 14px;">Not
+                                            Verified</span>
                                     @endif
                                 </div>
                             </div>
@@ -410,17 +413,53 @@
                             </table>
                             <!-- You can add full orders table here -->
                         </div>
+
+                        <!-- Profile Section -->
+                        <div id="password" class="content-section" style="display: block;">
+                            <div class="d-flex">
+                                <div>
+                                    <h2>Change Password</h2>
+                                </div>
+                            </div>
+                            <form action="{{ route('customer.forgot.password.submit') }}" method="POST">
+                                @csrf
+                                <div class="reg_form">
+                                    <div class="form_item">
+                                        <label class="form_title text-uppercase text-center">Email</label>
+                                        <input id="username_input" type="email" name="email" placeholder="email">
+                                    </div>  
+                                    <button type="submit" class="custom_btn bg_default_red text-uppercase mb_50">Send
+                                        Password Reset Link</button>
+                                    @if (session('success'))
+                                        <div class="alert alert-success">
+                                            <p class="text-center">{{ session('success') }}</p>
+                                        </div>
+                                    @endif
+                                    @if ($errors->any())
+                                        <div style="color: red;">
+                                            @foreach ($errors->all() as $error)
+                                                <p class="text-center">{{ $error }}</p>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                    {{--  <div class="create_account text-center">
+                                <h4 class="small_title_text text-center text-uppercase">Have not account yet?</h4>
+                                <a class="create_account_btn text-uppercase" href="{{route('user-register')}}">Sign Up</a>
+                            </div>  --}}
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- order_section - end
-                                ================================================== -->
+                                    ================================================== -->
 
 
     </main>
     <!-- main body - end
-                            ================================================== -->
+                                ================================================== -->
 @endsection
 @section('scripts')
     <script>
