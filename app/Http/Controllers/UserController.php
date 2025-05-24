@@ -269,11 +269,7 @@ return DataTables::of($users)
         try {
             if ($id) {
                 $user = User::find($id);
-                if ($user) {
-                    $user->is_deleted = '1';
-                    $user->modified_by_id = \Auth::user()->id ? \Auth::user()->id : null;
-                    $user->save();
-                }
+                $user->delete();
                 echo json_encode(array("status" => true, 'message' => 'Record deleted.'));
             } else {
                 echo json_encode(array("status" => false, 'message' => 'Record not found.'));
