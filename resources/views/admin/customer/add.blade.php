@@ -9,9 +9,8 @@
         <div class="card-body">
             <h5 class="card-title"></h5>
 
-            <form id="form_add_user" method="POST" action="{{ route('store-user') }}" enctype="multipart/form-data">
+            <form id="form_add_user" method="POST" action="{{ route('store-customer') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
-
                 <!-- First Name -->
                 <div class="row mb-3">
                     <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
@@ -71,7 +70,7 @@
                 <input type="hidden" name="password" value="defaultpassword123" />
 
                 <!-- Role Selection -->
-                <div class="row mb-3">
+                {{--  <div class="row mb-3">
                     <label for="role_id" class="col-sm-2 col-form-label">Role</label>
                     <div class="col-sm-10">
                         <select class="form-select" id="role_id" name="role_id">
@@ -86,10 +85,10 @@
                             <div class="error">{{ $errors->first('role_id') }}</div>
                         @endif
                     </div>
-                </div>
+                </div>  --}}
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Create User</button>
+                    <button type="submit" class="btn btn-primary">Create Customer</button>
                 </div>
             </form><!-- End Horizontal Form -->
 

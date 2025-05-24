@@ -117,21 +117,20 @@ class UserController extends Controller {
 
     public function jsonUser() {
 
-        $customers = Customer::select(
-            'customers.id',
-            'customers.customer_role_id',
-            'customers.fname as first_name',
-            'customers.lname as last_name',
-            'customers.email',
-            'customers.phone',
-            'customers.created_at',
-            'customers.updated_at',
+        $users = User::select(
+            'users.id',
+            'users.role_id',
+            'users.first_name',
+            'users.last_name',
+            'users.email',
+            'users.mobile_no as phone',
+            'users.created_at',
+            'users.updated_at',
         )
-        ->leftJoin('customer_roles', 'customers.customer_role_id', '=', 'customer_roles.id') // Join with customer_roles table
-        ->orderBy('customers.id', 'ASC')
+        ->orderBy('users.id', 'ASC')
         ->get();
 
-return DataTables::of($customers)
+return DataTables::of($users)
         ->addColumn('name', function ($customer) {
             return $customer->first_name . ' ' . $customer->last_name;
         })
@@ -141,7 +140,7 @@ return DataTables::of($customers)
             $div_start = '<div class="">';
             $delete_btn = '<a href="#" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-edit btnDelete" title="Delete"><i class="bx bxs-trash-alt"></i></a>';
             $edit_btn = '<a href="' . route('edit-user', $customer->id) . '" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-edit btnEdit" title="Edit"><i class="bx bxs-edit"></i></a>';
-            $view_btn = '<a href="' . route('view-user', $customer->id) . '" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-view btnView" title="View"><i class="bx bxs-show"></i></a>';
+            // $view_btn = '<a href="' . route('view-user', $customer->id) . '" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-view btnView" title="View"><i class="bx bxs-show"></i></a>';
             $div_end = '</div>';
             $return_div = $div_start . $edit_btn. $view_btn . $delete_btn . $div_end;
             return $return_div;
@@ -150,6 +149,7 @@ return DataTables::of($customers)
         ->addIndexColumn()
         ->make(true);
 }
+
 
     public function addUser(Request $request) {
         $data = [];
@@ -170,21 +170,21 @@ return DataTables::of($customers)
             'role_id' => 'required',
             'firstname' => 'required',
             'lastname' => 'required',
-            'phone' => 'required|unique:customers,phone', // Changed table from 'users' to 'customers'
-            'email' => 'required|email|unique:customers,email' // Changed table from 'users' to 'customers'
+            'phone' => 'required|unique:users,mobile_no', // Changed table from 'users' to 'customers'
+            'email' => 'required|email|unique:users,email' // Changed table from 'users' to 'customers'
         ]);
 
         try {
             // Create Customer Record
-            $customer = new Customer; // Use Customer model instead of User
-            $customer->customer_role_id = $request->input('role_id'); // Store the role of the customer
+            $customer = new User; // Use Customer model instead of User
+            $customer->user_type = $request->input('role_id'); // Store the role of the customer
             $customer->password = bcrypt('12345678'); // Default password
-            $customer->fname = $request->input('firstname'); // Store first name
-            $customer->lname = $request->input('lastname'); // Store last name
+            $customer->first_name = $request->input('firstname'); // Store first name
+            $customer->last_name = $request->input('lastname'); // Store last name
             $customer->email = $request->input('email'); // Store email
-            $customer->phone = $request->input('phone'); // Store phone number
+            $customer->mobile_no = $request->input('phone'); // Store phone number
             $customer->company_name = $request->input('company'); // Store company name
-                $customer->save();
+            $customer->save();
 
             return redirect()->route('user-list')->with('success', 'Customer added successfully.');
         } catch (\Exception $e) {
@@ -192,27 +192,29 @@ return DataTables::of($customers)
         }
     }
 
+
     public function editUser(Request $request, $id) {
         $data = [];
         $data['title'] = 'Edit User';
         $data['menu_active_tab'] = 'user-list';
         if ($id) {
-            $user = Customer::select(
-                'customers.id',
-                'customers.fname as first_name',
-                'customers.lname as last_name',
-                'customers.company_name as company_name',
-                'customers.email',
-                'customers.phone as mobile_no',
-                'customers.password',
-                'customer_roles.title as customer_role_name',
-                'customer_roles.id as role_id'
+            $user = User::select(
+                'users.id',
+                'users.first_name',
+                'users.last_name',
+                'users.user_type',
+                'users.company_name as company_name',
+                'users.email',
+                'users.mobile_no',
+                'users.password',
+                // 'customer_roles.title as customer_role_name',
+                'users.role_id'
             )
-            ->leftJoin('customer_roles', 'customers.customer_role_id', '=', 'customer_roles.id')
-            ->where('customers.id', $id)
+            // ->leftJoin('customer_roles', 'users.customer_role_id', '=', 'customer_roles.id')
+            ->where('users.id', $id)
             ->first();
 
-        $data['roles'] = CustomerRole::where('is_deleted', '0')
+        $data['roles'] = Role::where('is_deleted', '0')
             ->orderBy('id', 'ASC')
             ->get();
 
@@ -227,6 +229,7 @@ return DataTables::of($customers)
         }
     }
 
+
     public function updateUser(Request $request) {
         $id = $request->customer_id;
         if ($id) {
@@ -234,23 +237,23 @@ return DataTables::of($customers)
                 'role_id' => 'required',
                 'firstname' => 'required',
                 'lastname' => 'required',
-                'phone' => 'required|numeric|unique:customers,phone,' . $id,
-                'email' => 'required|email|unique:customers,email,' . $id
+                'mobile_no' => 'required|numeric|unique:users,mobile_no,' . $id,
+                'email' => 'required|email|unique:users,email,' . $id
             ]);
             try {
-                $customer = Customer::find($id);
-                if ($customer) {
-                    $customer->customer_role_id = $request->input('role_id');
-                    $customer->fname = $request->input('firstname');
-                    $customer->lname = $request->input('lastname');
-                    $customer->email = $request->input('email');
-                    $customer->phone = $request->input('phone');
-                    $customer->company_name = $request->input('company_name');
-                    $customer->save();
+                $user = User::find($id);
+                if ($user) {
+                    $user->user_type = $request->input('role_id');
+                    $user->first_name = $request->input('firstname');
+                    $user->last_name = $request->input('lastname');
+                    $user->email = $request->input('email');
+                    $user->mobile_no = $request->input('mobile_no');
+                    $user->company_name = $request->input('company_name');
+                    $user->save();
 
-                    return redirect()->route('user-list')->with('success', 'Customer updated successfully.');
+                    return redirect()->route('user-list')->with('success', 'User updated successfully.');
                 } else {
-                    return redirect()->route('user-list')->with('failed', 'Customer not found.');
+                    return redirect()->route('user-list')->with('failed', 'User not found.');
                 }
             } catch (\Exception $e) {
                 return json_encode(['status' => false, 'msg' => $e->getMessage()]);
@@ -259,6 +262,7 @@ return DataTables::of($customers)
             return redirect()->route('user-list')->with('failed', 'Invalid ID.');
         }
     }
+
 
     public function deleteUser(Request $request) {
         $id = $request->input('delete_id');
@@ -652,5 +656,68 @@ return DataTables::of($customers)
         $customer->customer_verification_status = 1;
         $customer->save();
         return back()->with("success", "User Verified Successfully!");
+    }
+
+
+    public function userallList() {
+        $data = [];
+        $data['title'] = 'Customer List';
+        $data['menu_active_tab'] = 'userall-list';
+        $data['user'] = Customer::orderBy('id', 'DESC')->get();
+
+        return view('admin.user.userlist')->with($data);
+    }
+
+    public function jsonUserall() {
+        $roleNames = [
+        1 => 'Seller',
+        2 => 'Distributor',
+        3 => 'Gov.Employee',
+        4 => 'Wholesaler',
+        5 => 'Retailer',
+        6 => 'Admin' // If needed
+    ];
+        $customers = Customer::select(
+                'customers.id',
+                'customers.fname as first_name',
+                'customers.lname as last_name',
+                'customers.email',
+                'customers.phone',
+                'customers.parent_id',
+                'customers.created_at',
+                'customers.updated_at',
+                'parent.email as parent_email',
+                'parent.last_name as parent_last_name',
+                'parent.first_name as parent_first_name',
+                'parent.user_type',
+            )
+            ->leftJoin('users as parent', 'customers.parent_id', '=', 'parent.id')
+            ->orderBy('customers.id', 'ASC')
+            ->get();
+
+        return DataTables::of($customers)
+        ->addColumn('name', function ($customer) {
+                return $customer->first_name . ' ' . $customer->last_name;
+            })
+        ->addColumn('role_name', function ($customer) use ($roleNames) {
+            return $roleNames[$customer->user_type] ?? 'Unknown';
+        })
+        ->addColumn('username', function ($customer) {
+            return $customer->parent_first_name . ' ' . $customer->parent_last_name;
+        })
+            ->addColumn('action', function ($customer) {
+                $delete_btn = '';
+                $edit_btn = $view_btn = '';
+                $div_start = '<div class="">';
+                $delete_btn = '<a href="'.route('delete-customerr', $customer->id).'" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-edit btnDelete" title="Delete"><i class="bx bxs-trash-alt"></i></a>';
+                $edit_btn = '<a href="' . route('edit-customer', $customer->id) . '" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-edit btnEdit" title="Edit"><i class="bx bxs-edit"></i></a>';
+                $view_btn = '<a href="' . route('view-customer', $customer->id) . '" data-id="' . $customer->id . '" class="btn btn-sm btn-icon item-view btnView" title="View"><i class="bx bxs-show"></i></a>';
+                $div_end = '</div>';
+                $return_div = $div_start . $edit_btn. $view_btn . $delete_btn . $div_end;
+                return $return_div;
+            })
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
     }
 }

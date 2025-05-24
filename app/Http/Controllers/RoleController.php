@@ -27,15 +27,15 @@ class RoleController extends Controller {
     }
 
     public function jsonRole(Request $request) {
-        $list = CustomerRole::select('customer_roles.id',
-                        'customer_roles.title as name',
-                        'customer_roles.user_type',
-                        'customer_roles.is_deleted',
-                        'customer_roles.created_at',
-                        'customer_roles.updated_at'
+        $list = Role::select('roles.id',
+                        'roles.title as name',
+                        // 'roles.user_type',
+                        'roles.is_deleted',
+                        'roles.created_at',
+                        'roles.updated_at'
                 )
-                ->where('customer_roles.is_deleted', '0')
-                ->orderBy('customer_roles.id', 'desc')
+                ->where('roles.is_deleted', '0')
+                ->orderBy('roles.id', 'desc')
                 ->get();
 
     // Return the data in DataTables format

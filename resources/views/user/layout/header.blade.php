@@ -337,6 +337,20 @@
                                     <!-- <li><a class="auth-label" href="{{ route('user-login') }}">Login</a></li> -->
                                     <!-- <li><a class="auth-label" href="{{ route('user-register') }}">Register</a></li> -->
                                 @else
+                                @php
+                                    $parentUser = null;
+                                    if (auth('customer')->user()->parent_id) {
+                                        $parentUser = \App\Models\User::find(auth('customer')->user()->parent_id);
+                                    }
+                                    $userRoles = [
+                                        1 => 'Seller',
+                                        2 => 'Distributor',
+                                        3 => 'Gov.Employee',
+                                        4 => 'Wholesaler',
+                                        5 => 'Retailer',
+                                        6 => 'Admin'
+                                    ];
+                                @endphp
                                     <li>
                                         <button type="button" class="user_btn" data-toggle="collapse" data-target="#use_deropdown" aria-expanded="false" aria-controls="use_deropdown">
                                             <i class="fal fa-user"></i>
@@ -346,7 +360,7 @@
                                                 <div class="profile_info clearfix">
                                                     <div class="user_content">
                                                         <h4 class="user_name">{{ auth('customer')->user()->fname }} {{ auth('customer')->user()->lname }}</h4>
-                                                         <span class="user_title">{{ auth('customer')->user()->role->title ?? 'Customer' }}</span>
+                                                         <span class="user_title"> {{ $parentUser->first_name }} {{ $parentUser->last_name }} ({{ $userRoles[$parentUser->user_type] ?? 'Unknown' }})</span>
                                                     </div>
                                                 </div>
                                                 <ul class="settings_options ul_li_block clearfix">

@@ -144,7 +144,7 @@
                     </a>
                 </li><!-- End Dashboard Nav -->
 
-
+                @if(auth()->user()->user_type == 6)
                 <li class="nav-item">
                     <a class="nav-link <?php echo $menu_active_tab == "product-list" || $menu_active_tab == "add-product" ? '' : 'collapsed'; ?>" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                         <i class="bi bi-journal-text"></i><span>Product</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -180,7 +180,7 @@
                     </a>
                 </li><!-- End Forms Nav -->
 
-                 {{--  <li class="nav-item">
+                {{--  <li class="nav-item">
                     <a class="nav-link <?php echo $menu_active_tab == "role-list" || $menu_active_tab == "add-role" ? '' : 'collapsed'; ?>" href="{{ URL::route('role-list') }}">
                         <i class="bi bi-journal-text"></i><span>Role</span>
                     </a>
@@ -188,6 +188,11 @@
                 <li class="nav-item">
                     <a class="nav-link <?php echo $menu_active_tab == "user-list" || $menu_active_tab == "add-user" ? '' : 'collapsed'; ?>" href="{{ URL::route('user-list') }}">
                         <i class="bi bi-journal-text"></i><span>User</span>
+                    </a>
+                </li>
+                 <li class="nav-item">
+                     <a class="nav-link <?php echo $menu_active_tab == "userall-list" ? '' : 'collapsed'; ?>" href="{{ URL::route('userall-list') }}">
+                     <i class="bi bi-journal-text"></i><span>Customers</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -201,6 +206,20 @@
                         <i class="bx bxs-data"></i><span>Report</span>
                     </a>
                 </li>
+
+                @else
+                <li class="nav-item">
+                    <a class="nav-link <?php echo $menu_active_tab == "customer-list" || $menu_active_tab == "add-customer" ? '' : 'collapsed'; ?>" href="{{ URL::route('customer-list') }}">
+                        <i class="bi bi-journal-text"></i><span>Customer</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  <?php echo $menu_active_tab == "orders" ? '' : 'collapsed'; ?>" href="{{ URL::route('orders') }}">
+                        <i class="bx bxs-data"></i><span>Orders</span>
+
+                    </a>
+                </li>
+                @endif
             </ul>
 
         </aside><!-- End Sidebar-->

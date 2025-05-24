@@ -9,14 +9,14 @@
         <div class="card-body">
             <h5 class="card-title"></h5>
 
-            <form id="form_add_user" method="POST" action="{{ route('update-user') }}" enctype="multipart/form-data">
+            <form id="form_add_customer" method="POST" action="{{ route('update-customer') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <input type="hidden" name="customer_id" id="customer_id" value="{{ $user->id }}" />
+                <input type="hidden" name="customer_id" id="customer_id" value="{{ $customer->id }}" />
 
                 <div class="row mb-3">
                     <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="firstname" name="firstname" value="{{ old('firstname', $user->first_name) }}" />
+                        <input type="text" class="form-control" id="firstname" name="firstname" value="{{ old('firstname', $customer->first_name) }}" />
                         @if($errors->has('firstname'))
                             <div class="error">{{ $errors->first('firstname') }}</div>
                         @endif
@@ -26,7 +26,7 @@
                 <div class="row mb-3">
                     <label for="lname" class="col-sm-2 col-form-label">Last Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="lastname" name="lastname" value="{{ old('lastname', $user->last_name) }}" />
+                        <input type="text" class="form-control" id="lastname" name="lastname" value="{{ old('lastname', $customer->last_name) }}" />
                         @if($errors->has('lastname'))
                             <div class="error">{{ $errors->first('lastname') }}</div>
                         @endif
@@ -36,7 +36,7 @@
                 <div class="row mb-3">
                     <label for="company_name" class="col-sm-2 col-form-label">Company Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="company_name" name="company_name" value="{{ old('company_name', $user->company_name) }}" />
+                        <input type="text" class="form-control" id="company_name" name="company_name" value="{{ old('company_name', $customer->company_name) }}" />
                         @if($errors->has('company_name'))
                             <div class="error">{{ $errors->first('company_name') }}</div>
                         @endif
@@ -45,7 +45,7 @@
                 <div class="row mb-3">
                     <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email) }}" />
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $customer->email) }}" />
                         @if($errors->has('email'))
                             <div class="error">{{ $errors->first('email') }}</div>
                         @endif
@@ -55,29 +55,9 @@
                 <div class="row mb-3">
                     <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="phone" name="mobile_no" value="{{ old('phone', $user->mobile_no) }}" />
-                        @if($errors->has('mobile_no'))
-                            <div class="error">{{ $errors->first('mobile_no') }}</div>
-                        @endif
-                    </div>
-                </div>
-
-
-
-
-                <div class="row mb-3">
-                    <label for="role_id" class="col-sm-2 col-form-label">Role</label>
-                    <div class="col-sm-10">
-                        <select class="form-select" id="role_id" name="role_id">
-                            <option value="">Select role</option>
-                            <option value="1" {{ old('role_id', $user->user_type) == 1 ? 'selected' : '' }}>Seller</option>
-                            <option value="2" {{ old('role_id', $user->user_type) == 2 ? 'selected' : '' }}>Distributor</option>
-                            <option value="3" {{ old('role_id', $user->user_type) == 3 ? 'selected' : '' }}>Gov.Employee</option>
-                            <option value="4" {{ old('role_id', $user->user_type) == 4 ? 'selected' : '' }}>Wholesaler</option>
-                            <option value="5" {{ old('role_id', $user->user_type) == 5 ? 'selected' : '' }}>Retailer</option>
-                        </select>
-                        @if($errors->has('role_id'))
-                            <div class="error">{{ $errors->first('role_id') }}</div>
+                        <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', $customer->phone) }}" />
+                        @if($errors->has('phone'))
+                            <div class="error">{{ $errors->first('phone') }}</div>
                         @endif
                     </div>
                 </div>

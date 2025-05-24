@@ -14,6 +14,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\OrderManagmentController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ReportController;
 use App\Exports\OrdersExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -54,72 +55,90 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit-user-profile', [UserController::class, 'editUserProfile'])->name('edit-user-profile');
         Route::post('/update-user-profile', [UserController::class, 'updateUserProfile'])->name('update-user-profile');
         Route::get('/user-change-password', [UserController::class, 'userChangePassword'])->name('user-change-password');
-        // product
-        Route::get('/add-product', [ProductController::class, 'addProduct'])->name('add-product');
-        Route::post('/store-product', [ProductController::class, 'storeProduct'])->name('store-product');
-        Route::get('/product-list', [ProductController::class, 'productList'])->name('product-list');
-        Route::get('/json-product', [ProductController::class, 'jsonProduct'])->name('json-product');
-        Route::get('/view-product', [ProductController::class, 'jsonProduct'])->name('view-product');
-        Route::get('/edit-product/{id}', [ProductController::class, 'editProduct'])->name('edit-product');
-        Route::post('/update-product', [ProductController::class, 'updateProduct'])->name('update-product');
-        Route::post('/delete-product', [ProductController::class, 'deleteProduct'])->name('delete-product');
-        // category
-        Route::get('/add-category', [CategoryController::class, 'addCategory'])->name('add-category');
-        Route::get('/category-list', [CategoryController::class, 'categoryList'])->name('category-list');
-        Route::get('/json-category', [CategoryController::class, 'jsonCategory'])->name('json-category');
-        Route::post('/store-category', [CategoryController::class, 'storeCategory'])->name('store-category');
-        Route::get('/view-product/{id}', [CategoryController::class, 'productList'])->name('view-product');
-        Route::get('/edit-category/{id}', [CategoryController::class, 'editCategory'])->name('edit-category');
-        Route::post('/update-category', [CategoryController::class, 'updateCategory'])->name('update-category');
-        Route::post('/delete-category', [CategoryController::class, 'deleteCategory'])->name('delete-category');
 
-        // Contact form
-        Route::get('/contact-list', [ContactController::class, 'contactList'])->name('contact-list');
-        Route::get('/json-contact', [ContactController::class, 'jsonContact'])->name('json-contact');
-        Route::get('/view-contact/{id}', [ContactController::class, 'viewContact'])->name('view-contact');
+        Route::middleware('admin.only')->group(function () {
+            // product
+            Route::get('/add-product', [ProductController::class, 'addProduct'])->name('add-product');
+            Route::post('/store-product', [ProductController::class, 'storeProduct'])->name('store-product');
+            Route::get('/product-list', [ProductController::class, 'productList'])->name('product-list');
+            Route::get('/json-product', [ProductController::class, 'jsonProduct'])->name('json-product');
+            Route::get('/view-product', [ProductController::class, 'jsonProduct'])->name('view-product');
+            Route::get('/edit-product/{id}', [ProductController::class, 'editProduct'])->name('edit-product');
+            Route::post('/update-product', [ProductController::class, 'updateProduct'])->name('update-product');
+            Route::post('/delete-product', [ProductController::class, 'deleteProduct'])->name('delete-product');
+            // category
+            Route::get('/add-category', [CategoryController::class, 'addCategory'])->name('add-category');
+            Route::get('/category-list', [CategoryController::class, 'categoryList'])->name('category-list');
+            Route::get('/json-category', [CategoryController::class, 'jsonCategory'])->name('json-category');
+            Route::post('/store-category', [CategoryController::class, 'storeCategory'])->name('store-category');
+            Route::get('/view-product/{id}', [CategoryController::class, 'productList'])->name('view-product');
+            Route::get('/edit-category/{id}', [CategoryController::class, 'editCategory'])->name('edit-category');
+            Route::post('/update-category', [CategoryController::class, 'updateCategory'])->name('update-category');
+            Route::post('/delete-category', [CategoryController::class, 'deleteCategory'])->name('delete-category');
 
-
-
-        // role
-        Route::get('/add-role', [RoleController::class, 'addRole'])->name('add-role');
-        Route::get('/role-list', [RoleController::class, 'roleList'])->name('role-list');
-        Route::get('/json-role', [RoleController::class, 'jsonRole'])->name('json-role');
-        Route::post('/store-role', [RoleController::class, 'storeRole'])->name('store-role');
-        Route::get('/edit-role/{id}', [RoleController::class, 'editRole'])->name('edit-role');
-        Route::post('/update-role', [RoleController::class, 'updateRole'])->name('update-role');
-        Route::post('/delete-role', [RoleController::class, 'deleteRole'])->name('delete-role');
-
-        // user
-        Route::get('/add-user', [UserController::class, 'addUser'])->name('add-user');
-        Route::get('/user-list', [UserController::class, 'userList'])->name('user-list');
-        Route::get('/json-user', [UserController::class, 'jsonUser'])->name('json-user');
-        Route::post('/store-user', [UserController::class, 'storeUser'])->name('store-user');
-        Route::get('/edit-user/{id}', [UserController::class, 'editUser'])->name('edit-user');
-        Route::get('/view-user/{id}', [UserController::class, 'viewUserProfile'])->name('view-user');
-        Route::post('/verify-user/{id}', [UserController::class, 'verifyUserProfile'])->name('admin.customers.verify');
-        Route::post('/update-user', [UserController::class, 'updateUser'])->name('update-user');
-        Route::post('/delete-user', [UserController::class, 'deleteUser'])->name('delete-user');
+            // Contact form
+            Route::get('/contact-list', [ContactController::class, 'contactList'])->name('contact-list');
+            Route::get('/json-contact', [ContactController::class, 'jsonContact'])->name('json-contact');
+            Route::get('/view-contact/{id}', [ContactController::class, 'viewContact'])->name('view-contact');
 
 
-        //order managment
-        Route::get('/orders', [OrderManagmentController::class, 'index'])->name('orders');
-        Route::get('/json-order', [OrderManagmentController::class, 'jsonOrder'])->name('json-order');
-        Route::get('/view-order/{id}', [OrderManagmentController::class, 'viewOrder'])->name('view-order');
-        Route::get('/status-update/{id}', [OrderManagmentController::class, 'statusUpdate'])->name('status-update');
 
-        //Inventroy
-        Route::resource('inventories', InventoryController::class);
-        Route::get('/get-inventory-by-category/{id}', [InventoryController::class, 'getByCategory'])->name('get-inventory-by-category');
+            // role
+            Route::get('/add-role', [RoleController::class, 'addRole'])->name('add-role');
+            Route::get('/role-list', [RoleController::class, 'roleList'])->name('role-list');
+            Route::get('/json-role', [RoleController::class, 'jsonRole'])->name('json-role');
+            Route::post('/store-role', [RoleController::class, 'storeRole'])->name('store-role');
+            Route::get('/edit-role/{id}', [RoleController::class, 'editRole'])->name('edit-role');
+            Route::post('/update-role', [RoleController::class, 'updateRole'])->name('update-role');
+            Route::post('/delete-role', [RoleController::class, 'deleteRole'])->name('delete-role');
 
-        //report
-        Route::get('/report', [ReportController::class, 'index'])->name('report');
-        Route::get('/report/export', function () {
-            $month = request('month');
-            $year = request('year');
+            // user
+            Route::get('/userall-list', [UserController::class, 'userallList'])->name('userall-list');
+            Route::get('/json-userall', [UserController::class, 'jsonUserall'])->name('json-userall');
+            Route::post('/delete-customerr', [CustomerController::class, 'deleteCustomerr'])->name('delete-customerr');
 
-            return Excel::download(new OrdersExport($month, $year), 'orders_' . $month . '_' . $year . '.xlsx');
-        })->name('export');
+            Route::get('/add-user', [UserController::class, 'addUser'])->name('add-user');
+            Route::get('/user-list', [UserController::class, 'userList'])->name('user-list');
+            Route::get('/json-user', [UserController::class, 'jsonUser'])->name('json-user');
+            Route::post('/store-user', [UserController::class, 'storeUser'])->name('store-user');
+            Route::get('/edit-user/{id}', [UserController::class, 'editUser'])->name('edit-user');
+            Route::get('/view-user/{id}', [UserController::class, 'viewUserProfile'])->name('view-user');
+            Route::post('/verify-user/{id}', [UserController::class, 'verifyUserProfile'])->name('admin.customers.verify');
+            Route::post('/update-user', [UserController::class, 'updateUser'])->name('update-user');
+            Route::post('/delete-user', [UserController::class, 'deleteUser'])->name('delete-user');
 
+
+
+        });
+
+        // customer
+        Route::get('/add-customer', [CustomerController::class, 'addUser'])->name('add-customer');
+            Route::get('/customer-list', [CustomerController::class, 'userList'])->name('customer-list');
+            Route::get('/json-customer', [CustomerController::class, 'jsonUser'])->name('json-customer');
+            Route::post('/store-customer', [CustomerController::class, 'storeCustomer'])->name('store-customer');
+            Route::get('/edit-customer/{id}', [CustomerController::class, 'editCustomer'])->name('edit-customer');
+            Route::get('/view-customer/{id}', [CustomerController::class, 'viewUserProfile'])->name('view-customer');
+            Route::post('/verify-customer/{id}', [CustomerController::class, 'verifyUserProfile'])->name('admin.customers.verify');
+            Route::post('/update-customer', [CustomerController::class, 'updateCustomer'])->name('update-customer');
+            Route::post('/delete-customer', [CustomerController::class, 'deleteCustomer'])->name('delete-customer');
+
+         //order managment
+            Route::get('/orders', [OrderManagmentController::class, 'index'])->name('orders');
+            Route::get('/json-order', [OrderManagmentController::class, 'jsonOrder'])->name('json-order');
+            Route::get('/view-order/{id}', [OrderManagmentController::class, 'viewOrder'])->name('view-order');
+            Route::get('/status-update/{id}', [OrderManagmentController::class, 'statusUpdate'])->name('status-update');
+
+            //Inventroy
+            Route::resource('inventories', InventoryController::class);
+            Route::get('/get-inventory-by-category/{id}', [InventoryController::class, 'getByCategory'])->name('get-inventory-by-category');
+
+            //report
+            Route::get('/report', [ReportController::class, 'index'])->name('report');
+            Route::get('/report/export', function () {
+                $month = request('month');
+                $year = request('year');
+                return Excel::download(new OrdersExport($month, $year), 'orders_' . $month . '_' . $year . '.xlsx');
+            })->name('export');
     });
 });
 

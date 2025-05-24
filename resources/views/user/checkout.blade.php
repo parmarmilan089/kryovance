@@ -104,7 +104,7 @@
                                 <div class="col-lg-6">
                                     <div class="form_item">
                                         <span class="input_title">First Name<sup>*</sup></span>
-                                        <input type="text" name="first_name">
+                                        <input type="text" name="first_name" value="{{ auth('customer')->user()->fname }}">
                                         @error('first_name')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -114,7 +114,7 @@
                                 <div class="col-lg-6">
                                     <div class="form_item">
                                         <span class="input_title">Last Name<sup>*</sup></span>
-                                        <input type="text" name="last_name">
+                                        <input type="text" name="last_name" value="{{ auth('customer')->user()->lname }}">
                                         @error('last_name')
                                             <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -124,7 +124,7 @@
 
                             <div class="form_item">
                                 <span class="input_title">Company Name<sup>*</sup></span>
-                                <input type="text" name="company_name">
+                                <input type="text" name="company_name" value="{{ auth('customer')->user()->company_name }}">
                                 @error('company_name')
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
@@ -140,7 +140,7 @@
 
                             <div class="form_item">
                                 <span class="input_title">Address<sup>*</sup></span>
-                                <input type="text" name="address" placeholder="House number and street name">
+                                <input type="text" name="address" placeholder="House number and street name" value="{{ auth('customer')->user()->address }}">
                                 @error('address')
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
@@ -148,7 +148,7 @@
 
                             <div class="form_item">
                                 <span class="input_title">Town/City<sup>*</sup></span>
-                                <input type="text" name="city">
+                                <input type="text" name="city" value="{{ auth('customer')->user()->city }}">
                                 @error('city')
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
@@ -156,7 +156,7 @@
 
                             <div class="form_item">
                                 <span class="input_title">Postcode / Zip<sup>*</sup></span>
-                                <input type="text" name="zip_code">
+                                <input type="text" name="zip_code" value="">
                                 @error('zip_code')
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
@@ -164,7 +164,7 @@
 
                             <div class="form_item">
                                 <span class="input_title">Phone<sup>*</sup></span>
-                                <input type="tel" name="phone">
+                                <input type="tel" name="phone" value="{{ auth('customer')->user()->phone }}">
                                 @error('phone')
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
@@ -172,7 +172,7 @@
 
                             <div class="form_item">
                                 <span class="input_title">Email Address<sup>*</sup></span>
-                                <input type="email" name="email">
+                                <input type="email" name="email" value="{{ auth('customer')->user()->email }}">
                                 @error('email')
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
