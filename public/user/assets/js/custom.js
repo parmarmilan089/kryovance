@@ -4,7 +4,36 @@
 // Version       :  1.0.0
 // Author        :  jthemes (https://themeforest.net/user/jthemes)
 // ==================================================
-
+///////Owl Carousel//////
+$(document).ready(function () {
+    $(".owl-one").owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: false,
+      autoplay: true,
+      rewindNav: false,
+      autoplayTimeout: 5000,
+      autoplayHoverPause: true,
+      responsiveClass: true,
+      responsive: {
+        0: {
+          items: 1,
+          nav: false,
+          autoplayHoverPause: true,
+        },
+        600: {
+          items: 3,
+          nav: false,
+        },
+        1000: {
+          items: 6,
+          nav: false,
+          loop: true,
+          margin: 10,
+        },
+      },
+    });
+  });
 
 (function($) {
   "use strict";
