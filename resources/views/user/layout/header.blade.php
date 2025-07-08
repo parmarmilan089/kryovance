@@ -36,6 +36,17 @@
 
         <!-- custom - css include -->
         <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/style.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('user/assets/css/owl.carousel.min.css')}}" />
+
+        <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.2.1/css/sharp-solid.css"
+    />
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
     </head>
@@ -91,15 +102,147 @@
 </style>
 
     <body class="home_minimal">
+         <!-- Navigation -->
+     <div class="navigation_flex">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container">
+            <a class="navbar-brand" href="{{route('home')}}">
+              <img src="{{asset('user/assets/images/logo/logo_10_1x.png')}}" alt="Kryovance" />
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse"
+              id="navbarSupportedContent"
+            >
+              <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{{route('home')}}">
+                    Home
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('products')}}">
+                    Shop
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('about')}}">
+                    About Us
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('contact')}}">
+                    Contact
+                  </a>
+                </li>
+                <!-- {/* <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Dropdown
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        Action
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        Another action
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        Something else here
+                      </a>
+                    </li>
+                  </ul>
+                </li> */} -->
+              </ul>
+              <div class="right-panel d-flex">
+                
+                <!-- Search Bar -->
+                <form class="input-group w-auto my-auto" action="{{route('products')}}" method="get">
+                  <input
+                    autocomplete="off"
+                    type="search"
+                    class="form-control"
+                    placeholder="Search Here..."
+                    name="search"
+                    value="{{ $search ?? '' }}"
+                  />
+                  <span class="input-group-text d-none d-lg-flex">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </span>
+                </form>
+
+                <!-- Cart -->
+                <div class="cart_flex">
+                  <a href="{{route('cart')}}" class="cart_btn">
+                    <img src="{{asset('user/assets/images/cart-top.svg')}}" alt="" />
+                    <div class="cartNo">{{ getCartCount() }}</div>
+                  </a>
+                </div>
+
+                <!-- Profile -->
+                <div class="profile_flex">
+                  <ul class="nav usercta">
+                      <li class="nav-item dropdown">
+                        <a
+                          class="nav-link dropdown-toggle"
+                          href="{{route('user-login')}}"
+                          role="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          <img src="{{asset('user/assets/images/profile-icon.svg')}}" alt="" />
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a class="dropdown-item" href="{{route('user-login')}}">
+                              Sign Up
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      @yield('content')
 
 
+
+     <!-- End Navigation  -->
         <!-- backtotop - start -->
-        <div id="thetop"></div>
+        <!-- <div id="thetop"></div>
         <div class="backtotop bg_black">
             <a href="#" class="scroll">
                 <i class="far fa-arrow-up"></i>
             </a>
-        </div>
+        </div> -->
         <!-- backtotop - end -->
 
         <!-- preloader - start -->
@@ -109,7 +252,7 @@
 
         <!-- header_section - start
         ================================================== -->
-        <header class="header_section minimal_header sticky_header clearfix">
+        <!-- <header class="header_section minimal_header sticky_header clearfix">
             <div class="header_content_wrap d-flex align-items-center clearfix">
                 <div class="container maxw_1430">
                     <div class="row align-items-center justify-content-lg-between">
@@ -141,159 +284,8 @@
                                 <ul class="ul_li_center clearfix">
                                     <li class="">
                                         <a href="{{route('home')}}">Home</a>
-
                                     </li>
                                     <li><a href="{{route('products')}}">Shop</a></li>
-                                    <!--<li class="menu_item_has_child">-->
-                                    <!--    <a href="#!">Shop</a>-->
-                                        <!--<div class="mega_menu">-->
-                                        <!--    <div class="background" data-bg-color="#ffffff">-->
-                                        <!--        <div class="container">-->
-                                        <!--            <div class="row mt__30">-->
-                                        <!--                <div class="col-lg-3">-->
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Carparts</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="carparts_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="carparts_shop_grid.html">Shop Grid</a></li>-->
-                                        <!--                            <li><a href="carparts_shop_list.html">Shop List</a></li>-->
-                                        <!--                            <li><a href="carparts_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Classic Ecommerce</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="classic_ecommerce_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="classic_ecommerce_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Electronic</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="electronic_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="electronic_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Fashion</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="fashion_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="fashion_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-                                        <!--                </div>-->
-
-                                        <!--                <div class="col-lg-3">-->
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Fashion Minimal</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="fashion_minimal_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="fashion_minimal_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Fashion Minimal</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="fashion_minimal_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="fashion_minimal_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Furniture</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="furniture_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="furniture_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Gadget</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="gadget_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="gadget_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-                                        <!--                </div>-->
-
-                                        <!--                <div class="col-lg-3">-->
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Medical</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="medical_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="medical_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Modern Minimal</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="modern_minimal_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="modern_minimal_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Modern</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="modern_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="modern_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Motorcycle</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="motorcycle_shop_grid.html">Shop Grid</a></li>-->
-                                        <!--                            <li><a href="motorcycle_shop_list.html">Shop List</a></li>-->
-                                        <!--                            <li><a href="motorcycle_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-                                        <!--                </div>-->
-
-                                        <!--                <div class="col-lg-3">-->
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Simple Shop</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="simple_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="simple_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Sports</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="sports_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="sports_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Lookbook</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="lookbook_creative_shop.html">Shop Page</a></li>-->
-                                        <!--                            <li><a href="lookbook_creative_shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-
-                                        <!--                    <div class="page_links">-->
-                                        <!--                        <h3 class="title_text">Shop Other Pages</h3>-->
-                                        <!--                        <ul class="ul_li_block">-->
-                                        <!--                            <li><a href="#!"><del>Shop Page</del></a></li>-->
-                                        <!--                            <li><a href="shop_details.html">Shop Details</a></li>-->
-                                        <!--                        </ul>-->
-                                        <!--                    </div>-->
-                                        <!--                </div>-->
-                                        <!--            </div>-->
-                                        <!--        </div>-->
-                                        <!--    </div>-->
-                                        <!--</div>-->
-                                    <!--</li>-->
-
                                     <li><a href="{{route('about')}}">About us</a></li>
                                     <li><a href="{{route('contact')}}">Contact us</a></li>
                                 </ul>
@@ -334,8 +326,6 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <!-- <li><a class="auth-label" href="{{ route('user-login') }}">Login</a></li> -->
-                                    <!-- <li><a class="auth-label" href="{{ route('user-register') }}">Register</a></li> -->
                                 @else
                                 @php
                                     $parentUser = null;
@@ -400,455 +390,162 @@
                     </div>
                 </div>
             </div>
-        </header>
+        </header> -->
         <!-- header_section - end
         ================================================== -->
 
+        
 
-        <!-- main body - start
-        ================================================== -->
-        <main>
-
-
-            <!-- sidebar mobile menu & sidebar cart - start
-            ================================================== -->
-            <div class="sidebar-menu-wrapper">
-                <div class="cart_sidebar">
-                    <button type="button" class="close_btn"><i class="fal fa-times"></i></button>
-
-                    <ul class="cart_items_list ul_li_block mb_30 clearfix">
-                        <li>
-                            <div class="item_image">
-                                <img src="user/assets/images/cart/img_01.jpg" alt="image_not_found">
-                            </div>
-                            <div class="item_content">
-                                <h4 class="item_title">Yellow Blouse</h4>
-                                <span class="item_price">$30.00</span>
-                            </div>
-                            <button type="button" class="remove_btn"><i class="fal fa-trash-alt"></i></button>
-                        </li>
-                        <li>
-                            <div class="item_image">
-                                <img src="user/assets/images/cart/img_01.jpg" alt="image_not_found">
-                            </div>
-                            <div class="item_content">
-                                <h4 class="item_title">Yellow Blouse</h4>
-                                <span class="item_price">$30.00</span>
-                            </div>
-                            <button type="button" class="remove_btn"><i class="fal fa-trash-alt"></i></button>
-                        </li>
-                        <li>
-                            <div class="item_image">
-                                <img src="user/assets/images/cart/img_01.jpg" alt="image_not_found">
-                            </div>
-                            <div class="item_content">
-                                <h4 class="item_title">Yellow Blouse</h4>
-                                <span class="item_price">$30.00</span>
-                            </div>
-                            <button type="button" class="remove_btn"><i class="fal fa-trash-alt"></i></button>
-                        </li>
-                    </ul>
-
-                    <ul class="total_price total_price_details ul_li_block mb_30 clearfix">
-                        <li>
-                            <span>Subtotal:</span>
-                            <span>$90</span>
-                        </li>
-                        <li>
-                            <span>Vat 5%:</span>
-                            <span>$4.5</span>
-                        </li>
-                        <li>
-                            <span>Discount 20%:</span>
-                            <span>- $18.9</span>
-                        </li>
-                        <li>
-                            <span>Total:</span>
-                            <span>$75.6</span>
-                        </li>
-                    </ul>
-
-                    <ul class="btns_group ul_li_block clearfix">
-                        <li><a href="{{route('shop-cart')}}">View Cart</a></li>
-                        <li><a href="{{route('shopping-cart')}}">Checkout</a></li>
-                    </ul>
-                </div>
-
-                <div class="sidebar_mobile_menu">
-                    <button type="button" class="close_btn"><i class="fal fa-times"></i></button>
-
-                    <div class="msb_widget brand_logo text-center">
-                        <a href="index.html">
-                        <img src="{{asset('user/assets/images/logo/logo_10_1x.png')}}" srcset="{{asset('user/assets/images/logo/logo_10_2x.png')}}" alt="logo_not_found">
+        
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-3 col-sm-12">
+                  <div class="footer__maintext-box">
+                    <figure>
+                      <a href="#">
+                        <img src="{{asset('user/assets/images/logo.svg')}}" alt="" />
+                      </a>
+                    </figure>
+                    <p>
+                      Kryovance is a trusted destination for top-quality electronics
+                      and accessories. Our commitment is to deliver innovation,
+                      reliability, and exceptional value to every customer.
+                    </p>
+                    <ul class="social">
+                      <li>
+                        <a href="#" target="_blank">
+                          <i class="fa-brands fa-facebook-f"></i>
                         </a>
-                    </div>
-
-                    <div class="msb_widget mobile_menu_list clearfix">
-                        <h3 class="title_text mb_15 text-uppercase"><i class="far fa-bars mr-2"></i> Menu List</h3>
-                        <ul class="ul_li_block clearfix">
-                            <li class="active dropdown">
-                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-                                <ul class="ul_li_block dropdown-menu">
-                                    <li><a href="home_carparts.html">Carparts</a></li>
-                                    <li><a href="home_classic_ecommerce.html">Classic Ecommerce</a></li>
-                                    <li><a href="home_creative_onelook.html">Creative Onelook</a></li>
-                                    <li><a href="home_electronic.html">Electronic</a></li>
-                                    <li><a href="home_fashion.html">Fashion</a></li>
-                                    <li><a href="home_fashion_minimal.html">Fashion Minimal</a></li>
-                                    <li><a href="home_furniture.html">Furniture</a></li>
-                                    <li><a href="home_gadget.html">Gadget</a></li>
-                                    <li><a href="home_lookbook_creative.html">Lookbook Creative</a></li>
-                                    <li><a href="home_lookbook_slide.html">Lookbook Slide</a></li>
-                                    <li><a href="home_medical.html">Medical</a></li>
-                                    <li><a href="home_modern.html">Modern</a></li>
-                                    <li><a href="home_modern_minimal.html">Modern Minimal</a></li>
-                                    <li><a href="home_motorcycle.html">Motorcycle</a></li>
-                                    <li><a href="home_parallax_shop.html">Parallax Shop</a></li>
-                                    <li><a href="home_simple_shop.html">Simple Shop</a></li>
-                                    <li><a href="home_single_story_black.html">Single Story Black</a></li>
-                                    <li><a href="home_single_story_white.html">Single Story White</a></li>
-                                    <li><a href="home_sports.html">Sports</a></li>
-                                    <li><a href="home_supermarket.html">Supermarket</a></li>
-                                    <li><a href="home_watch.html">Watch</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown ul_li_block">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Carparts</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="carparts_shop.html">Shop Page</a></li>
-                                            <li><a href="carparts_shop_grid.html">Shop Grid</a></li>
-                                            <li><a href="carparts_shop_list.html">Shop List</a></li>
-                                            <li><a href="carparts_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Classic Ecommerce</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="classic_ecommerce_shop.html">Shop Page</a></li>
-                                            <li><a href="classic_ecommerce_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Electronic</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="electronic_shop.html">Shop Page</a></li>
-                                            <li><a href="electronic_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fashion</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="fashion_shop.html">Shop Page</a></li>
-                                            <li><a href="fashion_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fashion Minimal</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="fashion_minimal_shop.html">Shop Page</a></li>
-                                            <li><a href="fashion_minimal_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fashion Minimal</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="fashion_minimal_shop.html">Shop Page</a></li>
-                                            <li><a href="fashion_minimal_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Furniture</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="furniture_shop.html">Shop Page</a></li>
-                                            <li><a href="furniture_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gadget</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="gadget_shop.html">Shop Page</a></li>
-                                            <li><a href="gadget_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Medical</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="medical_shop.html">Shop Page</a></li>
-                                            <li><a href="medical_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Modern Minimal</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="modern_minimal_shop.html">Shop Page</a></li>
-                                            <li><a href="modern_minimal_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Modern</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="modern_shop.html">Shop Page</a></li>
-                                            <li><a href="modern_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Motorcycle</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="motorcycle_shop_grid.html">Shop Grid</a></li>
-                                            <li><a href="motorcycle_shop_list.html">Shop List</a></li>
-                                            <li><a href="motorcycle_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Simple Shop</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="simple_shop.html">Shop Page</a></li>
-                                            <li><a href="simple_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sports</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="sports_shop.html">Shop Page</a></li>
-                                            <li><a href="sports_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lookbook</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="lookbook_creative_shop.html">Shop Page</a></li>
-                                            <li><a href="lookbook_creative_shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop Other Pages</a>
-                                        <ul class="dropdown-menu ul_li_block">
-                                            <li><a href="#!"><del>Shop Page</del></a></li>
-                                            <li><a href="shop_details.html">Shop Details</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop Inner Pages</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="shop_cart.html">Shopping Cart</a></li>
-                                            <li><a href="shop_checkout.html">Checkout Step 1</a></li>
-                                            <li><a href="shop_checkout_step2.html">Checkout Step 2</a></li>
-                                            <li><a href="shop_checkout_step3.html">Checkout Step 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="404.html">404 Page</a></li>
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blogs</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="blog.html">Blog Page</a></li>
-                                            <li><a href="blog_details.html">Blog Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Compare</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="compare_1.html">Compare V.1</a></li>
-                                            <li><a href="compare_2.html">Compare V.2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Register</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="signup.html">Sign Up</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="{{route('about')}}">About us</a></li>
-                            <li><a href="{{route('contact')}}">Contact us</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="user_info">
-                        <h3 class="title_text mb_30 text-uppercase"><i class="fas fa-user mr-2"></i> User Info</h3>
-                        @guest('customer')
-                            <div class="profile_info clearfix">
-                                <div class="user_content">
-                                    <a class="custom_btn bg_black text-uppercase text-center px-5" href="{{ route('user-login') }}"><i class="fal fa-user mr-2"></i>Login</a>
-                                </div>
-                            </div>
-                        @else
-                            <div class="profile_info clearfix">
-                                <div class="user_content">
-                                <h4 class="user_name">{{ auth('customer')->user()->fname }} {{ auth('customer')->user()->lname }}</h4>
-                                <span class="user_title">Customer</span>
-                            </div>
-
-                            </div>
-                            <ul class="settings_options ul_li_block clearfix">
-                                <li><a href="#!"><i class="fal fa-user-circle"></i> Profile</a></li>
-                                <li><a href="{{route('customer.logout')}}"><i class="fal fa-sign-out-alt"></i> Logout</a></li>
-                            </ul>
-
-                        @endguest
-                    </div>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa-brands fa-instagram"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa-brands fa-youtube"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="overlay"></div>
-            </div>
-            <!-- sidebar mobile menu & sidebar cart - end
-            ================================================== -->
-            @yield('content')
-
-
-        </main>
-        <!-- main body - end
-        ================================================== -->
-
-
-        <!-- footer_section - start
-        ================================================== -->
-        <footer class="footer_section minimal_footer clearfix">
-            <div class="footer_widget_area sec_ptb_100 clearfix">
-                <div class="container">
-                    <div class="row justify-content-lg-between">
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                            <div class="footer_widget footer_about">
-                                <div class="brand_logo mb_30">
-                                    <a href="index.html">
-                                    <img src="{{asset('user/assets/images/logo/logo_10_1x.png')}}" srcset="{{asset('user/assets/images/logo/logo_10_2x.png')}}" alt="logo_not_found">
-                                    </a>
-                                </div>
-
-                                <p class="mb_30">
-                                    Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Eodem modo typi, qui nunc videntur.
-                                </p>
-
-                                <div class="footer_widget footer_contact_info clearfix">
-                                    <ul class="ul_li_block">
-                                        <li><span>Phone:</span> 8 800 567.890.11</li>
-                                        <li><span>Email:</span> Jthemes@gmail.com</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                            <div class="footer_widget product_list clearfix">
-                                <?php $latestProducts = getLatestProductsWithImages(); ?>
-                                <h3 class="footer_widget_title text-white text-uppercase">Hot Products</h3>
-                                <ul class="ul_li_block">
-                                    @foreach ($latestProducts as $item)
-                                    @php
-                                        $price = getDiscountedPrice($item->product_id, $item->product_price);
-                                    @endphp
-                                        <li>
-                                            <div class="small_product">
-                                                <div class="item_image">
-                                                    <img src="{{ $item->image_url ? $item->image_url : asset('user/assets/images/15980049.png') }}" alt="image_not_found" width="80px">
-                                                </div>
-                                                <div class="item_content">
-                                                    <h3 class="item_title">
-                                                        <a class="text-white" href="{{route('product_details',$item->product_id)}}">
-                                                            {{ \Illuminate\Support\Str::limit($item->product_name, 20, '..') }}
-                                                        </a>
-                                                    </h3>
-                                                    <span class="item_price">₹{{$price}}</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                            <div class="footer_widget product_list clearfix">
-                                <?php $saleProducts = getSaleProductsWithImages(); ?>
-                                <h3 class="footer_widget_title text-white text-uppercase">Sale Products</h3>
-                                <ul class="ul_li_block">
-                                    @foreach ($saleProducts as $item)
-                                    @php
-                                        $pricee = getDiscountedPrice($item->product_id, $item->product_price);
-                                    @endphp
-                                        <li>
-                                            <div class="small_product">
-                                                <div class="item_image">
-                                                    <img src="{{ $item->image_url ? $item->image_url : asset('user/assets/images/15980049.png') }}" alt="image_not_found" width="80px">
-                                                </div>
-                                                <div class="item_content">
-                                                    <h3 class="item_title">
-                                                        <a class="text-white" href="{{route('product_details',$item->product_id)}}">
-                                                            {{ \Illuminate\Support\Str::limit($item->product_name, 20, '..') }}
-                                                        </a>
-
-                                                    </h3>
-                                                    <span class="item_price">₹{{$pricee}}</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                            <div class="footer_widget footer_newsletter">
-                                <h3 class="footer_widget_title text-white text-uppercase">Newsletter</h3>
-                                <p class="mb_30">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ex tortor
-                                </p>
-                                <form action="#">
-                                    <div class="form_item mb-0">
-                                        <input type="email" name="email" placeholder="Email Address">
-                                        <button type="submit" class="submit_btn bg_black"><i class="fal fa-envelope"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                <div class="col-md-3 col-sm-12">
+                  <div class="footer_heading">Hot Products</div>
+                  <div class="footerproduct">
+                    <div class="footerPimg">
+                      <figure>
+                        <img src="{{asset('user/assets/images/footer-product.jpg')}}" alt="" />
+                      </figure>
                     </div>
-                </div>
-            </div>
-
-            <div class="footer_bottom clearfix">
-                <div class="container">
-                    <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <p class="copyright_text mb-0">
-                                @<?php echo date("Y"); ?> All rights reserved. <a href="#" class="author_link text-white">Kryovance</a>.
-                            </p>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <ul class="circle_social_links ul_li_right clearfix">
-                                <li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#!"><i class="fab fa-whatsapp"></i></a></li>
-                            </ul>
-                        </div>
+                    <div class="footerproduct-text">
+                      <h3>
+                        <a href="#">HP Smart Tank 670 AI...</a>
+                      </h3>
+                      <p>₹18000</p>
                     </div>
+                  </div>
+                  <div class="footerproduct">
+                    <div class="footerPimg">
+                      <figure>
+                        <img src="{{asset('user/assets/images/footer-product.jpg')}}" alt="" />
+                      </figure>
+                    </div>
+                    <div class="footerproduct-text">
+                      <h3>
+                        <a href="#">HP Smart Tank 670 AI...</a>
+                      </h3>
+                      <p>₹18000</p>
+                    </div>
+                  </div>
+                  <div class="footerproduct">
+                    <div class="footerPimg">
+                      <figure>
+                        <img src="{{asset('user/assets/images/footer-product.jpg')}}" alt="" />
+                      </figure>
+                    </div>
+                    <div class="footerproduct-text">
+                      <h3>
+                        <a href="#">HP Smart Tank 670 AI...</a>
+                      </h3>
+                      <p>₹18000</p>
+                    </div>
+                  </div>
                 </div>
+                <div class="col-md-3 col-sm-12">
+                  <div class="footer_heading">Useful Links</div>
+                  <ul class="footer_tabs">
+                    <li>
+                      <a href="#">Home</a>
+                    </li>
+                    <li>
+                      <a href="#">About Us</a>
+                    </li>
+                    <li>
+                      <a href="#">Shop</a>
+                    </li>
+                    <li>
+                      <a href="#">Contact Us</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                  <div class="footer_heading">Get Contact</div>
+                  <form action="" class="newsletter">
+                    <div class="form-floating">
+                      <i class="fa-regular fa-envelope"></i>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="floatingInput"
+                        placeholder="name@example.com"
+                      />
+                      <label for="floatingInput">Email address</label>
+                    </div>
+                    <button aria-label="submit" value="submit" type="button">
+                      Submit
+                    </button>
+                  </form>
+
+                  <ul class="footer_tabs">
+                    <li>
+                      <a href="tel:+91 97118 76094"><strong>Phone:</strong> +91 97118 76094</a>
+                    </li>
+                    <li>
+                      <a href="mailto:sales@slsyn.com"><strong>E-mail:</strong> sales@slsyn.com</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="last-footer">
+                <div class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <ul class="privacy_list">
+                      <li>
+                        <a href="#">Terms &amp; Condition</a>
+                      </li>
+                      <li>
+                        <a href="#">Privacy Policy</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <p>
+                      Copyright@ 2025 <span>Kryovance</span>. All Rights Reserved
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-        </footer>
+          </footer>
+          <!-- End Footer -->
         <!-- footer_section - end
         ================================================== -->
 
@@ -891,6 +588,10 @@
         @yield('scripts')
         <!-- custom - jquery include -->
         <script src="{{ asset('user/assets/js/custom.js')}}"></script>
+
+        <!-- owl carousel - jquery include -->
+        <script src="{{ asset('user/assets/js/owl.carousel.js')}}"></script>    
+
 
 
         <!-- product quick view - start -->
@@ -950,9 +651,5 @@
                 </div>
             </div>
         </div>
-        <!-- product quick view - end -->
-        <!-- shop_section - end
-                ================================================== -->
     </body>
-
 </html>
