@@ -16,26 +16,26 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/bootstrap.min.css')}}">
 
         <!-- icon - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/fontawesome.css')}}">
+        {{--  <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/fontawesome.css')}}">  --}}
 
         <!-- animation - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/animate.css')}}">
+        {{--  <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/animate.css')}}">  --}}
 
         <!-- nice select - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/nice-select.css')}}">
+        {{--  <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/nice-select.css')}}">  --}}
 
         <!-- carousel - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/slick.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/slick-theme.css')}}">
+        {{--  <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/slick.css')}}">  --}}
+        {{--  <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/slick-theme.css')}}">  --}}
 
         <!-- popup images & videos - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/magnific-popup.css')}}">
+        {{--  <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/magnific-popup.css')}}">  --}}
 
         <!-- jquery ui - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/jquery-ui.css')}}">
+        {{--  <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/jquery-ui.css')}}">  --}}
 
         <!-- custom - css include -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/style.css')}}">
+        {{--  <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/style.css')}}">  --}}
         <link rel="stylesheet" type="text/css" href="{{ asset('user/assets/css/main.css')}}">
     <link rel="stylesheet" href="{{ asset('user/assets/css/owl.carousel.min.css')}}" />
 
@@ -178,7 +178,7 @@
                 </li> */} -->
               </ul>
               <div class="right-panel d-flex">
-                
+
                 <!-- Search Bar -->
                 <form class="input-group w-auto my-auto" action="{{route('products')}}" method="get">
                   <input
@@ -394,9 +394,9 @@
         <!-- header_section - end
         ================================================== -->
 
-        
 
-        
+
+
         <!-- Footer -->
         <footer>
             <div class="container">
@@ -552,45 +552,46 @@
 
         <!-- fraimwork - jquery include -->
         <script src="{{ asset('user/assets/js/jquery-3.5.1.min.js')}}"></script>
-        <script src="{{ asset('user/assets/js/popper.min.js')}}"></script>
-        <script src="{{ asset('user/assets/js/bootstrap.min.js')}}"></script>
-
+        {{--  <script src="{{ asset('user/assets/js/popper.min.js')}}"></script>  --}}
+        {{--  <script src="{{ asset('user/assets/js/bootstrap.min.js')}}"></script>  --}}
+    <script src="{{ asset('user/assets/js/bootstrap.bundle.min.js')}}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
         <!-- mobile menu - jquery include -->
-        <script src="{{ asset('user/assets/js/mCustomScrollbar.js')}}"></script>
+        {{--  <script src="{{ asset('user/assets/js/mCustomScrollbar.js')}}"></script>  --}}
 
         <!-- google map - jquery include -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk2HrmqE4sWSei0XdKGbOMOHN3Mm2Bf-M&amp;ver=2.1.6"></script>
-        <script src="{{ asset('user/assets/js/gmaps.min.js')}}"></script>
+        {{--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk2HrmqE4sWSei0XdKGbOMOHN3Mm2Bf-M&amp;ver=2.1.6"></script>  --}}
+        {{--  <script src="{{ asset('user/assets/js/gmaps.min.js')}}"></script>  --}}
 
         <!-- animation - jquery include -->
-        <script src="{{ asset('user/assets/js/parallaxie.js')}}"></script>
-        <script src="{{ asset('user/assets/js/wow.min.js')}}"></script>
+        {{--  <script src="{{ asset('user/assets/js/parallaxie.js')}}"></script>  --}}
+        {{--  <script src="{{ asset('user/assets/js/wow.min.js')}}"></script>  --}}
 
         <!-- nice select - jquery include -->
-        <script src="{{ asset('user/assets/js/nice-select.min.js')}}"></script>
+        {{--  <script src="{{ asset('user/assets/js/nice-select.min.js')}}"></script>  --}}
 
         <!-- carousel - jquery include -->
-        <script src="{{ asset('user/assets/js/slick.min.js')}}"></script>
+        {{--  <script src="{{ asset('user/assets/js/slick.min.js')}}"></script>  --}}
 
         <!-- countdown timer - jquery include -->
-        <script src="{{ asset('user/assets/js/countdown.js')}}"></script>
+        {{--  <script src="{{ asset('user/assets/js/countdown.js')}}"></script>  --}}
 
         <!-- popup images & videos - jquery include -->
-        <script src="{{ asset('user/assets/js/magnific-popup.min.js')}}"></script>
+        {{--  <script src="{{ asset('user/assets/js/magnific-popup.min.js')}}"></script>  --}}
 
         <!-- filtering & masonry layout - jquery include -->
-        <script src="{{ asset('user/assets/js/isotope.pkgd.min.js')}}"></script>
-        <script src="{{ asset('user/assets/js/masonry.pkgd.min.js')}}"></script>
-        <script src="{{ asset('user/assets/js/imagesloaded.pkgd.min.js')}}"></script>
+        {{--  <script src="{{ asset('user/assets/js/isotope.pkgd.min.js')}}"></script>  --}}
+        {{--  <script src="{{ asset('user/assets/js/masonry.pkgd.min.js')}}"></script>  --}}
+        {{--  <script src="{{ asset('user/assets/js/imagesloaded.pkgd.min.js')}}"></script>  --}}
 
         <!-- jquery ui - jquery include -->
-        <script src="{{ asset('user/assets/js/jquery-ui.js')}}"></script>
+        {{--  <script src="{{ asset('user/assets/js/jquery-ui.js')}}"></script>  --}}
         @yield('scripts')
         <!-- custom - jquery include -->
-        <script src="{{ asset('user/assets/js/custom.js')}}"></script>
+        {{--  <script src="{{ asset('user/assets/js/custom.js')}}"></script>  --}}
 
         <!-- owl carousel - jquery include -->
-        <script src="{{ asset('user/assets/js/owl.carousel.js')}}"></script>    
+        <script src="{{ asset('user/assets/js/owl.carousel.js')}}"></script>
 
 
 
