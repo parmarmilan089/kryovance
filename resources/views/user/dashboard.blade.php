@@ -530,25 +530,25 @@
         console.log('Found add buttons:', $('.btn-add').length);
         console.log('Found subtract buttons:', $('.btn-subtract').length);
         console.log('Found quantity inputs:', $('.item-quantity').length);
-        
+
         // Test function to verify quantity functionality
         function testQuantityFunctionality() {
             console.log('=== Testing Quantity Functionality ===');
             console.log('Add buttons:', $('.btn-add').length);
             console.log('Subtract buttons:', $('.btn-subtract').length);
             console.log('Quantity inputs:', $('.item-quantity').length);
-            
+
             // Test if buttons are clickable
             $('.btn-add, .btn-subtract').each(function(index) {
                 console.log('Button', index, ':', $(this).text(), 'classes:', $(this).attr('class'));
             });
-            
+
             // Test if inputs are accessible
             $('.item-quantity').each(function(index) {
                 console.log('Input', index, ':', $(this).val(), 'classes:', $(this).attr('class'));
             });
         }
-        
+
         // Run test after a short delay
         setTimeout(testQuantityFunctionality, 1000);
 
@@ -580,43 +580,43 @@
         // Add to Cart functionality for dashboard products
         $(document).on('click', '.cart-cta button', function(e) {
             e.preventDefault();
-            
+
             var $button = $(this);
             var productCard = $button.closest('.productCart-flex');
             var productId = productCard.data('product-id');
             var quantity = productCard.find('.item-quantity').val() || 1;
-            
+
             // Debug logging
             console.log('Cart button clicked:', {
                 productId: productId,
                 quantity: quantity,
                 button: $button[0]
             });
-            
+
             // Validate product ID
             if (!productId) {
                 showCartMessage('Product ID not found. Please refresh the page and try again.', 'error');
                 return;
             }
-            
+
             // Validate CSRF token
             var csrfToken = "{{ csrf_token() }}";
             if (!csrfToken) {
                 showCartMessage('Security token missing. Please refresh the page and try again.', 'error');
                 return;
             }
-            
+
             // Check if user is logged in
             @guest('customer')
                 window.location.href = "{{ route('user-login') }}";
                 return;
             @endguest
-            
+
             // Disable button and show loading state
             $button.prop('disabled', true);
             var originalContent = $button.html();
             $button.html('<span class="loading-spinner">⏳</span> Adding...');
-            
+
             $.ajax({
                 type: 'POST',
                 url: "{{ route('add-to-cart', ':id') }}".replace(':id', productId),
@@ -629,14 +629,14 @@
                     if (response.status === 'success') {
                         // Show success message
                         showCartMessage('Product added to cart successfully!', 'success');
-                        
+
                         // Update cart count in header
                         $('.cartNo').text(response.cart_count);
                         $('.btn_badge').text(response.cart_count);
-                        
+
                         // Reset quantity to 1
                         productCard.find('.item-quantity').val(1);
-                        
+
                         // Add success animation
                         $button.html('<span class="success-icon">✓</span> Added!');
                         setTimeout(function() {
@@ -668,39 +668,39 @@
         // Enhanced Quantity increment/decrement functionality
         $(document).on('click', '.btn-add', function() {
             var $button = $(this);
-            
+
             console.log('Add button clicked');
-            
+
             // Prevent rapid clicking
             if ($button.hasClass('btn-disabled')) return;
             $button.addClass('btn-disabled');
-            
+
             // Find the quantity input within the same input-group
             var $input = $button.closest('.input-group').find('.item-quantity');
-            
+
             // Fallback: if input not found, try alternative selectors
             if ($input.length === 0) {
                 $input = $button.parent().siblings('.item-quantity');
                 console.log('Fallback input search:', $input.length);
             }
-            
+
             var currentVal = parseInt($input.val()) || 1;
             console.log(currentVal,'currentVal');
             var newVal = currentVal + 1;
-            
+
             console.log('Current value:', currentVal, 'New value:', newVal);
-            
+
             // Add visual feedback
             $button.addClass('btn-clicked');
             setTimeout(function() {
                 $button.removeClass('btn-clicked');
             }, 150);
-            
+
             $input.val(newVal).trigger('change');
-            
+
             // Show quantity change feedback
             showQuantityFeedback($input, 'increased');
-            
+
             // Re-enable button after 300ms
             setTimeout(function() {
                 $button.removeClass('btn-disabled');
@@ -709,45 +709,45 @@
 
         $(document).on('click', '.btn-subtract', function() {
             var $button = $(this);
-            
+
             console.log('Subtract button clicked');
-            
+
             // Prevent rapid clicking
             if ($button.hasClass('btn-disabled')) return;
             $button.addClass('btn-disabled');
-            
+
             // Find the quantity input within the same input-group
             var $input = $button.closest('.input-group').find('.item-quantity');
             console.log('Found input:', $input.length, $input.val());
-            
+
             // Fallback: if input not found, try alternative selectors
             if ($input.length === 0) {
                 $input = $button.parent().siblings('.item-quantity');
                 console.log('Fallback input search:', $input.length);
             }
-            
+
             var currentVal = parseInt($input.val()) || 1;
-            
+
             if (currentVal > 1) {
                 var newVal = currentVal - 1;
-                
+
                 console.log('Current value:', currentVal, 'New value:', newVal);
-                
+
                 // Add visual feedback
                 $button.addClass('btn-clicked');
                 setTimeout(function() {
                     $button.removeClass('btn-clicked');
                 }, 150);
-                
+
                 $input.val(newVal).trigger('change');
-                
+
                 // Show quantity change feedback
                 showQuantityFeedback($input, 'decreased');
             } else {
                 // Show minimum quantity warning
                 showQuantityFeedback($input, 'minimum');
             }
-            
+
             // Re-enable button after 300ms
             setTimeout(function() {
                 $button.removeClass('btn-disabled');
@@ -758,7 +758,7 @@
         $(document).on('keydown', '.item-quantity', function(e) {
             var $input = $(this);
             var currentVal = parseInt($input.val()) || 1;
-            
+
             if (e.key === 'ArrowUp' || e.key === '+') {
                 e.preventDefault();
                 $input.val(currentVal + 1).trigger('change');
@@ -778,7 +778,7 @@
         $(document).on('input', '.item-quantity', function() {
             var $input = $(this);
             var value = parseInt($input.val());
-            
+
             if (isNaN(value) || value < 1) {
                 $input.val(1);
                 showQuantityFeedback($input, 'reset');
@@ -790,15 +790,15 @@
 
         // Function to show quantity change feedback
         function showQuantityFeedback($input, action) {
-            var $feedback = $input.siblings('.quantity-feedback');
+            {{--  var $feedback = $input.siblings('.quantity-feedback');
             if ($feedback.length === 0) {
                 $feedback = $('<div class="quantity-feedback"></div>');
                 $input.parent().append($feedback);
             }
-            
+
             var message = '';
             var className = '';
-            
+
             switch(action) {
                 case 'increased':
                     message = 'Quantity increased';
@@ -821,15 +821,15 @@
                     className = 'feedback-info';
                     break;
             }
-            
+
             $feedback.text(message).removeClass().addClass('quantity-feedback ' + className);
-            
+
             // Auto hide feedback after 1.5 seconds
             setTimeout(function() {
                 $feedback.fadeOut(function() {
                     $(this).remove();
                 });
-            }, 1500);
+            }, 1500);  --}}
         }
 
         // Function to show cart messages
@@ -839,13 +839,13 @@
                 message +
                 '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
                 '</div>';
-            
+
             // Remove any existing cart messages
             $('.cart-message').remove();
-            
+
             // Add message to the top of the page
             $('body').prepend('<div class="cart-message" style="position: fixed; top: 20px; right: 20px; z-index: 9999;">' + messageHtml + '</div>');
-            
+
             // Auto remove after 3 seconds
             setTimeout(function() {
                 $('.cart-message').fadeOut(function() {
@@ -858,45 +858,45 @@
         // $(document).on('click', '.btn-add, .btn-subtract', function(e) {
         //     e.preventDefault();
         //     e.stopPropagation();
-            
+
         //     var $button = $(this);
         //     var isAdd = $button.hasClass('btn-add');
-            
+
         //     console.log('Button clicked:', isAdd ? 'ADD' : 'SUBTRACT');
-            
+
         //     // Find the input field - try multiple approaches
         //     var $input = null;
-            
+
         //     // Method 1: Look within the same input-group
         //     $input = $button.closest('.input-group').find('.item-quantity');
         //     console.log('Method 1 - Input found:', $input.length);
-            
+
         //     // Method 2: Look for input in the same container
         //     if (!$input.length) {
         //         $input = $button.closest('.cart-plus-flex').find('.item-quantity');
         //         console.log('Method 2 - Input found:', $input.length);
         //     }
-            
+
         //     // Method 3: Look in the same product card
         //     if (!$input.length) {
         //         $input = $button.closest('.productCart-flex').find('.item-quantity');
         //         console.log('Method 3 - Input found:', $input.length);
         //     }
-            
+
         //     // Method 4: Look for any item-quantity input
         //     if (!$input.length) {
         //         $input = $('.item-quantity').first();
         //         console.log('Method 4 - Input found:', $input.length);
         //     }
-            
+
         //     if (!$input.length) {
         //         console.error('No quantity input found!');
         //         return;
         //     }
-            
+
         //     var currentVal = parseInt($input.val()) || 1;
         //     var newVal;
-            
+
         //     if (isAdd) {
         //         newVal = currentVal + 1;
         //         console.log('Increasing quantity from', currentVal, 'to', newVal);
@@ -904,17 +904,17 @@
         //         newVal = Math.max(1, currentVal - 1);
         //         console.log('Decreasing quantity from', currentVal, 'to', newVal);
         //     }
-            
+
         //     // Update the input value
         //     $input.val(newVal);
         //     console.log('Input value updated to:', $input.val());
-            
+
         //     // Add visual feedback
         //     $button.addClass('btn-clicked');
         //     setTimeout(function() {
         //         $button.removeClass('btn-clicked');
         //     }, 150);
-            
+
         //     // Show feedback message
         //     var message = isAdd ? 'Quantity increased' : 'Quantity decreased';
         //     showQuantityFeedback($input, isAdd ? 'increased' : 'decreased');

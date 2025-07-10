@@ -1,29 +1,41 @@
 @foreach($products as $product)
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-        <div class="minimal_product_item">
-            <div class="tab-content">
-                @php
-                    $images = getProductImages($product->id);
-                @endphp
-                <div id="ptab1_1" class="tab-pane product-img active">
-                    <img src="{{ isset($images[0]) ? asset('storage/'.$images[0]->file_path) : asset('user/assets/images/15980049.png') }}" alt="image_not_found">
-                </div>
+
+
+    <div class="col-md-3">
+        <div class="productCart-flex" data-product-id="{{ $product->id }}">
+            @php
+            $images = getProductImages($product->id);
+
+            // Get discounted and original price using the helper function
+            $price = getDiscountedPrice($product->id, $product->price);
+            @endphp
+            <figure>
+                <img src="{{ isset($images[0]) ? asset('storage/' . $images[0]->file_path) : asset('user/assets/images/product-placeholder.png') }}" alt="">
+            </figure>
+            <div class="product-heading"><a href="{{ route('product_details', $product->id) }}">{{ \Illuminate\Support\Str::limit($product->name, 40, '..') }}</a></div>
+            <div class="product-subtext">{{ $product->category_name }}</div>
+            <div class="price-area">
+                <div class="main-price">₹ {{ number_format($price, 2) }}<span>MRP ₹ {{ number_format($product->mrp, 2) }}</span></div>
+                <div class="discount">{{ $product->discount_percentage }}%off</div>
             </div>
-            <div class="item_content">
-                <h3 class="item_title">
-                    <a href="{{route('product_details',$product->id)}}">{{ \Illuminate\Support\Str::limit($product->name, 40, '..') }}</a>
-                </h3>
-                <span class="item_category">{{$product->category_name}}</span>
-                <span class="item_price">₹ {{$product->price}}</span>
-        </div>
-            <ul class="product_label ul_li clearfix">
-                <li class="bg_black">New</li>
-            </ul>
-            {{--  <ul class="product_action_btns ul_li_block clearfix">
-                <li><a class="tooltips" data-placement="right" title="Add To Wishlist" href="#!"><i class="fal fa-heart"></i></a></li>
-                <li><a class="tooltips" data-placement="right" title="Add To Cart" href="#!"><i class="fal fa-shopping-basket"></i></a></li>
-                <li><a class="tooltips" data-placement="right" title="Quick View" href="#!" data-toggle="modal" data-target="#quickview_modal"><i class="fal fa-search"></i></a></li>
-            </ul>  --}}
+            <div class="cart-ctaflex">
+                <div class="cart-plus-flex">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-subtract"
+                                type="button">-</button>
+                        </span>
+                        <input type="text"
+                            class="form-control no-padding text-center item-quantity"
+                            value="1">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-add" type="button">+</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="cart-cta"><button><img src="{{asset('user/assets/images/cart-icon-w.svg')}}"
+                            alt=""></button></div>
+            </div>
         </div>
     </div>
 @endforeach
