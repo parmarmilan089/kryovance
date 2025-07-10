@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Order;
-use Razorpay\Api\Api;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Razorpay\Api\Api;
 
 class RazorpayController extends Controller
 {
@@ -22,14 +22,16 @@ class RazorpayController extends Controller
             return response()->json(['status' => 'error', 'message' => 'Order not found.'], 404);
         }
 
-        $api = new Api('rzp_test_ScdFzC0wtECBcC', '4iD1erRKIDPWFmu9bh8dBvV6'); // Replace with your Razorpay secret
+        $api = new Api('rzp_test_ScdFzC0wtECBcC', '4iD1erRKIDPWFmu9bh8dBvV6');  // Replace with your Razorpay secret
         try {
             $payment = $api->payment->fetch($request->razorpay_payment_id);
-            Log::info('Razorpay Payment:', (array)$payment);
+            dd($payment);
+            Log::info('Razorpay Payment:', (array) $payment);
             Log::info('Order Amount:', ['order_amount' => $order->final_total * 100, 'payment_amount' => $payment->amount]);
             if ($payment && $payment->status === 'captured' && $payment->amount == ($order->final_total * 100)) {
                 $order->payment_status = 'paid';
                 $order->save();
+                session()->forget('cart');
                 return response()->json(['status' => 'success', 'message' => 'Payment successful!']);
             } else {
                 return response()->json(['status' => 'error', 'message' => 'Payment verification failed.'], 400);
@@ -40,11 +42,52 @@ class RazorpayController extends Controller
     }
 
     /**
+     * POST /razorpay/capture
+     * Capture a Razorpay payment after authorization
+     */
+    public function capturePayment(Request $request)
+    {
+        $request->validate([
+            'razorpay_payment_id' => 'required|string',
+            'order_id' => 'required|integer',
+            'amount' => 'required|numeric',  // Amount in paise
+        ]);
+
+        $order = Order::find($request->order_id);
+        if (!$order) {
+            return response()->json(['status' => 'error', 'message' => 'Order not found.'], 404);
+        }
+
+        $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+        try {
+            $payment = $api->payment->fetch($request->razorpay_payment_id);
+            $capture = $payment->capture(['amount' => $request->amount]);
+            // Update order status
+            $order->payment_status = 'paid';
+            $order->save();
+            session()->forget('cart');
+            return response()->json(['status' => 'success', 'message' => 'Payment captured', 'payment' => $capture]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * GET /razor/payment/{order_id}
+     * Show payment status to the user
+     */
+    public function paymentStatus($order_id)
+    {
+        $order = Order::findOrFail($order_id);
+        return view('payment.status', compact('order'));
+    }
+
+    /**
      * Handle Razorpay webhook for payment captured
      */
     public function webhook(Request $request)
     {
-        $webhookSecret = 'YOUR_RAZORPAY_WEBHOOK_SECRET'; // Replace with your webhook secret
+        $webhookSecret = 'YOUR_RAZORPAY_WEBHOOK_SECRET';  // Replace with your webhook secret
         $payload = $request->getContent();
         $signature = $request->header('X-Razorpay-Signature');
         Log::info('Razorpay Webhook Payload:', ['payload' => $payload, 'signature' => $signature]);

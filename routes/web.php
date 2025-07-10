@@ -195,6 +195,10 @@ Route::get('/razorpay/pay/{order_id}', [RazorpayController::class, 'initiatePaym
 Route::post('/razorpay/payment', [RazorpayController::class, 'handlePayment'])->name('razorpay.handle');
 Route::post('/razorpay/webhook', [RazorpayController::class, 'webhook'])->name('razorpay.webhook');
 
+// Razorpay capture and payment status routes
+Route::post('/razorpay/capture', [RazorpayController::class, 'capturePayment'])->name('razorpay.capture');
+Route::get('/razor/payment/{order_id}', [RazorpayController::class, 'paymentStatus'])->name('razor.payment.status');
+
 // feedback routes
 Route::get('/contact-us', [FeedbackController::class, 'index'])->name('contact');
 Route::post('/contact-us', [FeedbackController::class, 'submitForm'])->name('contact.submit');

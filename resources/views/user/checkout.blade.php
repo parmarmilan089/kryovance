@@ -313,51 +313,29 @@ document.addEventListener('DOMContentLoaded', function() {
                         name: "Kryovance",
                         description: "Order Payment",
                         handler: function (response){
-                            // Create a form and submit to /razorpay/payment
-                            var form = document.createElement('form');
-                            form.method = 'POST';
-                            form.action = '/razorpay/payment';
+                            var formData = new FormData();
+                            formData.append('razorpay_payment_id', response.razorpay_payment_id);
+                            formData.append('order_id', data.order_id);
+                            formData.append('amount', {{ $subtotal * 100 }});
 
-                            // CSRF token
-                            var csrf = document.createElement('input');
-                            csrf.type = 'hidden';
-                            csrf.name = '_token';
-                            csrf.value = document.querySelector('input[name="_token"]').value;
-                            form.appendChild(csrf);
-
-                            // Payment ID
-                            var paymentId = document.createElement('input');
-                            paymentId.type = 'hidden';
-                            paymentId.name = 'razorpay_payment_id';
-                            paymentId.value = response.razorpay_payment_id;
-                            form.appendChild(paymentId);
-
-                            // Order ID
-                            var orderId = document.createElement('input');
-                            orderId.type = 'hidden';
-                            orderId.name = 'order_id';
-                            orderId.value = data.order_id;
-                            form.appendChild(orderId);
-
-                            // Submit via fetch to handle JSON response
-                            fetch('/razorpay/payment', {
+                            fetch('/razorpay/capture', {
                                 method: 'POST',
                                 headers: {
                                     'X-Requested-With': 'XMLHttpRequest',
                                     'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
                                 },
-                                body: new FormData(form)
+                                body: formData
                             })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.status === 'success') {
-                                    window.location.href = '/order-complete';
+                            .then(res => res.json())
+                            .then(captureData => {
+                                if (captureData.status === 'success') {
+                                    window.location.href = '/razor/payment/' + data.order_id;
                                 } else {
-                                    showError(data.message || 'Payment verification failed.');
+                                    showError(captureData.message || 'Payment capture failed.');
                                 }
                             })
                             .catch(() => {
-                                showError('Payment verification failed. Please try again.');
+                                showError('Payment capture failed. Please try again.');
                             });
                         },
                         prefill: {

@@ -187,6 +187,26 @@
                         <!-- Profile -->
                         <div class="profile_flex">
                             <ul class="nav usercta">
+                                @auth('customer')
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="{{ asset('user/assets/images/profile-icon.svg') }}" alt="" />
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>    
+                                            <a class="dropdown-item" href="{{ route('user-dashboard') }}">
+                                                Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('customer.logout') }}">
+                                                Logout
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                @else
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="{{ route('user-login') }}" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -200,6 +220,7 @@
                                         </li>
                                     </ul>
                                 </li>
+                                @endauth
                             </ul>
                         </div>
                     </div>

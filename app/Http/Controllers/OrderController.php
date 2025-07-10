@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\OrderItem;
 use App\Models\BillingDetails;
 use App\Models\Inventory;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Razorpay\Api\Api;
 
@@ -95,7 +95,7 @@ class OrderController extends Controller
             'total' => $total,
             'final_total' => $total,
             'payment_method' => $request->payment_method,
-            'payment_status' => 'unpaid', // Always unpaid at creation
+            'payment_status' => 'unpaid',  // Always unpaid at creation
         ];
         // Create Order
         $order = Order::create($orderData);
@@ -143,7 +143,7 @@ class OrderController extends Controller
         }
 
         // Clear Cart
-        session()->forget('cart');
+        // session()->forget('cart');
 
         // If Razorpay, return order ID for frontend to use
         if ($request->payment_method == 'razorpay') {
@@ -154,7 +154,8 @@ class OrderController extends Controller
         return redirect()->route('order-complete');
     }
 
-    public function order_complete() {
+    public function order_complete()
+    {
         $data = [];
         $data['title'] = 'Order Complete';
         $data['menu_active_tab'] = 'order-complete';
