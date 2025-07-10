@@ -263,7 +263,7 @@
                         if (response.status === 'success') {
                             $('#cart-message').text(response.message).fadeIn().delay(3000)
                                 .fadeOut(); // Show success message
-                            $('.cart_btn span').text(response
+                            $('.cartNo').text(response
                             .cart_count); // Update cart count in header
                         }
                     },

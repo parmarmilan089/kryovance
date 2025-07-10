@@ -95,7 +95,7 @@ class OrderController extends Controller
             'total' => $total,
             'final_total' => $total,
             'payment_method' => $request->payment_method,
-            'payment_status' => ($request->payment_method == 'cod') ? 'pending' : 'processing'
+            'payment_status' => 'unpaid', // Always unpaid at creation
         ];
         // Create Order
         $order = Order::create($orderData);
@@ -145,11 +145,12 @@ class OrderController extends Controller
         // Clear Cart
         session()->forget('cart');
 
-        // Handle Razorpay Payment
+        // If Razorpay, return order ID for frontend to use
         if ($request->payment_method == 'razorpay') {
-            return redirect()->route('razorpay.pay', ['order_id' => $order->id]);
+            return response()->json(['order_id' => $order->id, 'status' => 'created']);
         }
 
+        // For COD, redirect to order complete
         return redirect()->route('order-complete');
     }
 

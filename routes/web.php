@@ -18,6 +18,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ReportController;
 use App\Exports\OrdersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\RazorpayController;
 
 
 /*
@@ -192,6 +193,7 @@ Route::get('/order-complete', [OrderController::class, 'order_complete'])->name(
 
 Route::get('/razorpay/pay/{order_id}', [RazorpayController::class, 'initiatePayment'])->name('razorpay.pay');
 Route::post('/razorpay/payment', [RazorpayController::class, 'handlePayment'])->name('razorpay.handle');
+Route::post('/razorpay/webhook', [RazorpayController::class, 'webhook'])->name('razorpay.webhook');
 
 // feedback routes
 Route::get('/contact-us', [FeedbackController::class, 'index'])->name('contact');

@@ -178,7 +178,7 @@
 
                         <!-- Cart -->
                         <div class="cart_flex">
-                            <a href="{{ route('cart') }}" class="cart_btn">
+                            <a href="{{ route('shopping-cart') }}" class="cart_btn">
                                 <img src="{{ asset('user/assets/images/cart-top.svg') }}" alt="" />
                                 <div class="cartNo">{{ getCartCount() }}</div>
                             </a>
@@ -536,7 +536,7 @@
     <!-- filtering & masonry layout - jquery include -->
     <script src="{{ asset('user/assets/js/isotope.pkgd.min.js')}}"></script>
     {{--  <script src="{{ asset('user/assets/js/masonry.pkgd.min.js')}}"></script>  --}}
-    {{--  <script src="{{ asset('user/assets/js/imagesloaded.pkgd.min.js')}}"></script>  --}}
+    <script src="{{ asset('user/assets/js/imagesloaded.pkgd.min.js')}}"></script>
 
     <!-- jquery ui - jquery include -->
     {{--  <script src="{{ asset('user/assets/js/jquery-ui.js')}}"></script>  --}}
@@ -546,6 +546,7 @@
 
     <!-- owl carousel - jquery include -->
     <script src="{{ asset('user/assets/js/owl.carousel.js') }}"></script>
+    {{--  Q@tXT333aetyAFX  --}}
 </body>
 
 </html>

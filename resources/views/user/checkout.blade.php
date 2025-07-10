@@ -31,7 +31,7 @@
         <section class="checkout_section sec_ptb_140 clearfix">
             <div class="container">
                 <ul class="checkout_step ul_li clearfix">
-                    <li class="activated"><a href="#"><span>01.</span> Shopping Cart</a></li>
+                    <li class="activated"><a href="{{route('shopping-cart')}}"><span>01.</span> Shopping Cart</a></li>
                     <li class="active"><a href="#"><span>02.</span> Checkout</a></li>
                     <li><a href="#"><span>03.</span> Order Completed</a></li>
                 </ul>
@@ -95,8 +95,13 @@
                     </div>
                 @endguest
 
-                <form action="{{route('order.place')}}" method="post">
+                <form action="{{route('order.place')}}" method="post" id="checkoutForm">
                     @csrf
+                    <input type="hidden" name="order_id" id="order_id" value="{{ isset($order) ? $order->id : '' }}">
+
+                    <!-- Error message display -->
+                    <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+
                     <div class="billing_form mb_50">
                         <h3 class="form_title mb_30">Billing details</h3>
                         <div class="form_wrap">
@@ -273,3 +278,119 @@
     ================================================== -->
 
 @endsection
+
+<!-- Razorpay JS SDK -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const razorpayRadio = document.getElementById('razorpay_checkbox');
+    const checkoutForm = document.getElementById('checkoutForm');
+
+    if (!razorpayRadio || !checkoutForm) return;
+
+    checkoutForm.addEventListener('submit', function(e) {
+        if (razorpayRadio.checked) {
+            e.preventDefault();
+            // Gather form data
+            const formData = new FormData(checkoutForm);
+            // AJAX POST to placeOrder
+            fetch(checkoutForm.action, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.order_id) {
+                    // Launch Razorpay modal
+                    var options = {
+                        key: "rzp_test_ScdFzC0wtECBcC", // Your Razorpay key
+                        amount: "{{ $subtotal * 100 }}", // Amount in paise
+                        currency: "INR",
+                        name: "Kryovance",
+                        description: "Order Payment",
+                        handler: function (response){
+                            // Create a form and submit to /razorpay/payment
+                            var form = document.createElement('form');
+                            form.method = 'POST';
+                            form.action = '/razorpay/payment';
+
+                            // CSRF token
+                            var csrf = document.createElement('input');
+                            csrf.type = 'hidden';
+                            csrf.name = '_token';
+                            csrf.value = document.querySelector('input[name="_token"]').value;
+                            form.appendChild(csrf);
+
+                            // Payment ID
+                            var paymentId = document.createElement('input');
+                            paymentId.type = 'hidden';
+                            paymentId.name = 'razorpay_payment_id';
+                            paymentId.value = response.razorpay_payment_id;
+                            form.appendChild(paymentId);
+
+                            // Order ID
+                            var orderId = document.createElement('input');
+                            orderId.type = 'hidden';
+                            orderId.name = 'order_id';
+                            orderId.value = data.order_id;
+                            form.appendChild(orderId);
+
+                            // Submit via fetch to handle JSON response
+                            fetch('/razorpay/payment', {
+                                method: 'POST',
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest',
+                                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+                                },
+                                body: new FormData(form)
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    window.location.href = '/order-complete';
+                                } else {
+                                    showError(data.message || 'Payment verification failed.');
+                                }
+                            })
+                            .catch(() => {
+                                showError('Payment verification failed. Please try again.');
+                            });
+                        },
+                        prefill: {
+                            name: "{{ auth('customer')->user()->fname ?? '' }} {{ auth('customer')->user()->lname ?? '' }}",
+                            email: "{{ auth('customer')->user()->email ?? '' }}",
+                            contact: "{{ auth('customer')->user()->phone ?? '' }}"
+                        },
+                        theme: {
+                            color: "#F37254"
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                } else {
+                    showError('Order creation failed. Please try again.');
+                }
+            })
+            .catch(() => {
+                showError('Order creation failed. Please try again.');
+            });
+        }
+        // else, normal submit for COD
+    });
+
+    // Function to show error messages
+    function showError(message) {
+        const errorDiv = document.getElementById('error-message');
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            errorDiv.style.display = 'none';
+        }, 5000);
+    }
+});
+</script>
