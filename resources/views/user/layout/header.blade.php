@@ -219,7 +219,7 @@
                                         <img src="{{ asset('user/assets/images/profile-icon.svg') }}" alt="" />
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li>    
+                                        <li>
                                             <a class="dropdown-item" href="{{ route('user-dashboard') }}">
                                                 Profile
                                             </a>
@@ -463,7 +463,8 @@
                 <div class="col-md-3 col-sm-12">
                     <div class="footer_heading">Hot Products</div>
                     <?php $latestProducts = getLatestProductsWithImages(); ?>
-                    @foreach ($latestProducts as $item)
+                    @foreach ($latestProducts as $key => $item)
+                        @if($key < 2)
                         @php
                             $price = getDiscountedPrice($item->product_id, $item->product_price);
                         @endphp
@@ -475,11 +476,12 @@
                             </div>
                             <div class="footerproduct-text">
                                 <h3>
-                                    <a href="{{ route('product_details', $item->product_id) }}">{{ $item->product_name }}</a>
+                                    <a href="{{ route('product_details', $item->product_id) }}">{{ \Illuminate\Support\Str::limit($item->product_name, 40, '..') }}</a>
                                 </h3>
                                 <p>₹{{ $price }}</p>
                             </div>
                         </div>
+                        @endif
                     @endforeach
                 </div>
 

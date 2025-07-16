@@ -4923,7 +4923,7 @@ button {
 /* default breadcrumb - start */
 .breadcrumb_section {
   z-index: 1;
-  min-height: 350px;
+  /* min-height: 350px; */
   position: relative;
   padding: 65px 0px;
 }
@@ -5227,7 +5227,7 @@ button {
 /* medical breadcrumb - end */
 /* medical breadcrumb - start */
 .minimal_breadcrumb {
-  min-height: 350px;
+  /* min-height: 350px; */
   padding-bottom: 50px;
 }
 
@@ -21947,7 +21947,7 @@ blockquote .blockquote_title {
   /* medical shop - end */
   /* modern minimal shop - start */
   .minimal_breadcrumb {
-    min-height: 350px;
+    /* min-height: 350px; */
     padding-bottom: 50px;
   }
 
@@ -21992,7 +21992,7 @@ blockquote .blockquote_title {
   }
 
   .breadcrumb_section {
-    min-height: 320px;
+    /* min-height: 320px; */
   }
 
   /* furniture shop - end */
@@ -22000,7 +22000,7 @@ blockquote .blockquote_title {
   .breadcrumb_section.sports_breadcrumb {
     padding: 80px 0px;
     padding-bottom: 60px;
-    min-height: 300px;
+    /* min-height: 300px; */
   }
 
   .sports_page_title {
@@ -22116,7 +22116,7 @@ blockquote .blockquote_title {
   /* footer - end */
   /* breadcrumb - start */
   .breadcrumb_section {
-    min-height: 350px;
+    /* min-height: 350px; */
     padding-bottom: 50px;
   }
 
@@ -22413,7 +22413,7 @@ blockquote .blockquote_title {
   }
 
   .breadcrumb_section {
-    min-height: 350px;
+    /* min-height: 350px; */
     padding-bottom: 50px;
   }
 
@@ -24532,7 +24532,7 @@ blockquote .blockquote_title {
   /* footer - end */
   /* breadcrumb - start */
   .breadcrumb_section {
-    min-height: 350px;
+    /* min-height: 350px; */
     padding: 100px 0px;
   }
 
@@ -26255,7 +26255,7 @@ blockquote .blockquote_title {
   }
 
   .breadcrumb_section {
-    min-height: 340px;
+    /* min-height: 340px; */
     padding: 80px 0px;
   }
 
@@ -27772,7 +27772,7 @@ blockquote .blockquote_title {
   /* header - end */
   /* breadcrumb - start */
   .breadcrumb_section {
-    min-height: 300px;
+    /* min-height: 300px; */
     padding: 70px 0px;
   }
 

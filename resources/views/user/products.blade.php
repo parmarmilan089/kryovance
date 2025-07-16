@@ -10,15 +10,13 @@
     background-position: top;
 }
 .minimal_breadcrumb {
-    min-height: 450px;
-    padding-bottom: 50px;
 }
 </style>
     <main>
 
         <!-- breadcrumb_section - start
         ================================================== -->
-        <section class="breadcrumb_section minimal_breadcrumb d-flex align-items-end clearfix" data-background="{{asset('user/assets/images/slider/modern_minimal/bg_02.jpg')}}">
+        <section class="breadcrumb_section minimal_breadcrumb d-flex align-items-end clearfix p-0" style="background-color: #eeeeee">
             <div class="container maxw_1430">
                 <h1 class="minimal_page_title mb_15">Shop Page</h1>
                 <div class="f2_breadcrumb_nav_wrap mt-0">

@@ -53,7 +53,7 @@ if (!function_exists('getLatestProductsWithImages')) {
             ->select('products.id as product_id', 'products.name as product_name','products.is_deleted as product_deleted', 'products.price as product_price', 'product_images.file_path')
             ->orderBy('products.created_at', 'desc') // Ordering by the latest product (created_at)
             ->where('products.is_deleted', '0')
-            ->limit(2)
+            ->limit(3)
             ->get();
 
         // If products exist, attach full image URL
