@@ -366,8 +366,8 @@
                         @php
                         $cat = \App\Models\Category::where('name', $category)->first(); // get category details
                         @endphp
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="{{ Str::slug($category) }}-tab" data-bs-toggle="tab"
+                        <li class="nav-item " role="presentation">
+                            <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="{{ Str::slug($category) }}-tab" data-bs-toggle="tab"
                                 data-bs-target="#{{ Str::slug($category) }}" type="button" role="tab"
                                 aria-controls="{{ Str::slug($category) }}" aria-selected="false" tabindex="-1">{{
                                 strtoupper($category) }}</button>
@@ -376,7 +376,7 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         @foreach ($productsByCategory as $category => $products)
-                        <div class="tab-pane fade" id="{{ Str::slug($category) }}" role="tabpanel"
+                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="{{ Str::slug($category) }}" role="tabpanel"
                             aria-labelledby="{{ Str::slug($category) }}-tab">
                             <div class="row">
                                 @foreach ($products->take(6) as $product)

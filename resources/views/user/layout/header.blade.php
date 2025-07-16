@@ -96,6 +96,31 @@
         border: 1px solid #6e6e6e;
         height: 50px;
     }
+    a.navbar-brand {
+    max-width: 180px;
+}
+.right-panel .input-group-text {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.main-price span {
+    padding-left: 15px;
+}
+.hotproduct-cart .hot-heading {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.hotproduct-cart .hotP-img {
+    width: 60% !important;
+    width: 190px;
+}
+
+.hotproduct-cart .hotproduct-text {
+    max-width: 40%;
+}
 </style>
 
 <body class="home_minimal">
@@ -104,7 +129,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
-                    <img src="{{ asset('user/assets/images/logo/logo_10_1x.png') }}" alt="Kryovance" />
+                    <img src="{{ asset('user/assets/images/logo/logo.svg') }}" alt="Kryovance" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
