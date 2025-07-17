@@ -7,8 +7,8 @@
     <main>
         <!-- breadcrumb_section - start
         ================================================== -->
-        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" data-background="{{asset('user/assets/images/breadcrumb/bg_01.jpg')}}">
-            <div class="overlay" data-bg-color="#1d1d1d"></div>
+        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" >
+            <div class="overlay" data-bg-color="#efefef"></div>
             <div class="container">
                 <h1 class="page_title text-white">About Us</h1>
                 <ul class="breadcrumb_nav ul_li_center clearfix">
@@ -21,127 +21,79 @@
         ================================================== -->
         <!-- map_section - start
         ================================================== -->
-        <section class="main_contact_section sec_ptb_100 clearfix">
-            <div class="container">
-                <div class="row justify-content-lg-between">
-                     <div class="col-lg-7">
-                        <div class="main_contact_content">
-                            <h3 class="title_text mb_15">About Us</h3>
-                            <p class="mb_50">
-                               Welcome to PrintPro Solutions, your trusted local printing partner!<br>
-With years of experience in the printing industry, we take pride in delivering high-quality, fast, and affordable printing services for individuals and businesses alike.<br>
-
-Whether you need business cards, banners, flyers, brochures, posters, or customized prints, we’re here to bring your vision to life. Our team uses the latest printing technology and premium materials to ensure crisp results every time.
-                            </p>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <img src="user/assets/images/offer/minimal/epson-et-2862-ink-included-med.jpg" alt="image_not_found">
+        <div class="whyFlex" bis_skin_checked="1">
+    <div class="container" bis_skin_checked="1">
+        <div class="row" bis_skin_checked="1">
+            <div class="col-md-7" bis_skin_checked="1">
+                <div class="whyMainContent" bis_skin_checked="1">
+                    <span class="whySubtitle bg-primary-opacity">
+                        Kryovance
+                    </span>
+                    <h2 class="Whytitle">
+                        "About Us"
+                    </h2>
+                    <p>
+                       Welcome to PrintPro Solutions, your trusted local printing partner!
+                    </p>
+                    <p>
+                        With years of experience in the printing industry, we take pride in delivering high-quality, fast, and affordable printing services for individuals and businesses alike.
+                    </p>
+                    <p>
+                       Whether you need business cards, banners, flyers, brochures, posters, or customized prints, we’re here to bring your vision to life. Our team uses the latest printing technology and premium materials to ensure crisp results every time.
+                    </p>
+                    <div class="why-cta" bis_skin_checked="1">
+                        <a href="/products">Model Collection</a>
                     </div>
                 </div>
             </div>
-        </section>
-
-    <section class="main_contact_section sec_ptb_100 clearfix">
-      <div class="container">
-    <div class="row">
-        <div class="four col-md-3">
-            <div class="counter-box colored"> <i class="fa fa-thumbs-up"></i> <span class="counter">2147</span>
-                <p>Happy Customers</p>
-            </div>
-        </div>
-        <div class="four col-md-3">
-            <div class="counter-box"> <i class="fa fa-user-alien"></i> <span class="counter">3275</span>
-                <p>Registered Members</p>
-            </div>
-        </div>
-        <div class="four col-md-3">
-            <div class="counter-box"> <i class="fa fa-shopping-cart"></i> <span class="counter">289</span>
-                <p>Available Products</p>
-            </div>
-        </div>
-        <div class="four col-md-3">
-            <div class="counter-box"> <i class="fa fa-user"></i> <span class="counter">1563</span>
-                <p>Saved Trees</p>
+            <div class="col-md-5" bis_skin_checked="1">
+                <div class="whyImg" bis_skin_checked="1">
+                    <div class="why-dots" bis_skin_checked="1">
+                        <img src="http://kryovance.com/user/assets/images/dots.svg" alt="">
+                    </div>
+                    <div class="purple-circle" bis_skin_checked="1">
+                        <img src="http://kryovance.com/user/assets/images/purple-circle.svg" alt="">
+                    </div>
+                    <div class="why-girl-img" bis_skin_checked="1">
+                        <img src="http://kryovance.com/user/assets/images/why-img.png" alt="">
+                    </div>
+                    <div class="why-qutote" bis_skin_checked="1">
+                        <img src="http://kryovance.com/user/assets/images/light-printer.svg" alt="">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
- </section>
-      <!-- Our team Section -->
-<section id="team" class="team content-section">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-md-12">
-        <h2>Our Team</h2>
-        <h3 class="caption gray">Meet the people who make awesome stuffs</h3>
-      </div><!-- /.col-md-12 -->
+        
 
-      <div class="container">
+    <!-- <section class="main_contact_section sec_ptb_100 clearfix">
+        <div class="container">
         <div class="row">
+            <div class="four col-md-3">
+                <div class="counter-box colored"> <i class="fa fa-thumbs-up"></i> <span class="counter">2147</span>
+                    <p>Happy Customers</p>
+                </div>
+            </div>
+            <div class="four col-md-3">
+                <div class="counter-box"> <i class="fa fa-user-alien"></i> <span class="counter">3275</span>
+                    <p>Registered Members</p>
+                </div>
+            </div>
+            <div class="four col-md-3">
+                <div class="counter-box"> <i class="fa fa-shopping-cart"></i> <span class="counter">289</span>
+                    <p>Available Products</p>
+                </div>
+            </div>
+            <div class="four col-md-3">
+                <div class="counter-box"> <i class="fa fa-user"></i> <span class="counter">1563</span>
+                    <p>Saved Trees</p>
+                </div>
+            </div>
+        </div>
+    </div>
+ </section> -->
 
-          <div class="col-md-4">
-            <div class="team-member">
-              <figure>
-                <img src="http://www.mauritiusdsilva.com/themes/hallooou/assets/images/lauren-cox.jpg" alt="" class="img-responsive">
-                <figcaption>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae asperiores mollitia.</p>
-                  <ul>
-                    <li><a href=""><i class="fa fa-facebook fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-linkedin fa-2x"></i></a></li>
-                  </ul>
-                </figcaption>
-              </figure>
-              <h4>Lauren Cox</h4>
-              <p>Creative Director</p>
-            </div><!-- /.team-member-->
-          </div><!-- /.col-md-4 -->
-
-          <div class="col-md-4">
-            <div class="team-member">
-              <figure>
-                <img src="http://www.mauritiusdsilva.com/themes/hallooou/assets/images/jessie-barnett.jpg" alt="" class="img-responsive">
-                <figcaption>
-                  <p>Neque minima ea, a praesentium saepe nihil maxime quod esse numquam explicabo eligendi.</p>
-                  <ul>
-                    <li><a href=""><i class="fa fa-facebook fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-linkedin fa-2x"></i></a></li>
-                  </ul>
-                </figcaption>
-              </figure>
-              <h4>Jessie Barnett</h4>
-              <p>UI/UX Designer</p>
-            </div><!-- /.team-member-->
-          </div><!-- /.col-md-4 -->
-
-          <div class="col-md-4">
-            <div class="team-member">
-              <figure>
-                <img src="http://www.mauritiusdsilva.com/themes/hallooou/assets/images/terry-fletcher.jpg" alt="" class="img-responsive">
-                <figcaption>
-                  <p>Temporibus dolor, quisquam consectetur molestias, veniam voluptatum. Beatae alias omnis totam.</p>
-                  <ul>
-                    <li><a href=""><i class="fa fa-facebook fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-linkedin fa-2x"></i></a></li>
-                  </ul>
-                </figcaption>
-              </figure>
-              <h4>Terry Fletcher</h4>
-              <p>Web Developer</p>
-            </div><!-- /.team-member-->
-          </div><!-- /.col-md-4 -->
-
-
-        </div><!-- /.row -->
-      </div><!-- /.container -->
-
-    </div><!-- /.row -->
-  </div><!-- /.container -->
-</section><!-- /.our-team -->
 
         <!-- map_section - end
         ================================================== -->
@@ -384,6 +336,41 @@ Whether you need business cards, banners, flyers, brochures, posters, or customi
 }
 
 
+.minimal_page_title {
+    text-align: center;
+}
+.minimal_breadcrumb {
+    min-height: 450px;
+    padding-bottom: 50px;
+    background-color: #eeeeee !important;
+}
+
+.home_minimal h1, .home_minimal h2, .home_minimal h3, .home_minimal h4, .home_minimal h5, .home_minimal h6 {
+    color: #030a0b !important;
+    font-family: "Jost", sans-serif;
+}
+.f2_breadcrumb_nav_wrap.mt-0 ul {
+    justify-content: center;
+}
+.breadcrumb_nav a {
+    color: #030a0b !important;
+}
+.breadcrumb_nav li {
+    color: #030a0b;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+}
+.breadcrumb_section {
+    z-index: 1;
+    min-height: 200px;
+    position: relative;
+    padding: 50px 0px 100px;
+    padding-bottom: 40px;
+}
+ul.breadcrumb_nav.ul_li_center.clearfix li:last-child {
+    color: red;
+}
     </style>
 
 <script>

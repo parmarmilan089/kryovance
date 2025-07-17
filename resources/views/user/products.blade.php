@@ -11,22 +11,61 @@
 }
 .minimal_breadcrumb {
 }
+
+.minimal_page_title {
+    text-align: center;
+}
+.minimal_breadcrumb {
+    min-height: 450px;
+    padding-bottom: 50px;
+    background-color: #eeeeee !important;
+}
+
+.home_minimal h1, .home_minimal h2, .home_minimal h3, .home_minimal h4, .home_minimal h5, .home_minimal h6 {
+    color: #030a0b !important;
+    font-family: "Jost", sans-serif;
+}
+.f2_breadcrumb_nav_wrap.mt-0 ul {
+    justify-content: center;
+}
+.breadcrumb_nav a {
+    color: #030a0b !important;
+}
+.breadcrumb_nav li {
+    color: #030a0b;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+}
+.breadcrumb_section {
+    z-index: 1;
+    min-height: 200px;
+    position: relative;
+    padding: 50px 0px 100px;
+    padding-bottom: 40px;
+}
+ul.breadcrumb_nav.ul_li_center.clearfix li:last-child {
+    color: red;
+}
+.carparts_filetr_bar {
+    padding-bottom: 40px;
+}
 </style>
     <main>
 
         <!-- breadcrumb_section - start
         ================================================== -->
-        <section class="breadcrumb_section minimal_breadcrumb d-flex align-items-end clearfix p-0" style="background-color: #eeeeee">
-            <div class="container maxw_1430">
-                <h1 class="minimal_page_title mb_15">Shop Page</h1>
-                <div class="f2_breadcrumb_nav_wrap mt-0">
-                    <ul class="ce_breadcrumb_nav ul_li clearfix">
-                        <li><a href="#!">Home</a></li>
-                        <li>Shop</li>
-                    </ul>
-                </div>
+         <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" >
+            <div class="overlay" data-bg-color="#efefef"></div>
+            <div class="container">
+                <h1 class="page_title text-white">Shop</h1>
+                <ul class="breadcrumb_nav ul_li_center clearfix">
+                    <li><a href="{{route('home')}}">Home</a></li>
+                    <li>Shop</li>
+                </ul>
             </div>
         </section>
+       
         <!-- breadcrumb_section - end
         ================================================== -->
 

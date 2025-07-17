@@ -7,8 +7,8 @@
     <main>
         <!-- breadcrumb_section - start
         ================================================== -->
-        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" data-background="{{asset('public/assets/images/breadcrumb/bg_01.jpg')}}">
-            <div class="overlay" data-bg-color="#1d1d1d"></div>
+        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" >
+            <div class="overlay" data-bg-color="#efefef"></div>
             <div class="container">
                 <h1 class="page_title text-white">Contact Us</h1>
                 <ul class="breadcrumb_nav ul_li_center clearfix">
@@ -92,7 +92,7 @@
                 </div>
             </div>
         </section>
-        <!-- main_contact_section - end
+      
         <!-- map_section - start
         ================================================== -->
         <div class="map_section clearfix">
@@ -113,5 +113,42 @@
     padding: 100px 0px;
     padding-bottom: 40px;
 }  
+
+
+.minimal_page_title {
+    text-align: center;
+}
+.minimal_breadcrumb {
+    min-height: 450px;
+    padding-bottom: 50px;
+    background-color: #eeeeee !important;
+}
+
+.home_minimal h1, .home_minimal h2, .home_minimal h3, .home_minimal h4, .home_minimal h5, .home_minimal h6 {
+    color: #030a0b !important;
+    font-family: "Jost", sans-serif;
+}
+.f2_breadcrumb_nav_wrap.mt-0 ul {
+    justify-content: center;
+}
+.breadcrumb_nav a {
+    color: #030a0b !important;
+}
+.breadcrumb_nav li {
+    color: #030a0b;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+}
+ul.breadcrumb_nav.ul_li_center.clearfix li:last-child {
+    color: red;
+}
+.breadcrumb_section {
+    z-index: 1;
+    min-height: 200px;
+    position: relative;
+    padding: 50px 0px 100px;
+    padding-bottom: 40px;
+}
     </style>
 @endsection
