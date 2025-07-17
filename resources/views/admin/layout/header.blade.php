@@ -206,7 +206,11 @@
                         <i class="bx bxs-data"></i><span>Report</span>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link {{ $menu_active_tab == 'client-logos' ? 'active' : 'collapsed' }}" href="{{ route('client-logos.index') }}">
+                        <i class="bi bi-image"></i><span>Client Logos</span>
+                    </a>
+                </li>
                 @else
                 <li class="nav-item">
                     <a class="nav-link <?php echo $menu_active_tab == "customer-list" || $menu_active_tab == "add-customer" ? '' : 'collapsed'; ?>" href="{{ URL::route('customer-list') }}">
@@ -219,6 +223,7 @@
 
                     </a>
                 </li>
+
                 @endif
             </ul>
 

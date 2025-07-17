@@ -509,7 +509,7 @@
                             <i class="fa-regular fa-envelope"></i>
                             <input type="email" class="form-control" id="floatingInput"
                                 placeholder="name@example.com" />
-                            <label for="floatingInput">Email address</label>
+                            <label for="floatingInput"></label>
                         </div>
                         <button aria-label="submit" value="submit" type="button">
                             Submit

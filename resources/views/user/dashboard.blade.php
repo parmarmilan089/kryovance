@@ -363,7 +363,7 @@
                 <div class="category_tabs">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         @foreach ($productsByCategory as $category => $products)
-                        @php    
+                        @php
                         $cat = \App\Models\Category::where('name', $category)->first(); // get category details
                         @endphp
                         <li class="nav-item " role="presentation">
@@ -490,30 +490,11 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="owl-one owl-carousel owl-theme">
+                    @foreach ($logos as $logo)
                     <div class="item">
-                        <figure><img src="{{asset('user/assets/images/client-1.png')}}" alt="" /></figure>
+                        <figure><img src="{{asset('storage/' . $logo->image_path) }}" alt="{{ $logo->title }}" /></figure>
                     </div>
-                    <div class="item">
-                        <figure><img src="{{asset('user/assets/images/client-1.png')}}" alt="" /></figure>
-                    </div>
-                    <div class="item">
-                        <figure><img src="{{asset('user/assets/images/client-1.png')}}" alt="" /></figure>
-                    </div>
-                    <div class="item">
-                        <figure><img src="{{asset('user/assets/images/client-1.png')}}" alt="" /></figure>
-                    </div>
-                    <div class="item">
-                        <figure><img src="{{asset('user/assets/images/client-1.png')}}" alt="" /></figure>
-                    </div>
-                    <div class="item">
-                        <figure><img src="{{asset('user/assets/images/client-1.png')}}" alt="" /></figure>
-                    </div>
-                    <div class="item">
-                        <figure><img src="{{asset('user/assets/images/client-1.png')}}" alt="" /></figure>
-                    </div>
-                    <div class="item">
-                        <figure><img src="{{asset('user/assets/images/client-1.png')}}" alt="" /></figure>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

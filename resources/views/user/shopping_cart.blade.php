@@ -11,7 +11,7 @@
 
         <!-- breadcrumb_section - start
         ================================================== -->
-        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" data-background="user/assets/images/breadcrumb/bg_01.jpg">
+        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix" >
             <div class="overlay" data-bg-color="#1d1d1d"></div>
             <div class="container">
                 <h1 class="page_title text-white">Checkout</h1>
@@ -85,8 +85,8 @@
                     <div class="row justify-content-lg-between">
                         <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
                             <div class="coupon_form">
-                                <div class="form_item mb-0">
-                                    <input type="text" class="coupon" placeholder="Coupon Code">
+                                <div class="form_item">
+                                    <input type="text" class="coupon" placeholder="Coupon Code" name="">
                                 </div>
                                 <button type="submit" class="custom_btn bg_danger text-uppercase">Apply Coupon</button>
                             </div>

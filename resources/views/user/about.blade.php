@@ -21,11 +21,13 @@
         ================================================== -->
         <!-- map_section - start
         ================================================== -->
-        <div class="whyFlex" bis_skin_checked="1">
-    <div class="container" bis_skin_checked="1">
-        <div class="row" bis_skin_checked="1">
-            <div class="col-md-7" bis_skin_checked="1">
-                <div class="whyMainContent" bis_skin_checked="1">
+
+<!-- Why Printer -->
+<div class="whyFlex">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="whyMainContent">
                     <span class="whySubtitle bg-primary-opacity">
                         Kryovance
                     </span>
@@ -33,39 +35,39 @@
                         "About Us"
                     </h2>
                     <p>
-                       Welcome to PrintPro Solutions, your trusted local printing partner!
+                        Welcome to PrintPro Solutions, your trusted local printing partner!
                     </p>
                     <p>
-                        With years of experience in the printing industry, we take pride in delivering high-quality, fast, and affordable printing services for individuals and businesses alike.
+                       With years of experience in the printing industry, we take pride in delivering high-quality, fast, and affordable printing services for individuals and businesses alike.
                     </p>
                     <p>
                        Whether you need business cards, banners, flyers, brochures, posters, or customized prints, we’re here to bring your vision to life. Our team uses the latest printing technology and premium materials to ensure crisp results every time.
                     </p>
-                    <div class="why-cta" bis_skin_checked="1">
-                        <a href="/products">Model Collection</a>
+                    <div class="why-cta">
+                        <a href="#">Model Collection</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5" bis_skin_checked="1">
-                <div class="whyImg" bis_skin_checked="1">
-                    <div class="why-dots" bis_skin_checked="1">
-                        <img src="http://kryovance.com/user/assets/images/dots.svg" alt="">
+            <div class="col-md-5">
+                <div class="whyImg">
+                    <div class="why-dots">
+                        <img src="{{asset('user/assets/images/dots.svg')}}" alt="" />
                     </div>
-                    <div class="purple-circle" bis_skin_checked="1">
-                        <img src="http://kryovance.com/user/assets/images/purple-circle.svg" alt="">
+                    <div class="purple-circle">
+                        <img src="{{asset('user/assets/images/purple-circle.svg')}}" alt="" />
                     </div>
-                    <div class="why-girl-img" bis_skin_checked="1">
-                        <img src="http://kryovance.com/user/assets/images/why-img.png" alt="">
+                    <div class="why-girl-img">
+                        <img src="{{asset('user/assets/images/why-img.png')}}" alt="" />
                     </div>
-                    <div class="why-qutote" bis_skin_checked="1">
-                        <img src="http://kryovance.com/user/assets/images/light-printer.svg" alt="">
+                    <div class="why-qutote">
+                        <img src="{{asset('user/assets/images/light-printer.svg')}}" alt="" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-        
+<!-- End Why Printer  -->
 
     <!-- <section class="main_contact_section sec_ptb_100 clearfix">
         <div class="container">

@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\ProductImage;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ClientLogo;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Mail;
@@ -28,6 +29,7 @@ class FrontendController extends Controller {
         ->get()
         ->groupBy('category_name');
         $data['productsByCategory'] = $productsByCategory;
+        $data['logos'] = ClientLogo::all();
         return view('user.dashboard')->with($data);
     }
 

@@ -19,6 +19,7 @@ use App\Http\Controllers\ReportController;
 use App\Exports\OrdersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\RazorpayController;
+use App\Http\Controllers\Admin\ClientLogoController;
 
 
 /*
@@ -140,8 +141,10 @@ Route::group(['middleware' => ['auth']], function () {
                 $year = request('year');
                 return Excel::download(new OrdersExport($month, $year), 'orders_' . $month . '_' . $year . '.xlsx');
             })->name('export');
+            Route::resource('client-logos', ClientLogoController::class);
     });
 });
+
 
 
 Route::get('/', [FrontendController::class, 'dashboard'])->name('home');

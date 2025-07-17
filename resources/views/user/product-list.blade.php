@@ -33,8 +33,8 @@
                         </span>
                     </div>
                 </div>
-                <div class="cart-cta"><button><img src="{{asset('user/assets/images/cart-icon-w.svg')}}"
-                            alt=""></button></div>
+                <div class="cart-cta "><button class="text-white">Add to Cart</button></div>
+
             </div>
         </div>
     </div>
