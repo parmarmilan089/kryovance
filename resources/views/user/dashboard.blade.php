@@ -326,7 +326,7 @@
                 <div class="hotproduct-cart">
                     <div class="hotproduct-text">
                         <div class="hot-heading">
-                            {{ $item->product_name }}
+                            {{ \Illuminate\Support\Str::limit($item->product_name, 40, '..') }}
                         </div>
                         <div class="hotP-price">
                             ₹ {{ $price }}

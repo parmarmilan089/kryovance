@@ -306,8 +306,10 @@ ul.breadcrumb_nav.ul_li_center.clearfix li:last-child {
                     </div>
                 </div>
 
-                <div class="load_more text-center clearfix">
-                    <button id="load-more" class="custom_btn bg_modern_red text-uppercase" data-page="6">Load More</button>
+                <div class="load-more">
+                    <div class="load-text load_more">
+                        Load More...
+                    </div>
                 </div>
             </div>
         </section>

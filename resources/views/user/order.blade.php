@@ -9,16 +9,25 @@
         }
 
         .nav-link:hover {
-            background-color: #ce0b2b;
+            background-color: #ce0b2b !important;
             /* Background color on hover */
             color: white;
             /* Text color on hover */
         }
 
-        .nav-link.active {
+        .dashboard .nav-item .active {
             background-color: #ce0b2b !important;
             font-weight: bold;
             color: white;
+        }
+        .dashboard .nav-link .active {
+            background-color: #ce0b2b !important;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #ce0b2b !important;
         }
 
         .content-section {
@@ -28,14 +37,13 @@
     <main>
         <!-- breadcrumb_section - start
                                     ================================================== -->
-        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix"
-            data-background="user/assets/images/breadcrumb/bg_01.jpg">
+        <section class="breadcrumb_section text-white text-center text-uppercase d-flex align-items-end clearfix">
             <div class="overlay" data-bg-color="#1d1d1d"></div>
             <div class="container">
-                <h1 class="page_title text-white">Profile Page</h1>
+                <h1 class="page_title text-black">Profile Page</h1>
                 <ul class="breadcrumb_nav ul_li_center clearfix">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>Profile</li>
+                    <li><a href="{{ route('home') }}" style="color: black !important;">Home</a></li>
+                    <li class="text-danger">Profile</li>
                 </ul>
             </div>
         </section>
@@ -54,7 +62,7 @@
                     <span class="fs-4">Dashboard</span>
                   </a>
                   <hr>  --}}
-                        <ul class="nav nav-pills flex-column mb-auto">
+                        <ul class="nav nav-pills flex-column mb-auto dashboard">
                             <li class="nav-item">
                                 <a class="nav-link active" onclick="showSection('profile')">Profile</a>
                             </li>
@@ -427,7 +435,7 @@
                                     <div class="form_item">
                                         <label class="form_title text-uppercase text-center">Email</label>
                                         <input id="username_input" type="email" name="email" placeholder="email">
-                                    </div>  
+                                    </div>
                                     <button type="submit" class="custom_btn bg_default_red text-uppercase mb_50">Send
                                         Password Reset Link</button>
                                     @if (session('success'))
