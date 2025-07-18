@@ -19030,7 +19030,7 @@ blockquote .blockquote_title {
   font-size: 24px;
 }
 .billing_form .form_wrap {
-  padding: 60px;
+  padding: 10px;
   border: 2px solid #e6e6e6;
 }
 .billing_form .form_item,
@@ -19112,7 +19112,7 @@ blockquote .blockquote_title {
 
 .billing_payment_mathod li {
   margin-bottom: 25px;
-  padding-bottom: 25px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #e6e6e6;
 }
 .billing_payment_mathod .checkbox_item .paypal_image {
@@ -24622,7 +24622,7 @@ blockquote .blockquote_title {
   }
 
   .billing_form .form_wrap {
-    padding: 30px;
+    padding: 10px;
   }
 
   /* shop checkout - end */

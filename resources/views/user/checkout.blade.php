@@ -103,7 +103,7 @@
                     <div id="error-message" class="alert alert-danger" style="display: none;"></div>
 
                     <div class="billing_form mb_50">
-                        <h3 class="form_title mb_30">Billing details</h3>
+                        <h3 class="form_title">Billing details</h3>
                         <div class="form_wrap">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -198,11 +198,11 @@
                         </div>
                     </div>
                     <div class="billing_form">
-                        <h3 class="form_title mb_30">Your order</h3>
+                        <h3 class="form_title ">Your order</h3>
                         <div class="form_wrap">
 
                             <div class="checkout_table">
-                                <table class="table text-center mb_50">
+                                <table class="table text-center mb_20">
                                     <thead class="text-uppercase text-uppercase">
                                         <tr>
                                             <th>Product Name</th>
@@ -220,7 +220,7 @@
                                                             <img src="{{$item['image']}}" alt="image_not_found">
                                                         </div>
                                                         <div class="item_content">
-                                                            <h4 class="item_title mb-0">{{$item['name']}}</h4>
+                                                            <h4 class="item_title mb-0"> {{ \Illuminate\Support\Str::limit($item['name'], 40, '..') }}</h4>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -256,7 +256,7 @@
                                     </li>
                                     <li>
                                         <div class="checkbox_item mb-0 pl-0">
-                                            <label for="razorpay_checkbox"><input id="razorpay_checkbox" type="radio" name="payment_method" value="razorpay"> Razorpay <a href="#!"><img class="paypal_image" src="user/assets/images/payment_methods_03.png" alt="image_not_found"></a></label>
+                                            <label for="razorpay_checkbox"><input id="razorpay_checkbox" type="radio" name="payment_method" value="razorpay"> <span class="razorpay_span">Razorpay</span> <a href="#!"><img class="paypal_image" src="user/assets/images/payment_methods_03.png" alt="image_not_found"></a></label>
                                         </div>
                                     </li>
                                 </ul>
