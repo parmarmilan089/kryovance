@@ -8,7 +8,7 @@
             color: #333;
         }
 
-        .nav-link:hover {
+        .dashboard .nav-link:hover {
             background-color: #ce0b2b !important;
             /* Background color on hover */
             color: white;
@@ -53,7 +53,7 @@
 
         <!-- Order - start
                                     ================================================== -->
-        <section class="cart_section sec_ptb_140 clearfix">
+        <section class="cart_section  clearfix">
             <div class="container-fluid">
                 <div class="d-flex">
                     <!-- Vertical Navbar -->

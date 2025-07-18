@@ -301,7 +301,7 @@ ul.breadcrumb_nav.ul_li_center.clearfix li:last-child {
                 </div>
 
                 <div class="row mb_50 justify-content-center">
-                    <div class="row mb_50 justify-content-center" id="product-list">
+                    <div class="row mb_50" id="product-list">
                         @include('user.product-list', ['products' => $products])
                     </div>
                 </div>

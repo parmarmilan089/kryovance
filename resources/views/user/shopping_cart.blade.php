@@ -30,88 +30,95 @@
         ================================================== -->
         <section class="cart_section sec_ptb_140 clearfix">
             <div class="container">
-
                 <ul class="checkout_step ul_li clearfix">
                     <li class="active"><a href="#"><span>01.</span> Shopping Cart</a></li>
                     <li><a href="#"><span>02.</span> Checkout</a></li>
                     <li><a href="#"><span>03.</span> Order Completed</a></li>
                 </ul>
+                <div class="row">
+                    <div class="col-lg-9">
 
-                <div class="cart_table mb_50">
-                    <table class="table">
-                        <thead class="text-uppercase">
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($cartItems as $item)
-                                <tr id="cart-item-{{$item['id']}}">
-                                    <td>
-                                        <div class="cart_product">
-                                            <div class="item_image">
-                                                <img src="{{$item['image']}}" alt="image_not_found">
-                                            </div>
-                                            <div class="item_content">
-                                                <h4 class="item_title">{{$item['name']}}</h4>
-                                                <span class="item_type">{{$item['category_name']}}</span>
-                                            </div>
-                                            <button type="button" class="remove_btn remove_product" data-id="{{$item['id']}}">
-                                                <i class="fal fa-times"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="price_text">₹{{$item['price']}}</span>
-                                    </td>
-                                    <td>
-                                        <div class="quantity_input">
-                                            <span class="input_decrement" data-id="{{$item['id']}}">–</span>
-                                            <input class="input_number quantity-{{$item['id']}}" type="text" value="{{$item['quantity']}}">
-                                            <span class="input_increment" data-id="{{$item['id']}}">+</span>
-                                        </div>
-                                    </td>
-                                    <td><span class="total_price">₹{{$item['price'] * $item['quantity']}}</span></td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
 
-                <div class="coupon_wrap mb_50">
-                    <div class="row justify-content-lg-between">
-                        <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
-                            <div class="coupon_form">
-                                <div class="form_item">
-                                    <input type="text" class="coupon" placeholder="Coupon Code" name="">
+                        <div class="cart_table mb_50">
+                            <table class="table">
+                                <thead class="text-uppercase">
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($cartItems as $item)
+                                        <tr id="cart-item-{{$item['id']}}">
+                                            <td>
+                                                <div class="cart_product">
+                                                    <div class="item_image">
+                                                        <img src="{{$item['image']}}" alt="image_not_found">
+                                                    </div>
+                                                    <div class="item_content">
+                                                        <h4 class="item_title">{{ \Illuminate\Support\Str::limit($item['name'], 40, '..') }}</h4>
+                                                        <span class="item_type">{{$item['category_name']}}</span>
+                                                    </div>
+                                                    <button type="button" class="remove_btn remove_product" data-id="{{$item['id']}}">
+                                                        <i class="fal fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="price_text">₹{{$item['price']}}</span>
+                                            </td>
+                                            <td>
+                                                <div class="quantity_input">
+                                                    <span class="input_decrement" data-id="{{$item['id']}}">–</span>
+                                                    <input class="input_number quantity-{{$item['id']}}" type="text" value="{{$item['quantity']}}">
+                                                    <span class="input_increment" data-id="{{$item['id']}}">+</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="total_price">₹{{$item['price'] * $item['quantity']}}</span></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="coupon_wrap mb_50">
+                            <div class="row justify-content-lg-between">
+                                <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="coupon_form">
+                                        <div class="form_item">
+                                            <input type="text" class="coupon" placeholder="Coupon Code" name="">
+                                        </div>
+                                        <button type="submit" class="custom_btn bg_danger text-uppercase">Apply Coupon</button>
+                                    </div>
                                 </div>
-                                <button type="submit" class="custom_btn bg_danger text-uppercase">Apply Coupon</button>
+
+                                <!-- <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="cart_update_btn">
+                                        <button type="button" class="custom_btn bg_secondary text-uppercase">Update Cart</button>
+                                    </div>
+                                </div> -->
                             </div>
                         </div>
-
-                        <!-- <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
-                            <div class="cart_update_btn">
-                                <button type="button" class="custom_btn bg_secondary text-uppercase">Update Cart</button>
-                            </div>
-                        </div> -->
                     </div>
+
+                    <div class="col-lg-3">
+
+
+                                <div class="cart_pricing_table pt-0 text-uppercase" data-bg-color="#f2f3f5">
+                                    <h3 class="table_title text-center" data-bg-color="#ededed">Cart Total</h3>
+                                    <ul class="ul_li_block clearfix">
+                                        <li><span>Subtotal</span> <span class="sub-total">₹{{number_format($subtotal,2)}}</span></li>
+                                        <li><span>Total</span> <span class="total">₹{{number_format($subtotal,2)}}</span></li>
+                                    </ul>
+                                    <a href="{{route('checkout')}}" class="custom_btn bg_success">Checkout</a>
+                                </div>
+                    </div>
+
                 </div>
 
-                <div class="row justify-content-lg-end">
-                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                        <div class="cart_pricing_table pt-0 text-uppercase" data-bg-color="#f2f3f5">
-                            <h3 class="table_title text-center" data-bg-color="#ededed">Cart Total</h3>
-                            <ul class="ul_li_block clearfix">
-                                <li><span>Subtotal</span> <span class="sub-total">₹{{number_format($subtotal,2)}}</span></li>
-                                <li><span>Total</span> <span class="total">₹{{number_format($subtotal,2)}}</span></li>
-                            </ul>
-                            <a href="{{route('checkout')}}" class="custom_btn bg_success">Proceed to Checkout</a>
-                        </div>
-                    </div>
-                </div>
+
+
 
             </div>
         </section>
