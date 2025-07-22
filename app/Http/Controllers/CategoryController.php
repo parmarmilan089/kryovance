@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 use Mail;
 use View;
 use Yajra\DataTables\DataTables;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller {
 
@@ -87,18 +87,30 @@ class CategoryController extends Controller {
         $id = $request->input('delete_id');
         try {
             if ($id) {
+                DB::beginTransaction();
                 $category = Category::find($id);
                 if ($category) {
                     $category->is_deleted = '1';
                     $category->updated_by_id = \Auth::user()->id ? \Auth::user()->id : null;
                     $category->save();
+
+                    // Soft delete products
+                    \App\Models\Product::where('category_id', $id)->update([
+                        'is_deleted' => '1',
+                        'updated_by_id' => \Auth::user()->id ? \Auth::user()->id : null
+                    ]);
+
+                    // Hard delete inventory
+                    \App\Models\Inventory::where('category_id', $id)->delete();
                 }
+                DB::commit();
                 echo json_encode(array("status" => true, 'message' => 'Record deleted.'));
             } else {
                 echo json_encode(array("status" => false, 'message' => 'Record not found.'));
             }
-        } catch (Exception $e) {
-            return json_encode(['status' => false, 'message' => getErrorMessageByCode('ER1')]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return json_encode(['status' => false, 'message' => $e->getMessage()]);
         }
     }
 
