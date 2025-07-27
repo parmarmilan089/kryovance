@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data && data.order_id) {
                     // Launch Razorpay modal
                     var options = {
-                        key: "rzp_test_4hHBbXgAK4BKay", // Your Razorpay key
+                        key: "rzp_live_PSBe9qHdz1LKGW", // Your Razorpay key
                         amount: "{{ $subtotal * 100 }}", // Amount in paise
                         currency: "INR",
                         name: "Kryovance",

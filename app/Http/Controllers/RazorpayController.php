@@ -22,7 +22,7 @@ class RazorpayController extends Controller
             return response()->json(['status' => 'error', 'message' => 'Order not found.'], 404);
         }
 
-        $api = new Api('rzp_test_4hHBbXgAK4BKay', 'HSpjZJuXcXy8Dq3bA9LaWYw0');  // Replace with your Razorpay secret
+        $api = new Api('rzp_live_PSBe9qHdz1LKGW', 'aJ56vWzkSUyMgQ5eRcd8tcqH');  // Replace with your Razorpay secret
         try {
             $payment = $api->payment->fetch($request->razorpay_payment_id);
             dd($payment);
