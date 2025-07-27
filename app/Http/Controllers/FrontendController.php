@@ -165,4 +165,34 @@ class FrontendController extends Controller {
         return view('user.about')->with($data);
     }
 
+      public function termsandconditions() {
+        $data = [];
+        $data['title'] = 'Terms and Conditions';
+        $data['menu_active_tab'] = 'about';
+        return view('user.terms-and-conditions')->with($data);
+    }
+
+
+      public function shippinganddelivery() {
+        $data = [];
+        $data['title'] = 'shipping and delivery';
+        $data['menu_active_tab'] = 'about';
+        return view('user.shipping-and-delivery')->with($data);
+    }
+
+
+      public function privacypolicy() {
+        $data = [];
+        $data['title'] = 'privacy policy';
+        $data['menu_active_tab'] = 'about';
+        return view('user.privacy-policy')->with($data);
+    }
+
+      public function cancellationandrefundpolicy() {
+        $data = [];
+        $data['title'] = 'cancellationandrefundpolicy';
+        $data['menu_active_tab'] = 'about';
+        return view('user.cancellation-and-refund-policy')->with($data);
+    }
+
 }

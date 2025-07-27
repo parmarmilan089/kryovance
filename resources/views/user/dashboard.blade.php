@@ -9,6 +9,7 @@
         height: 720px;
     }
 
+    
     .carousel_nav button {
         width: 50px;
         height: 50px;
@@ -209,6 +210,21 @@
     .cart-plus-flex {
         position: relative;
     }
+    .productCart-flex .cart-plus-flex .input-group .btn {
+ 
+    border: 0;
+}
+.category_tabs .row:first-child {
+    justify-content: center;
+}
+.hotProdcut_flex .hotproduct-cart .hotP-img img {
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+}
+.productCart-flex .cart-cta button {
+    padding: 5px 15px;
+}
 </style>
 <!-- Banner -->
 <div class="banner_flex">

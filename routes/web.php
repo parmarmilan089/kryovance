@@ -157,6 +157,12 @@ Route::post('/load-more-products', [FrontendController::class, 'loadMoreProduct'
 Route::get('/about-us', [FrontendController::class, 'about'])->name('about');
 
 
+Route::get('/terms-and-conditions', [FrontendController::class, 'termsandconditions'])->name('terms-and-conditions');
+Route::get('/shipping-and-delivery', [FrontendController::class, 'shippinganddelivery'])->name('shipping-and-delivery');
+Route::get('/privacy-policy', [FrontendController::class, 'privacypolicy'])->name('privacy-policy');
+Route::get('/cancellation-and-refund-policy', [FrontendController::class, 'cancellationandrefundpolicy'])->name('cancellation-and-refund-policy');
+
+
 //customer routes
 Route::get('/user-login', [CustomerAuthController::class, 'user_login'])->name('user-login');
 Route::get('/user-forget-passoword', [CustomerAuthController::class, 'userForgetpassword'])->name('forget-password');

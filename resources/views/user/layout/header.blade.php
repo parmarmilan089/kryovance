@@ -121,6 +121,12 @@
 .hotproduct-cart .hotproduct-text {
     max-width: 40%;
 }
+footer .newsletter .form-floating {
+    display: flex
+;
+    gap: 15px;
+    align-items: center;
+}
 </style>
 
 <body class="home_minimal">
@@ -489,16 +495,16 @@
                     <div class="footer_heading">Useful Links</div>
                     <ul class="footer_tabs">
                         <li>
-                            <a href="#">Home</a>
+                            <a href="{{ route('home') }}">Home</a>
                         </li>
                         <li>
-                            <a href="#">About Us</a>
+                            <a href="{{ route('products') }}">About Us</a>
                         </li>
                         <li>
-                            <a href="#">Shop</a>
+                            <a href="{{ route('about') }}">Shop</a>
                         </li>
                         <li>
-                            <a href="#">Contact Us</a>
+                            <a href="{{ route('contact') }}">Contact Us</a>
                         </li>
                     </ul>
                 </div>
@@ -509,7 +515,7 @@
                             <i class="fa-regular fa-envelope"></i>
                             <input type="email" class="form-control" id="floatingInput"
                                 placeholder="name@example.com" />
-                            <label for="floatingInput"></label>
+                            <!-- <label for="floatingInput"></label> -->
                         </div>
                         <button aria-label="submit" value="submit" type="button">
                             Submit
@@ -531,10 +537,10 @@
                     <div class="col-md-6 col-sm-12">
                         <ul class="privacy_list">
                             <li>
-                                <a href="#">Terms &amp; Condition</a>
+                                <a href="{{ route('terms-and-conditions') }}">Terms &amp; Condition</a>
                             </li>
                             <li>
-                                <a href="#">Privacy Policy</a>
+                                <a href="{{ route('privacy-policy') }}">Privacy Policy</a>
                             </li>
                         </ul>
                     </div>
